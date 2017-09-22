@@ -89,9 +89,9 @@ namespace QiMenPush.Runner
                 IJobDetail jobDetail2 = JobBuilder.Create<EntryorderConfirmJob>().WithIdentity("job_QiMenEntryorderConfirm", schedulerId).RequestRecovery(true).Build();
                 IJobDetail jobDetail3 = JobBuilder.Create<ReturnorderConfirmJob>().WithIdentity("job_QiMenReturnorderConfirm", schedulerId).RequestRecovery(true).Build();
                 //ITrigger trigger = TriggerBuilder.Create().WithIdentity("trigger_" + count, schedulerId).StartNow().WithSimpleSchedule(x => x.WithIntervalInSeconds(5).RepeatForever()).Build();//现在开始,触发时间，5秒一次,不间断重复执行 
-                ITrigger trigger0 = TriggerBuilder.Create().WithIdentity("trigger_QiMenDeliveryorderConfirm", schedulerId).StartNow().WithCronSchedule("0 0/15 * * * ?").Build();  
+                ITrigger trigger0 = TriggerBuilder.Create().WithIdentity("trigger_QiMenDeliveryorderConfirm", schedulerId).StartNow().WithCronSchedule("0 0/10 * * * ?").Build();  
                 ITrigger trigger1 = TriggerBuilder.Create().WithIdentity("trigger_QiMenStockoutConfirm", schedulerId).StartNow().WithCronSchedule("0 0/15 * * * ?").Build();
-                ITrigger trigger2 = TriggerBuilder.Create().WithIdentity("trigger_QiMenEntryorderConfirm", schedulerId).StartNow().WithCronSchedule("0 0/15 * * * ?").Build();
+                ITrigger trigger2 = TriggerBuilder.Create().WithIdentity("trigger_QiMenEntryorderConfirm", schedulerId).StartNow().WithCronSchedule("0 0/10 * * * ?").Build();
                 ITrigger trigger3 = TriggerBuilder.Create().WithIdentity("trigger_QiMenReturnorderConfirm", schedulerId).StartNow().WithCronSchedule("0 0/15 * * * ?").Build();
                 scheduler.ScheduleJob(jobDetail0, trigger0);//加入到执行计划
                 scheduler.ScheduleJob(jobDetail1, trigger1);

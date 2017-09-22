@@ -2,6 +2,7 @@
 using Common.Logging;
 using Qimen.Api;
 using Qimen.Api.Request;
+using QiMenPush.Jobs.Emum;
 using Quartz;
 using System;
 using System.Collections.Generic;
@@ -36,7 +37,7 @@ namespace QiMenPush.Jobs
                 {
                     DbSet<SHIPMENT_HEADER> header = dbContext.Set<SHIPMENT_HEADER>();
                     DbSet<SHIPMENT_DETAIL> detail = dbContext.Set<SHIPMENT_DETAIL>();
-                    DbSet<QiMen_PushTimeStatus> dbSet0 = dbContext1.Set<QiMen_PushTimeStatus>();
+                    //DbSet<QiMen_PushTimeStatus> dbSet0 = dbContext1.Set<QiMen_PushTimeStatus>();
                     DbSet<QiMen_PushLog> dbSet1 = dbContext1.Set<QiMen_PushLog>();
 
                     IQimenClient client = new DefaultQimenClient(url, appkey, secret);
@@ -44,24 +45,31 @@ namespace QiMenPush.Jobs
 
                     foreach (var cId in customerArr)
                     {
-                        DateTime lastTime;
-                        QiMen_PushTimeStatus qmt = dbSet0.Where(q => q.CustomerId == cId && q.OrderType == SHIPMENT && q.Interface == INTERFACE).FirstOrDefault();
-                        if (qmt == null)
-                        {
-                            qmt = new QiMen_PushTimeStatus() { CustomerId = cId, ActualShipTime = DateTime.Now, OrderType = SHIPMENT, Interface = INTERFACE };
-                            dbSet0.Add(qmt);
-                            lastTime = DateTime.Now.AddMinutes(-1);
-                        }
-                        else
-                        {
-                            lastTime = ((DateTime)qmt.ActualShipTime).AddMinutes(-1);
-                        }
+                        //DateTime lastTime;
+                        //QiMen_PushTimeStatus qmt = dbSet0.Where(q => q.CustomerId == cId && q.OrderType == SHIPMENT && q.Interface == INTERFACE).FirstOrDefault();
+                        //if (qmt == null)
+                        //{
+                        //    qmt = new QiMen_PushTimeStatus() { CustomerId = cId, ActualShipTime = DateTime.Now, OrderType = SHIPMENT, Interface = INTERFACE };
+                        //    dbSet0.Add(qmt);
+                        //    lastTime = DateTime.Now.AddMinutes(-1);
+                        //}
+                        //else
+                        //{
+                        //    lastTime = ((DateTime)qmt.ActualShipTime).AddMinutes(-1);
+                        //}
                         //&& (h.SHIPMENT_TYPE.Equals("LKCK", StringComparison.OrdinalIgnoreCase))
-                        var confirmlList = header.Where(h => h.COMPANY == cId && h.TRAILING_STS == 900 && h.ACTUAL_SHIP_DATE_TIME >= lastTime).OrderByDescending(h => h.ACTUAL_SHIP_DATE_TIME).Include(s => s.SHIPMENT_DETAIL).Include(s => s.SHIPPING_CONTAINER).AsNoTracking().ToList();
+                        //var confirmlList = header.Where(h => h.COMPANY == cId && h.TRAILING_STS == 900 && h.ACTUAL_SHIP_DATE_TIME >= lastTime).OrderByDescending(h => h.ACTUAL_SHIP_DATE_TIME).Include(s => s.SHIPMENT_DETAIL).Include(s => s.SHIPPING_CONTAINER).AsNoTracking().ToList();
+
+                        var confirmlList = header.Where(h => h.COMPANY == cId
+                        && (h.SHIPMENT_CATEGORY6 == null || h.SHIPMENT_CATEGORY6 == QimenPushStatus.Failure.ToString())
+                        && (h.TRAILING_STS == 800 || h.TRAILING_STS == 850 || h.TRAILING_STS == 900)
+                        && (h.PROCESS_TYPE == "NORMAL")
+                        ).Include(s => s.SHIPMENT_DETAIL).Include(s => s.SHIPPING_CONTAINER).ToList();
+
                         req.CustomerId = cId;
                         req.Version = v;
                         req.Timestamp = DateTime.Now;
-                        bool pushFlag = true;
+                        //bool pushFlag = true;
 
                         foreach (var itemHeader in confirmlList)
                         {
@@ -80,7 +88,7 @@ namespace QiMenPush.Jobs
                             List<StockoutConfirmRequest.PackageDomain> packageList = new List<StockoutConfirmRequest.PackageDomain>();
                             List<StockoutConfirmRequest.OrderLineDomain> orderLineList = new List<StockoutConfirmRequest.OrderLineDomain>();
 
-                            foreach (var container in itemHeader.SHIPPING_CONTAINER.Where(t => t.PARENT == 0 && t.STATUS == 900))
+                            foreach (var container in itemHeader.SHIPPING_CONTAINER.Where(t => t.PARENT == 0))
                             {
                                 var childContainer = itemHeader.SHIPPING_CONTAINER.Where(c => c.PARENT == container.INTERNAL_CONTAINER_NUM);
                                 List<StockoutConfirmRequest.ItemDomain> itemList = new List<StockoutConfirmRequest.ItemDomain>();
@@ -105,25 +113,25 @@ namespace QiMenPush.Jobs
                                 packageList.Add(package);
                             }
 
-                            if (!packageList.Any())
-                            {
-                                deliveryOrder.ExpressCode = "Test123456";
-                                deliveryOrder.LogisticsCode = itemHeader.CARRIER;
+                            //if (!packageList.Any())
+                            //{
+                            //    deliveryOrder.ExpressCode = "Test123456";
+                            //    deliveryOrder.LogisticsCode = itemHeader.CARRIER;
 
-                                for (int i = 0; i < 5; i++)
-                                {
-                                    List<StockoutConfirmRequest.ItemDomain> itemList = new List<StockoutConfirmRequest.ItemDomain>();
-                                    StockoutConfirmRequest.PackageDomain package = new StockoutConfirmRequest.PackageDomain();
-                                    StockoutConfirmRequest.ItemDomain itemDomain = new StockoutConfirmRequest.ItemDomain();
-                                    itemDomain.ItemCode = "love100c2001";
-                                    itemDomain.Quantity = 2;
-                                    itemList.Add(itemDomain);
-                                    package.ExpressCode = "Test123456789" + i;
-                                    package.LogisticsCode = "ZTO";
-                                    package.Items = itemList;
-                                    packageList.Add(package);
-                                }
-                            }
+                            //    for (int i = 0; i < 5; i++)
+                            //    {
+                            //        List<StockoutConfirmRequest.ItemDomain> itemList = new List<StockoutConfirmRequest.ItemDomain>();
+                            //        StockoutConfirmRequest.PackageDomain package = new StockoutConfirmRequest.PackageDomain();
+                            //        StockoutConfirmRequest.ItemDomain itemDomain = new StockoutConfirmRequest.ItemDomain();
+                            //        itemDomain.ItemCode = "love100c2001";
+                            //        itemDomain.Quantity = 2;
+                            //        itemList.Add(itemDomain);
+                            //        package.ExpressCode = "Test123456789" + i;
+                            //        package.LogisticsCode = "ZTO";
+                            //        package.Items = itemList;
+                            //        packageList.Add(package);
+                            //    }
+                            //}
 
 
                             foreach (var itemDetail in itemHeader.SHIPMENT_DETAIL)
@@ -144,7 +152,7 @@ namespace QiMenPush.Jobs
 
                             QiMen_PushLog log = new QiMen_PushLog();
                             log.InternalOrderID = itemHeader.INTERNAL_SHIPMENT_NUM;
-                            log.OrderType = SHIPMENT;
+                            log.OrderType = INTERFACE;
                             log.CustomerId = cId;
                             log.Flag = rsp.Flag;
                             log.Message = rsp.Message;
@@ -153,23 +161,25 @@ namespace QiMenPush.Jobs
 
                             if (rsp.Flag == "success")
                             {
+                                itemHeader.SHIPMENT_CATEGORY6 = QimenPushStatus.Success.ToString();
                                 _logger.Info("出库单:" + itemHeader.SHIPMENT_ID + "确认成功----" + DateTime.Now);
                             }
                             else
                             {
-                                if (rsp.Message.Length > 50)
-                                {
-                                    pushFlag = false;
-                                }
+                                //if (rsp.Message.Length > 50)
+                                //{
+                                //    pushFlag = false;
+                                //}
                                 _logger.Info("出库单:" + itemHeader.SHIPMENT_ID + "确认失败:-" + rsp.Message + DateTime.Now);
                             }
                         }
                         //  if (confirmlList.Count > 0 && pushFlag) {
-                        if (confirmlList.Count > 0 && pushFlag)
-                        {
-                            qmt.ActualShipTime = (DateTime)confirmlList.First().ACTUAL_SHIP_DATE_TIME;
-                        }
+                        //if (confirmlList.Count > 0 && pushFlag)
+                        //{
+                        //    qmt.ActualShipTime = (DateTime)confirmlList.First().ACTUAL_SHIP_DATE_TIME;
+                        //}
                     }
+                    dbContext.SaveChanges();
                     dbContext1.SaveChanges();
                 }
                 _logger.Info("StockoutConfirmJob 执行完成... " + DateTime.Now + "");

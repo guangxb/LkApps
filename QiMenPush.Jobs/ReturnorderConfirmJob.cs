@@ -2,6 +2,7 @@
 using Common.Logging;
 using Qimen.Api;
 using Qimen.Api.Request;
+using QiMenPush.Jobs.Emum;
 using Quartz;
 using System;
 using System.Collections.Generic;
@@ -37,7 +38,7 @@ namespace QiMenPush.Jobs
                     DbSet<RECEIPT_HEADER> header = dbContext0.Set<RECEIPT_HEADER>();
                     DbSet<RECEIPT_DETAIL> detail = dbContext0.Set<RECEIPT_DETAIL>();
 
-                    DbSet<QiMen_PushTimeStatus> dbSet0 = dbContext1.Set<QiMen_PushTimeStatus>();
+                    //DbSet<QiMen_PushTimeStatus> dbSet0 = dbContext1.Set<QiMen_PushTimeStatus>();
                     DbSet<QiMen_PushLog> dbSet1 = dbContext1.Set<QiMen_PushLog>();
 
                     IQimenClient client = new DefaultQimenClient(url, appkey, secret);
@@ -45,25 +46,29 @@ namespace QiMenPush.Jobs
 
                     foreach (var cId in customerArr)
                     {
-                        DateTime lastTime;
-                        QiMen_PushTimeStatus qmt = dbSet0.Where(q => q.CustomerId == cId && q.OrderType == RECEIPT && q.Interface == INTERFACE).FirstOrDefault();
-                        if (qmt == null)
-                        {
-                            qmt = new QiMen_PushTimeStatus() { CustomerId = cId, ActualArriveTime = DateTime.Now, OrderType = RECEIPT, Interface = INTERFACE };
-                            dbSet0.Add(qmt);
-                            lastTime = DateTime.Now.AddMinutes(-1);
-                        }
-                        else
-                        {
-                            lastTime = ((DateTime)qmt.ActualArriveTime).AddMinutes(-1);
-                        }
+                        //DateTime lastTime;
+                        //QiMen_PushTimeStatus qmt = dbSet0.Where(q => q.CustomerId == cId && q.OrderType == RECEIPT && q.Interface == INTERFACE).FirstOrDefault();
+                        //if (qmt == null)
+                        //{
+                        //    qmt = new QiMen_PushTimeStatus() { CustomerId = cId, ActualArriveTime = DateTime.Now, OrderType = RECEIPT, Interface = INTERFACE };
+                        //    dbSet0.Add(qmt);
+                        //    lastTime = DateTime.Now.AddMinutes(-1);
+                        //}
+                        //else
+                        //{
+                        //    lastTime = ((DateTime)qmt.ActualArriveTime).AddMinutes(-1);
+                        //}
 
-                        var confirmlList = header.Where(h => h.COMPANY == cId && h.TRAILING_STS == 900 && (h.RECEIPT_TYPE).Equals("THRK",StringComparison.OrdinalIgnoreCase) && h.CLOSE_DATE >= lastTime).Include(r => r.RECEIPT_DETAIL).OrderByDescending(h => h.CLOSE_DATE).ToList();
+                        //var confirmlList = header.Where(h => h.COMPANY == cId && h.TRAILING_STS == 900 && (h.RECEIPT_TYPE).Equals("THRK",StringComparison.OrdinalIgnoreCase) && h.CLOSE_DATE >= lastTime).Include(r => r.RECEIPT_DETAIL).OrderByDescending(h => h.CLOSE_DATE).ToList();
+                        var confirmlList = header.Where(h => h.COMPANY == cId
+                        && (h.USER_DEF8 == null || h.USER_DEF8 == QimenPushStatus.Failure.ToString())
+                        && (h.TRAILING_STS == 800 || h.TRAILING_STS == 850 || h.TRAILING_STS == 900)
+                        ).Include(s => s.RECEIPT_DETAIL).ToList();
 
                         req.CustomerId = cId;
                         req.Version = v;
                         req.Timestamp = DateTime.Now;
-                        bool pushFlag = true;
+                        //bool pushFlag = true;
 
                         foreach (var itemHeader in confirmlList)
                         {
@@ -104,7 +109,7 @@ namespace QiMenPush.Jobs
 
                             QiMen_PushLog log = new QiMen_PushLog();
                             log.InternalOrderID = itemHeader.INTERNAL_RECEIPT_NUM;
-                            log.OrderType = RECEIPT;
+                            log.OrderType = INTERFACE;
                             log.CustomerId = cId;
                             log.Flag = rsp.Flag;
                             log.Message = rsp.Message;
@@ -113,22 +118,24 @@ namespace QiMenPush.Jobs
 
                             if (rsp.Flag == "success")
                             {
+                                itemHeader.USER_DEF8 = QimenPushStatus.Success.ToString();
                                 _logger.Info("入库单:" + itemHeader.RECEIPT_ID + "确认成功----" + DateTime.Now);
                             }
                             else
                             {
-                                if (rsp.Message.Length > 50)
-                                {
-                                    pushFlag = false;
-                                }
+                                //if (rsp.Message.Length > 50)
+                                //{
+                                //    pushFlag = false;
+                                //}
                                 _logger.Info("入库单:" + itemHeader.RECEIPT_ID + "确认失败:-" + rsp.Message + DateTime.Now);
                             }
                         }
-                        if (confirmlList.Count > 0 && pushFlag)
-                        {
-                            qmt.ActualArriveTime = (DateTime)confirmlList.First().CLOSE_DATE;
-                        }
+                        //if (confirmlList.Count > 0 && pushFlag)
+                        //{
+                        //    qmt.ActualArriveTime = (DateTime)confirmlList.First().CLOSE_DATE;
+                        //}
                     }
+                    dbContext0.SaveChanges();
                     dbContext1.SaveChanges();
                 }
 

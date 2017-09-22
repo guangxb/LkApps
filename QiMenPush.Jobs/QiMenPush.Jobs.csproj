@@ -69,6 +69,7 @@
     <Compile Include="DeliveryorderConfirmJob.cs" />
     <Compile Include="DemoJob1.cs" />
     <Compile Include="DemoJob2.cs" />
+    <Compile Include="Emum\QimenPushStatus.cs" />
     <Compile Include="EntryorderConfirmJob.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReturnorderConfirmJob.cs" />

@@ -13,11 +13,12 @@ namespace EnumTest
             Days today = Days.Monday;
             int dayNumber = (int)today;
             Console.WriteLine("{0} is day number #{1}.", today, dayNumber);
+            Console.WriteLine(Days.Monday.ToString());
 
             Months thisMonth = Months.Dec;
             byte monthNumber = (byte)thisMonth;
             Console.WriteLine("{0} is month number #{1}.", thisMonth, monthNumber);
-
+            Console.WriteLine(Months.Dec.ToString());
             Console.ReadKey();
         }
     }

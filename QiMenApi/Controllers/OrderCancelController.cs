@@ -76,6 +76,7 @@ namespace QiMenApi.Controllers
                     else
                     {
                         sHeader.PROCESS_TYPE = "CANCEL";
+                        sHeader.SHIPMENT_CATEGORY6 = "Cancel";
                     }
                 }
                 else if (rHeader != null)
@@ -89,7 +90,8 @@ namespace QiMenApi.Controllers
                     {
                         rHeader.LEADING_STS = 900;
                         rHeader.TRAILING_STS = 900;
-                        rHeader.CLOSE_DATE = DateTime.Now.AddHours(-4);
+                        rHeader.USER_DEF8 = "Cancel";
+                        //rHeader.CLOSE_DATE = DateTime.Now.AddHours(-4);
                     }
                     else {
                         response.Flag = "failure";
