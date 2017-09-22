@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C929C337-2DEA-48EC-A92D-E85E7E55D642}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CustomHttpClient</RootNamespace>
+    <AssemblyName>CustomHttpClient</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CustomRequest.cs" />
+    <Compile Include="CustomResponse.cs" />
+    <Compile Include="DefaultCustomClient.cs" />
+    <Compile Include="Helper\Constants.cs" />
+    <Compile Include="Helper\CustomUtils.cs" />
+    <Compile Include="Helper\DefaultCustomLogger.cs" />
+    <Compile Include="Helper\FileItem.cs" />
+    <Compile Include="Helper\CustomDictionary.cs" />
+    <Compile Include="Helper\ICustomLogger.cs" />
+    <Compile Include="Helper\WebUtils.cs" />
+    <Compile Include="Helper\XmlDeserializeHelper.cs" />
+    <Compile Include="Helper\XmlSerializeHelper.cs" />
+    <Compile Include="ICustomClient.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Request\DeliveryorderConfirmRequest.cs" />
+    <Compile Include="Request\EntryorderConfirmRequest.cs" />
+    <Compile Include="Request\ReturnorderConfirmRequest.cs" />
+    <Compile Include="Request\StockoutConfirmRequest.cs" />
+    <Compile Include="Response\DeliveryorderConfirmResponse.cs" />
+    <Compile Include="Response\EntryorderConfirmResponse.cs" />
+    <Compile Include="Response\ReturnorderConfirmResponse.cs" />
+    <Compile Include="Response\StockoutConfirmResponse.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

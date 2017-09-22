@@ -1,0 +1,183 @@
+﻿using Apps.Models;
+using Common.Logging;
+using Qimen.Api;
+using Qimen.Api.Request;
+using Quartz;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data.Entity;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace QiMenPush.Jobs
+{
+    public class StockoutConfirmJob : IJob
+    {
+        private readonly ILog _logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private const string SHIPMENT = "SHIPMENT";
+        private const string INTERFACE = "StockoutConfirm";
+        public void Execute(IJobExecutionContext context)
+        {
+            string url = ConfigurationManager.AppSettings["URL"].ToString();
+            string appkey = ConfigurationManager.AppSettings["APPKEY"].ToString();//"1023883919"; 23883919
+            string secret = ConfigurationManager.AppSettings["SECRET"].ToString();//"sandboxff0b11ecc626508c171a5b2a2"; 
+            string customeId = ConfigurationManager.AppSettings["CUSTOMEID"].ToString();
+            string v = ConfigurationManager.AppSettings["v"].ToString();
+            string[] customerArr = customeId.Split(',');
+
+            try
+            {
+                _logger.Info("StockoutConfirmJob 开始执行... " + DateTime.Now + "");
+
+                using (SCVDBContainer dbContext = new SCVDBContainer())
+                using (DBContainer dbContext1 = new DBContainer())
+                {
+                    DbSet<SHIPMENT_HEADER> header = dbContext.Set<SHIPMENT_HEADER>();
+                    DbSet<SHIPMENT_DETAIL> detail = dbContext.Set<SHIPMENT_DETAIL>();
+                    DbSet<QiMen_PushTimeStatus> dbSet0 = dbContext1.Set<QiMen_PushTimeStatus>();
+                    DbSet<QiMen_PushLog> dbSet1 = dbContext1.Set<QiMen_PushLog>();
+
+                    IQimenClient client = new DefaultQimenClient(url, appkey, secret);
+                    StockoutConfirmRequest req = new StockoutConfirmRequest();
+
+                    foreach (var cId in customerArr)
+                    {
+                        DateTime lastTime;
+                        QiMen_PushTimeStatus qmt = dbSet0.Where(q => q.CustomerId == cId && q.OrderType == SHIPMENT && q.Interface == INTERFACE).FirstOrDefault();
+                        if (qmt == null)
+                        {
+                            qmt = new QiMen_PushTimeStatus() { CustomerId = cId, ActualShipTime = DateTime.Now, OrderType = SHIPMENT, Interface = INTERFACE };
+                            dbSet0.Add(qmt);
+                            lastTime = DateTime.Now.AddMinutes(-1);
+                        }
+                        else
+                        {
+                            lastTime = ((DateTime)qmt.ActualShipTime).AddMinutes(-1);
+                        }
+                        //&& (h.SHIPMENT_TYPE.Equals("LKCK", StringComparison.OrdinalIgnoreCase))
+                        var confirmlList = header.Where(h => h.COMPANY == cId && h.TRAILING_STS == 900 && h.ACTUAL_SHIP_DATE_TIME >= lastTime).OrderByDescending(h => h.ACTUAL_SHIP_DATE_TIME).Include(s => s.SHIPMENT_DETAIL).Include(s => s.SHIPPING_CONTAINER).AsNoTracking().ToList();
+                        req.CustomerId = cId;
+                        req.Version = v;
+                        req.Timestamp = DateTime.Now;
+                        bool pushFlag = true;
+
+                        foreach (var itemHeader in confirmlList)
+                        {
+                            StockoutConfirmRequest.DeliveryOrderDomain deliveryOrder = new StockoutConfirmRequest.DeliveryOrderDomain();
+
+                            deliveryOrder.DeliveryOrderCode = itemHeader.SHIPMENT_ID;
+                            deliveryOrder.WarehouseCode = itemHeader.WAREHOUSE;
+                            deliveryOrder.OrderType = itemHeader.SHIPMENT_TYPE;
+                            deliveryOrder.ConfirmType = 0L;
+                            deliveryOrder.DeliveryOrderId = itemHeader.INTERNAL_SHIPMENT_NUM.ToString();
+                            deliveryOrder.OutBizCode = itemHeader.INTERNAL_SHIPMENT_NUM.ToString();
+                            deliveryOrder.TotalOrderLines = (long)itemHeader.TOTAL_LINES;
+
+                            req.DeliveryOrder = deliveryOrder;
+
+                            List<StockoutConfirmRequest.PackageDomain> packageList = new List<StockoutConfirmRequest.PackageDomain>();
+                            List<StockoutConfirmRequest.OrderLineDomain> orderLineList = new List<StockoutConfirmRequest.OrderLineDomain>();
+
+                            foreach (var container in itemHeader.SHIPPING_CONTAINER.Where(t => t.PARENT == 0 && t.STATUS == 900))
+                            {
+                                var childContainer = itemHeader.SHIPPING_CONTAINER.Where(c => c.PARENT == container.INTERNAL_CONTAINER_NUM);
+                                List<StockoutConfirmRequest.ItemDomain> itemList = new List<StockoutConfirmRequest.ItemDomain>();
+                                StockoutConfirmRequest.PackageDomain package = new StockoutConfirmRequest.PackageDomain();
+
+                                foreach (var child in childContainer)
+                                {
+                                    StockoutConfirmRequest.ItemDomain itemDomain = new StockoutConfirmRequest.ItemDomain();
+                                    itemDomain.ItemCode = child.ITEM;
+                                    itemDomain.Quantity = (int)child.QUANTITY;
+                                    itemList.Add(itemDomain);
+                                }
+
+                                if (string.IsNullOrEmpty(deliveryOrder.ExpressCode) || string.IsNullOrEmpty(deliveryOrder.LogisticsCode))
+                                {
+                                    deliveryOrder.ExpressCode = container.TRACKING_NUMBER;
+                                    deliveryOrder.LogisticsCode = itemHeader.CARRIER;
+                                }
+                                package.ExpressCode = container.TRACKING_NUMBER;
+                                package.LogisticsCode = itemHeader.CARRIER;
+                                package.Items = itemList;
+                                packageList.Add(package);
+                            }
+
+                            if (!packageList.Any())
+                            {
+                                deliveryOrder.ExpressCode = "Test123456";
+                                deliveryOrder.LogisticsCode = itemHeader.CARRIER;
+
+                                for (int i = 0; i < 5; i++)
+                                {
+                                    List<StockoutConfirmRequest.ItemDomain> itemList = new List<StockoutConfirmRequest.ItemDomain>();
+                                    StockoutConfirmRequest.PackageDomain package = new StockoutConfirmRequest.PackageDomain();
+                                    StockoutConfirmRequest.ItemDomain itemDomain = new StockoutConfirmRequest.ItemDomain();
+                                    itemDomain.ItemCode = "love100c2001";
+                                    itemDomain.Quantity = 2;
+                                    itemList.Add(itemDomain);
+                                    package.ExpressCode = "Test123456789" + i;
+                                    package.LogisticsCode = "ZTO";
+                                    package.Items = itemList;
+                                    packageList.Add(package);
+                                }
+                            }
+
+
+                            foreach (var itemDetail in itemHeader.SHIPMENT_DETAIL)
+                            {
+                                StockoutConfirmRequest.OrderLineDomain orderLine = new StockoutConfirmRequest.OrderLineDomain();
+
+                                orderLine.PlanQty = (int)itemDetail.REQUEST_QTY;
+                                orderLine.ItemCode = itemDetail.ITEM;
+                                orderLine.ActualQty = (int)itemDetail.REQUEST_QTY;
+                                orderLine.OutBizCode = itemDetail.INTERNAL_SHIPMENT_LINE_NUM.ToString();
+                                orderLineList.Add(orderLine);
+                            }
+
+                            req.Packages = packageList;
+                            req.OrderLines = orderLineList;
+
+                            var rsp = client.Execute(req);
+
+                            QiMen_PushLog log = new QiMen_PushLog();
+                            log.InternalOrderID = itemHeader.INTERNAL_SHIPMENT_NUM;
+                            log.OrderType = SHIPMENT;
+                            log.CustomerId = cId;
+                            log.Flag = rsp.Flag;
+                            log.Message = rsp.Message;
+                            log.CreateTime = DateTime.Now;
+                            dbSet1.Add(log);
+
+                            if (rsp.Flag == "success")
+                            {
+                                _logger.Info("出库单:" + itemHeader.SHIPMENT_ID + "确认成功----" + DateTime.Now);
+                            }
+                            else
+                            {
+                                if (rsp.Message.Length > 50)
+                                {
+                                    pushFlag = false;
+                                }
+                                _logger.Info("出库单:" + itemHeader.SHIPMENT_ID + "确认失败:-" + rsp.Message + DateTime.Now);
+                            }
+                        }
+                        //  if (confirmlList.Count > 0 && pushFlag) {
+                        if (confirmlList.Count > 0 && pushFlag)
+                        {
+                            qmt.ActualShipTime = (DateTime)confirmlList.First().ACTUAL_SHIP_DATE_TIME;
+                        }
+                    }
+                    dbContext1.SaveChanges();
+                }
+                _logger.Info("StockoutConfirmJob 执行完成... " + DateTime.Now + "");
+            }
+            catch (Exception ex)
+            {
+                _logger.Error("StockoutConfirmJob 异常..." + DateTime.Now + " " + ex.Message);
+            }
+        }
+    }
+}

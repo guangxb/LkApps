@@ -1,0 +1,163 @@
+﻿@using Apps.Web.Helper;
+@using Apps.Models;
+@using Apps.Locale;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Index_Layout.cshtml";
+
+    List<PermissionModel> perm = ViewBag.sonBtns;
+}
+<style>
+    .l-btn-text {
+        line-height: 17px;
+    }
+</style>
+
+@Scripts.Render("~/bundles/easyui/datagridfilter")
+
+<div class="mvctool">
+    <input id="txtQuery" type="text" class="searchText" />
+    @Html.ToolButton("btnQuery", "fa fa-search", Resource.Query, perm, "GetList", true)
+    @Html.ToolButton("btnDetails", "fa fa-list", Resource.Details, perm, "Details", true)
+    @Html.ToolButton("btnExport", "fa fa-level-up", Resource.Export, perm, "Export", true)
+</div>
+
+
+<table id="List"></table>
+<div id="modalwindow" class="easyui-window" data-options="modal:true,closed:true,minimizable:false,shadow:false"></div>
+<script type="text/javascript">
+    var exp = false;
+        $(function () {
+            $('#List').datagrid({
+                url: '@Url.Action("GetList")',
+                width: SetGridWidthSub(10),
+                methord: 'post',
+                height: $(window).height() - 50,
+                //fit:true,
+                fitColumns: true,
+                sortName: 'DateTimeStamp',
+                sortOrder: 'desc',
+                idField: 'Id',
+                pageSize: 50,
+                pageList: [50, 100, 200, 300, 500],
+                pagination: true,
+                striped: true, 
+                singleSelect: true,
+                remoteFilter: true,
+                rownumbers: true,
+                onLoadSuccess: function (data) {
+
+                    if (data.rows == "") {
+                        if (msgProcess(data) == false) {
+                            return false;
+                        }
+                    }
+                    var grid = $('#List');
+                    var options = grid.datagrid('options');
+                    var m_page = options.pageNumber;
+                    var m_rows = options.pageSize;
+                    var m_sort = options.sortName;
+                    var m_order = options.sortOrder
+                
+                },
+                columns: [[
+                    { field: 'Id', title: 'Id', width: 10, hidden: true },
+                    { field: 'ShipmentId', title: '订单号', width: 20, sortable: true },
+                    { field: 'TrackingNumber', title: '运单号', width: 20, sortable: true },
+                    { field: 'DateTimeStamp', title: '订单创建时间', width: 27, sortable: true },
+                    {
+                        field: 'Company', title: '商家代码', width: 15, sortable: true, formatter: function (value, row, index) {
+                            return row.Company;
+                        }
+                    },
+                     {
+                         field: 'State', title: '状态', width: 15, sortable: true, formatter: function (value, row, index) {
+                             switch (value) {
+                                 case '900': return "<span class='label label-info'>暂无状态</span>";
+                                 case '-1': return "<span class='label label-error'>订阅失败</span>";
+                                 case '0': return "<span class='label label-warning'>无轨迹</span>";
+                                 case '1': return "<span class='label label-success'>已揽收</span>";
+                                 case '2': return "<span class='label label-primary'>在途中</span>";
+                                 case '3': return "<span class='label label-success'>签收</span>";
+                                 case '4': return "<span class='label label-error'>问题件</span>";
+                                 default: return value;
+                             }
+                         }
+                     },
+                    { field: 'ShipperCode', title: '承运商', width: 20, sortable: true },
+                    { field: 'NewTraces', title: '最新动态', width: 80, sortable: false },
+                ]]
+            });
+            var dg = $('#List');
+            var op = ['equal', 'notequal', 'less', 'greater'];
+            var comboData = { Company: [] }; 
+
+            dg.datagrid('enableFilter', [
+           
+                InitDateFilter(dg, 'DateTimeStamp', op),
+                InitComboFilter(dg, 'Company', comboData, '/Spm/ExpressInfo/GetComboxData', 'Id', 'Name', 'Name', "post"),
+                InitComboFilter(dg, 'State', comboData, '/Spm/ExpressInfo/GetStateComboxData', 'Id', 'Name', 'Name', "post")
+            ]);
+ 
+        });
+        function frameReturnByClose() {
+            $("#modalwindow").window('close');
+        }
+
+        function frameReturnByReload(flag) {
+            if (flag)
+                $("#List").datagrid('load');
+            else
+                $("#List").datagrid('reload');
+        }
+        function frameReturnByMes(mes) {
+            $.messageBox5s('@Resource.Tip', mes);
+        }
+        $(function () {
+
+            $("#btnDetails").click(function () {
+                var row = $('#List').datagrid('getSelected');
+                if (row != null) {
+                    $("#modalwindow").html("<iframe width='100%' height='100%'  frameborder='0' src='/Spm/ExpressInfo/Details?id=" + row.Id + "&Ieguid=" + GetGuid() + "'></iframe>");
+                    $("#modalwindow").window({ title: '@Resource.Details', width: 700, height: 500, iconCls: 'fa fa-indent' }).window('open');
+                } else { $.messageBox5s('@Resource.Tip', '@Resource.PlaseChooseToOperatingRecords'); }
+            });
+            $("#btnQuery").click(function () {
+                var queryStr = $("#txtQuery").val();
+                if (queryStr == null) {
+                    queryStr = "%";
+                }
+                $("#List").datagrid("load", { queryStr: encodeURI(queryStr) });
+
+            });
+
+            $("#btnExport").click(function () {
+                if (exp) {
+                    layer.tips('后台正在处理导出数据,请勿重复点击', '#btnExport', {
+                        tips: [2, '#3595CC'],
+                        time: 4000
+                    });
+                } else {
+                    exp = true;
+                    layer.tips('后台已开始出处理导出数据,处理完成后会提示下载,请耐心等待', '#btnExport', {
+                        tips: [2, '#3595CC'],
+                        time: 4000
+                    });
+                    window.location = "@Url.Action("Export")";
+                }
+
+            });
+
+
+            $(window).resize(function () {
+
+                $('#List').datagrid('resize', {
+
+                }).datagrid('resize', {
+                    width: SetGridWidthSub(10),
+                    height: $(window).height() - 50
+                });
+            
+            });
+        });
+</script>

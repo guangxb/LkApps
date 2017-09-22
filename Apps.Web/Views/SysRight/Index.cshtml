@@ -1,0 +1,324 @@
+﻿@using Apps.Web.Helper;
+@using Apps.Models;
+@using Apps.Locale;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Index_LayoutEdit.cshtml";
+
+    List<PermissionModel> perm = ViewBag.sonBtns;
+}
+<style>
+    .l-btn-text {
+        line-height: 17px;
+    }
+</style>
+<div class="mvctool">
+    <div style="float:left">
+        菜单类型切换： <select class="easyui-combobox" name="swicthType" id="swicthType" style="width:80px;height:26px;margin-right:10px; ">
+            <option value="menu">系统菜单</option>
+            <option value="api">Api接口</option>
+        </select>
+    </div>
+    @Html.ToolButton("btnSave", "fa fa-save", Resource.Save, perm, "UpdateRight", true)
+</div>
+<table style="width: 100%">
+    <tbody>
+        <tr>
+            <td style="vertical-align: top">
+                <table id="roleList"></table>
+            </td>
+            <td style="width:3px;"></td>
+            <td style="vertical-align: top">
+                <table id="moduleList"></table>
+            </td>
+            <td style="width:3px;"></td>
+            <td style="vertical-align: top">
+                <div id="pl">
+                    <ul id="operateList"></ul>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<script type="text/javascript">
+
+
+    @*$('#swicthType').combobox({
+        editable: false,
+        onSelect: function (record) {
+            if (record.value == "api") {
+                $('#moduleList').treegrid({ "url": '@Url.Action("GetModelList")?id=ApiInterfaceAuth' });
+
+            } else {
+                $('#moduleList').treegrid({ "url": '@Url.Action("GetModelList")?id=0' });
+
+            }
+
+        }
+    });*@
+
+    $(function () {
+        var curModuleId, curRoleId, curModuleName, curRoleName, curSystemId, curSystemName;//选择的模块ID,选中的角色ID，选中的模块名称，角色名称
+        curRoleName = "?";
+        curModuleName = "?";
+        $('#roleList').datagrid({
+            url: '@Url.Action("GetRoleList")',
+            methord: 'post',
+            width: SetGridWidthSub(10) / 3,
+            height: SetGridHeightSub(45),
+            fitColumns: true,
+            sortName: 'CreateTime',
+            sortOrder: 'desc',
+            idField: 'Id',
+            pageSize: 15,
+            pageList: [15, 20, 30, 40, 50],
+            showPageList: false,
+            showRefresh: false,
+            displayMsg: '',
+            pagination: true,
+            striped: true, //奇偶行是否区分
+            singleSelect: true,//单选模式
+            rownumbers: true,//行号
+            title: '角色列表',
+            loadFilter: function (data) {
+                if (!msgProcess(data))return false;
+                return data.Data;
+            },
+            onLoadSuccess: function (data) {
+                //$('#operateList').datagrid('loadData', { total: 0, rows: [] });
+            },
+            columns: [[
+                { field: 'Id', title: '', width: 80, hidden: true },
+                { field: 'Name', title: '角色组', width: 80, sortable: true },
+                { field: 'Description', title: '@Resource.TitleRemark', width: 80, sortable: true },
+                { field: 'CreateTime', title: '@Resource.TitleCreateTime', width: 80, sortable: true },
+                { field: 'CreatePerson', title: '', width: 80, sortable: true, hidden: true }
+            ]],
+            onClickRow: function (index, data) {
+                var row = $('#roleList').datagrid('getSelected');
+                if (row != null) {
+                    curRoleName = row.Name;
+                    curRoleId = row.Id;
+                    //$('#operateList').datagrid({ url: "/SysRight/GetRightByRoleAndModule?roleId=" + curRoleId + "&moduleId=" + curModuleId + "" });
+                    //$('#operateList').treegrid({ 'title': "角色组: " + curRoleName + " >> 模块：" + curModuleName });
+                }
+            }
+        }).datagrid('getPager').pagination({ showPageList: false, showRefresh: false });
+        $('#moduleList').treegrid({
+            url: '@Url.Action("GetModuleList")',
+            width: SetGridWidthSub(10) / 3,
+            methord: 'post',
+            height: SetGridHeightSub(45),
+            fitColumns: true,
+            treeField: 'text',
+            idField: 'id',
+            pagination: false,
+            striped: true, //奇偶行是否区分
+            singleSelect: true,//单选模式
+            title: '模块列表',
+            onLoadSuccess: function (data) {
+            },
+            loadFilter: function (data) {
+                msgProcess(data);
+                return data.Data;
+            },
+        
+            columns: [[
+                { field: 'id', title: '唯一标识', width: 120, hidden: true },
+                { field: 'text', title: '@Resource.TitleName', width: 220, sortable: false },
+                { field: 'operationType', title: 'operationType', width: 120, hidden: true },
+                { field: 'isLast', title: 'isLast', width: 120, hidden: true },
+            ]],
+            onClickRow: function (index, data) {
+                var row = $('#moduleList').datagrid('getSelected');
+                if (row != null) {
+                    curModuleName = row.text;
+                    curModuleId = row.id;
+                    if (curRoleId == null && row.isLast && row.operationType == 2) {
+                        $.messageBox5s('@Resource.Tip', "请再选择一个角色！");
+                        return;
+                    }
+                    if (row.operationType == 2) {
+                        $('#operateList').tree({
+                            url: '@Url.Action("GetModuleTreeList")?id=' + curModuleId + "&roleId=" + curRoleId + "",
+                        });
+                    }
+                }
+
+            }
+        });
+        @*$('#operateList').treegrid({
+            //url: '@Url.Action("GetRightByRoleAndModule")',
+            width: SetGridWidthSub(10) / 3,
+            height: SetGridHeightSub(45),
+            methord: 'post',
+            fitColumns: true,
+            //sortName: 'CreateTime',
+            treeField: 'Name',
+            sortOrder: 'desc',
+            idField: 'ModuleId',
+            striped: true, //奇偶行是否区分
+            singleSelect: true,//单选模式
+            pagination: false,
+            title: '授权操作',
+            //rownumbers: true,//行号
+            loadFilter: function (data) {
+                if (msgProcess(data) == false) return false;
+                return data.Data;
+            },
+            columns: [[
+                { field: 'ModuleId', title: '模块ID', width: 80, sortable: true, hidden: true },
+                //{ field: 'Ids', title: 'Ids', width: 80, hidden: true },
+                { field: 'Name', title: '@Resource.TitleName', width: 80, sortable: true },
+                {
+                    field: 'OperationType', title: '类型', align: 'center', width: 100, formatter: function (value) {
+                        if (value == 1) {
+                            return "<span class='label label-primary'>目录</span>";
+                        } else if (value == 2) {
+                            return "<span class='label label-success'>链接</span>";
+                        } else if (value == 3) {
+                            return "<span class='label label-info'>按钮</span>";
+                        } else if (value == 4) {
+                            return "<span class='label label-warning'>其他</span>";
+                        }
+                    }
+                },
+                {
+                    field: 'IsValid', title: "<a href='#' title='@Resource.Select' class=\"fa  fa-check-square-o color-green\"  onclick=\"SelAll();\"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' title='@Resource.UnSelect' class=\"fa  fa-square-o color-gray\" onclick=\"UnSelAll();\"  ></a>", align: 'center', width: 30, formatter: function (value) {
+                        if (value) {
+                            return "<input type='checkbox' checked='checked' value=" + value + " />";
+                        } else {
+                            return "<input type='checkbox' value=" + value + " />";
+                        }
+                    },
+                }
+
+            ]],
+            //onClickRow: function (index, data) {
+            //    var row = $('#operateList').datagrid('getSelected');
+
+            //}
+        });*@
+
+        $('#pl').panel({
+            title:'授权操作',
+            width: SetGridWidthSub(10) / 3,
+            height: SetGridHeightSub(45),
+        })
+
+        $('#operateList').tree({
+            @*url: '@Url.Action("GetModuleTreeList")',*@
+            method: 'post',
+            animate: true,
+            checkbox: true,
+            //cascadeCheck: false,
+            onlyLeafCheck:true,
+            loadFilter: function (data) {
+                if (data.Data == null) {
+                    return false;
+                } else {
+                    return data.Data;
+                }
+                
+            },
+            width: SetGridWidthSub(10) / 3,
+            height: SetGridHeightSub(45),
+
+        })
+        $("#btnSave").click(function () {
+            //var updateRows = 0;
+             //$("#operateList").treegrid("selectAll"); //这段代码是获取当前页的所有行。
+             var nodes1 = $('#operateList').tree('getChecked');
+             var nodes2 = $('#operateList').tree('getChecked', 'unchecked');
+             var jsonData = '';
+
+             for (var i = 0; i < nodes1.length; i++) {
+                 if (i == (nodes1.length-1) && nodes2.length == 0) {
+                     jsonData += ('{\"roleId\":\"' + curRoleId + '\",\"id\":' + '\"' + nodes1[i].id + '\"' + ',\"checked\":' + true + '}')
+                 } else {
+                     jsonData += ('{\"roleId\":\"' + curRoleId + '\",\"id\":' + '\"' + nodes1[i].id + '\"' + ',\"checked\":' + true + '},')
+                 }
+             }
+
+             for (var i = 0; i < nodes2.length; i++) {
+                 if (i == nodes2.length - 1) {
+                     jsonData += ('{\"roleId\":\"' + curRoleId + '\",\"id\":' + '\"' + nodes2[i].id + '\"' + ',\"checked\":' + false + '}')
+                 } else {
+                     jsonData += ('{\"roleId\":\"' + curRoleId + '\",\"id\":' + '\"' + nodes2[i].id + '\"' + ',\"checked\":' + false + '},')
+                 }
+             }
+
+             jsonData = '[' +jsonData+ ']'
+             
+             //var json = eval(jsonData);
+             var json = JSON.parse(jsonData);
+
+
+            //var rows = $("#operateList").treegrid("getData");
+            //for (var i = 0; i < rows.length; i++) {
+            //    var setFlag = $("td[field='IsValid'] input").eq(i).prop("checked");
+            //    var moduleId = rows[i].Id;
+            //    var isValid = rows[i].IsValid;
+            //    if (isValid != setFlag)//判断是否有作修改
+            //    {
+                    $.ajax({
+                        url: '@Url.Action("UpdateRight")',
+                        async: false, // 此处需要同步，因为返回完数据后，下面才能让结果的第一条selected
+                        type: "POST",
+                        data: {data:json},
+                        dataType: "json",
+                        success: function (data) {
+                            if (data.Status == 1) {
+                                $("#operateList").tree("reload");
+                                $.messageBox5s('@Resource.Tip', '保存成功！');
+                            } else {
+                                $.messageBox5s('@Resource.Tip', '@Resource.NoAnyChanges！');
+                            }
+                        }
+                    });
+                    //if (updateRows == 0) return;
+            //    }
+            //}
+            @*if (updateRows > 0) {
+                $("#operateList").treegrid("reload");
+                $.messageBox5s('@Resource.Tip', '保存成功！' + updateRows +"项");
+            } else {
+                $.messageBox5s('@Resource.Tip', '@Resource.NoAnyChanges！');
+            }*@
+
+        });
+        $(window).resize(function () {
+            resizeLayout();
+        });
+        resizeLayout();
+    });
+
+    function resizeLayout() {
+        setTimeout(function () {
+            //$('#operateList').treegrid('resize', {
+            //    width: SetGridWidthSub(35) / 3,
+            //    height: SetGridHeightSub(45)
+            //})
+            $('#moduleList,#roleList').datagrid('resize', {
+                width: SetGridWidthSub(10) / 3,
+                height: SetGridHeightSub(45)
+            });
+        }, 100);
+    }
+
+    function SelAll() {
+        $("td[field='IsValid'] input").prop("checked", true);
+        $("#btnSave").trigger("click");
+        return;
+    }
+    function UnSelAll() {
+        $("td[field='IsValid'] input").prop("checked", false);
+        $("#btnSave").trigger("click");
+        return;
+    }
+
+</script>
+
+
+

@@ -1,0 +1,146 @@
+﻿@model Apps.Models.Sys.SysStructModel
+@using Apps.Web.Helper;
+@using Apps.Models;
+@using Apps.Locale;
+@{
+    ViewBag.Title = "修改部门";
+    Layout = "~/Views/Shared/_Index_LayoutEdit.cshtml";
+
+    List<PermissionModel> perm = ViewBag.sonBtns;
+}
+
+<style>
+    .l-btn-text {
+        line-height: 17px;
+    }
+
+    input[type="text"] {
+        width: 170px !important;
+    }
+</style>
+
+<script type="text/javascript">
+     function SetPosTree(depId, refFlag) {
+        $('#posTree').combotree({
+            url: '/SysStruct/GetPosListByComTree?depId=' + depId
+                 , onSelect: function (node) {
+                     $("#PosId").val(node.id);
+                 }, onLoadSuccess: function (node, data) { //加载成功选择第一行
+                     if (refFlag)
+                         $('#posTree').combotree("setValue", "@(Model.ParentId)");
+                 }
+        });
+    }
+    $(function () {
+          //分类combotree
+        $('#structTree').combotree({
+            url: '/SysStruct/GetListByComTree?id=root',
+            onSelect: function (node) {
+                $("#ParentId").val(node.id);
+                $("#PosId").val("");
+                $('#posTree').combotree('setValue', "");
+                SetPosTree(node.id)
+            }, onLoadSuccess: function (node, data) { //加载成功选择第一行
+                $('#structTree').combotree("setValue", "@(Model.ParentId)");
+                SetPosTree($("#ParentId").val(), false);
+            }
+        });
+
+         $("#icon").click(function () {
+            //$("#selIcon").toggle();
+            window.parent.openIconList();
+        });
+        $("#selIcon li").click(function () {
+            $("#icon").attr("class", $(this).attr("class"));
+            $("#Iconic").val($(this).attr("class"));
+            $("#selIcon").hide();
+        });
+        $("#btnSave").click(function () {
+            if ($("form").valid()) {
+                $.ajax({
+                    url: "@Url.Action("Edit")",
+                    type: "Post",
+                    data: $("form").serialize(),
+                    dataType: "json",
+                    success: function (data) {
+                if (data.Status == 1) {
+                    window.parent.frameReturnByMes(data.Msg);
+                    window.parent.frameReturnByReload(true);
+                    window.parent.frameReturnByClose()
+                }
+                else if (data.Status == 2) {
+                    window.parent.frameReturnByMes(data.Msg);
+                } else {
+                    msgProcess(data);
+                }
+            }
+                });
+            }
+            return false;
+        });
+        $("#btnReturn").click(function () {
+            window.parent.frameReturnByClose()
+        });
+    });
+</script>
+<div class="mvctool bgb">
+    @Html.ToolButton("btnSave", "fa fa-save", Resource.Save, perm, "Edit", true)
+    @Html.ToolButton("btnReturn", "fa fa-reply", Resource.Reply, false)
+</div>
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.Id)
+    <table class="formtable">
+        <tbody>
+            <tr>
+                <th>
+                    @Html.LabelFor(model => model.Name)：
+                </th>
+                <td>                    
+                    @Html.EditorFor(o => o.Name, new { placeholder = @Html.DisplayNameFor(o => o.Name) })
+                    @Html.ValidationMessageFor(model => model.Name)
+                </td>
+                <th>                    
+                    @Html.LabelFor(model => model.Remark)：
+                </th>
+                <td>
+                    @Html.EditorFor(o => o.Remark, new { placeholder = @Html.DisplayNameFor(o => o.Remark), @style = "" })
+                    @Html.ValidationMessageFor(model => model.Remark)
+                </td>
+            </tr>
+            <tr>
+                <th>@Html.LabelFor(model => model.Sort)：</th>
+                <td>
+
+                    @Html.EditorFor(o => o.Sort, new { placeholder = @Html.DisplayNameFor(o => o.Sort)})
+                    @Html.ValidationMessageFor(model => model.Sort)
+                </td>
+                <th>
+                    所属部门：
+                </th>
+                <td>
+                    @*@Html.HiddenFor(model => model.DepId)<td>*@
+                    <div style="display:none">
+                        @Html.HiddenFor(model => model.ParentId)
+                    </div>
+                    <input class="easyui-combotree" id="structTree" style="width: 178px; height: 28px;">                   
+                </td>
+
+            </tr>
+            <tr>
+                <th>
+                    
+                </th>
+                <td>                                      
+                </td>
+                <th>
+                    启用部门：
+                </th>
+                <td> 
+                    @Html.SwitchButtonByEdit("Enable", @Html.ValueFor(o => o.Enable).ToString() == "True" ? true : false)
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}

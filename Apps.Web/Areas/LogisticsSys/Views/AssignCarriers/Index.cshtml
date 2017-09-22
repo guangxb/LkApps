@@ -1,0 +1,238 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Index_LayoutEdit.cshtml";
+}
+
+<table style="width: 100%">
+    <tbody>
+        <tr>
+            <td style="width: 420px; vertical-align: top">
+
+                <table id="companyList"></table>
+            </td>
+            <td style="width:3px;"></td>
+            @*<td style="width: 200px; vertical-align: top">
+                    <table id="moduleList"></table>
+                </td>
+                <td style="width:3px;"></td>*@
+            <td style="vertical-align: top">
+                <table id="acList"></table>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div id="tb" style="height:auto">
+    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="append()">添加</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="removeit()">删除</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-save',plain:true" onclick="accept()">提交</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-undo',plain:true" onclick="reject()">撤销</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" onclick="getChanges()">查看更改条</a>
+</div>
+
+<script>
+    var selectedCompany = "";
+
+    $(function () {
+
+        $('#companyList').datagrid({
+            url: '@Url.Action("GetCompanyList")',
+            width: 420,
+            methord: 'post',
+            height: SetGridHeightSub(45),
+            fitColumns: true,
+            sortOrder: 'desc',
+            idField: 'Id',
+            pageSize: 20,
+            pageList: [20, 50, 100],
+            showPageList: false,
+            showRefresh: false,
+            displayMsg: '',
+            pagination: true,
+            striped: true, //奇偶行是否区分
+            singleSelect: true,//单选模式
+            rownumbers: true,//行号
+            title: '商家列表',
+            onLoadSuccess: function (data) {
+            },
+            columns: [[
+
+                { field: 'Id', title: '', width: 80, hidden: true },
+                { field: 'Company', title: '商家名', width: 80, sortable: false },
+
+            ]],
+            onClickRow: function (index, data) {
+                var row = $('#companyList').datagrid('getSelected');
+                if (row != null) {
+                    curCompany = row.Company;
+                    selectedCompany = curCompany;
+                    $('#acList').datagrid({ url: "GetProvincesCarrierList?company=" + curCompany + "" });
+                    $('#acList').datagrid({ 'title': "区域-承运商: " });
+                }
+            }
+        }).datagrid('getPager').pagination({ showPageList: false, showRefresh: false });
+
+
+
+        $('#acList').datagrid({
+            height: SetGridHeightSub(45),
+            singleSelect: true,
+            toolbar: '#tb',
+            url: '@Url.Action("GetProvincesCarrierList")',
+            methord: 'post',
+            iconCls: 'icon-edit',
+            width: 600,
+            fitColumns: true,
+            title: '授权操作',
+            onClickCell: onClickCell,
+            onEndEdit: onEndEdit,
+            //rownumbers: true,//行号
+            columns: [[
+                { field: 'company', title: '商家', width: 80, editor: 'textbox', hidden: true },
+                //{ field: 'oper', title: '操作', width: 40 },
+                { field: 'id', title: 'Id', width: 80, hidden: true },
+                {
+                    field: 'provincesId', title: '区域', width: 80, sortable: false,
+                    formatter: function (value, row) {
+                        return row.provincesId;
+                    }, editor: {
+                        type: 'combobox',
+                        options: {
+                            valueField: 'provincesId',
+                            textField: 'provincesId',
+                            method: 'post',
+                            url: 'GetProvincesList',
+                            required: true,
+                        }
+                    }
+                },
+                {
+                    field: 'carrierId', title: '承运商', width: 80, sortable: false,
+                    formatter: function (value, row) {
+                        return row.carrierId;
+                    },
+                    editor: {
+                        type: 'combobox',
+                        options: {
+                            valueField: 'carrierId',
+                            textField: 'carrierId',
+                            method: 'post',
+                            url: 'GetCarrierList',
+                            required: true,
+                        }
+                    }
+                },
+                //{ field: 'status', title: 'Status', width: 60, align: 'center', editor: { type: 'checkbox', options: { on: 'P', off: '' } } }
+                //{ field: 'carrierId', title: '承运商', width: 80, sortable: false }
+            ]]
+        });
+    })
+
+    //编辑的行
+    var editIndex = undefined;
+    function endEditing() {
+        if (editIndex == undefined) { return true }
+        $('#acList').datagrid('endEdit', editIndex);
+        editIndex = undefined;
+        return true;
+    }
+
+    function onClickCell(index, field) {
+        if (editIndex != index) {
+            if (endEditing()) {
+                $('#acList').datagrid('selectRow', index)
+                        .datagrid('beginEdit', index);
+                var ed = $('#acList').datagrid('getEditor', { index: index, field: field });
+                if (ed) {
+                    ($(ed.target).data('textbox') ? $(ed.target).textbox('textbox') : $(ed.target)).focus();
+                }
+                editIndex = index;
+            } else {
+                setTimeout(function () {
+                    $('#acList').datagrid('selectRow', editIndex);
+                }, 0);
+            }
+        }
+    }
+    function onEndEdit(index, row) {
+        var ed = $(this).datagrid('getEditor', {
+            index: index,
+            field: 'provincesId'
+        });
+        //row.provincesName = $(ed.target).combobox('getText');
+    }
+    function append() {
+        var index = $('#acList').datagrid('getRowIndex', $('#acList').datagrid('getSelected'));
+        if (index == -1)
+            index = 0;
+        $("#acList").datagrid("insertRow", {
+            index: index + 1,
+            row: {company: selectedCompany}
+        });
+    }
+    function removeit() {
+        if (editIndex == undefined) { return }
+        $('#acList').datagrid('selectRow', editIndex);
+
+        $('#acList').datagrid('cancelEdit', editIndex)
+               .datagrid('deleteRow', editIndex);
+        editIndex = undefined;
+    }
+    function accept() {
+
+
+        if (endEditing()) {
+            var $dg = $('#acList');
+            var rows = $dg.datagrid('getChanges');
+            if (rows.length) {
+                var inserted = $dg.datagrid('getChanges', "inserted");
+                var deleted = $dg.datagrid('getChanges', "deleted");
+                var updated = $dg.datagrid('getChanges', "updated");
+                var effectRow = new Object();
+                if (inserted.length) {
+                    effectRow["inserted"] = JSON.stringify(inserted);
+                }
+                if (deleted.length) {
+                    effectRow["deleted"] = JSON.stringify(deleted);
+                }
+                if (updated.length) {
+                    effectRow["updated"] = JSON.stringify(updated);
+                }
+                //alert(inserted);
+                //alert(deleted);
+                //alert(updated);
+            }
+        }
+        $.post("Save", effectRow, function (rsp) {
+            if (rsp.status > 0) {
+                $('#acList').datagrid({ url: "GetProvincesCarrierList?company=" + curCompany + "" });
+                $.messager.alert("提示", "保存成功");
+                $dg.datagrid('acceptChanges');
+            } else {
+                $('#acList').datagrid({ url: "GetProvincesCarrierList?company=" + curCompany + "" });
+                $.messager.alert("提示", rsp.msg);
+            }
+        }, "Json").error(function () {
+            $.messager.alert("提示", "求情错误！");
+        });
+    }
+    function reject() {
+        $('#acList').datagrid('rejectChanges');
+        editIndex = undefined;
+    }
+    function getChanges() {
+        var rows = $('#acList').datagrid('getChanges');
+        alert(rows.length + ' rows are changed!');
+    }
+
+    function contains(arr, obj) {
+        var i = arr.length;
+        while (i--) {
+            if (arr[i] === obj) {
+                return true;
+            }
+        }
+        return false;
+    }
+</script>
+

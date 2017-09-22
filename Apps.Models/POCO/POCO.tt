@@ -1,0 +1,170 @@
+﻿<#@ template language="C#" debug="false" hostspecific="true"#>
+<#@ include file="../../Apps.Models/Common.ttinclude"#><#@ 
+ output extension=".cs"#><#
+
+const string inputFile = @"../../Apps.Models/DB.edmx";
+var textTransform = DynamicTextTransformation.Create(this);
+var code = new CodeGenerationTools(this);
+var ef = new MetadataTools(this);
+var typeMapper = new TypeMapper(code, ef, textTransform.Errors);
+var	fileManager = EntityFrameworkTemplateFileManager.Create(this);
+var itemCollection = new EdmMetadataLoader(textTransform.Host, textTransform.Errors).CreateEdmItemCollection(inputFile);
+var codeStringGenerator = new CodeStringGenerator(code, typeMapper, ef);
+
+if (!typeMapper.VerifyCaseInsensitiveTypeUniqueness(typeMapper.GetAllGlobalItems(itemCollection), inputFile))
+{
+    return string.Empty;
+}
+
+WriteHeader(codeStringGenerator, fileManager);
+
+foreach (var entity in typeMapper.GetItemsToGenerate<EntityType>(itemCollection))
+{
+
+    fileManager.StartNewFile(entity.Name + ".cs");
+#>
+namespace Apps.Models
+{
+	public partial class <#=entity.Name#>
+	{
+<#
+    var propertiesWithDefaultValues = typeMapper.GetPropertiesWithDefaultValues(entity);
+    var collectionNavigationProperties = typeMapper.GetCollectionNavigationProperties(entity);
+    var complexProperties = typeMapper.GetComplexProperties(entity);
+	//获取 类型中 所有的基础属性
+    var simpleProperties = typeMapper.GetSimpleProperties(entity);
+    if (simpleProperties.Any())
+    {
+        
+#>
+		public Apps.Models<#=entity.Name.IndexOf("_")>0?"."+entity.Name.Substring(0,entity.Name.IndexOf("_")):".Sys" #>.<#=entity.Name#>Model ToPOCO(){
+			return new Apps.Models<#=entity.Name.IndexOf("_")>0?"."+entity.Name.Substring(0,entity.Name.IndexOf("_")):".Sys" #>.<#=entity.Name#>Model(){
+				<#
+				//循环属性，生成 代码
+				foreach (var edmProperty in simpleProperties)
+				{
+				#>
+				<#= edmProperty.Name #>=this.<#= edmProperty.Name #>,
+<#
+				}
+#>
+			};
+		}
+<#
+    }
+#>
+	}
+<#
+    EndNamespace(code);
+}
+
+foreach (var complex in typeMapper.GetItemsToGenerate<ComplexType>(itemCollection))
+{
+		if(!complex.Name.StartsWith("P_"))
+        {
+    fileManager.StartNewFile(complex.Name + ".cs");
+    BeginNamespace(code);
+#>
+<#=codeStringGenerator.UsingDirectives(inHeader: false, includeCollections: false)#>
+<#=Accessibility.ForType(complex)#> partial class <#=code.Escape(complex)#>
+{
+<#
+    var complexProperties = typeMapper.GetComplexProperties(complex);
+    var propertiesWithDefaultValues = typeMapper.GetPropertiesWithDefaultValues(complex);
+
+    if (propertiesWithDefaultValues.Any() || complexProperties.Any())
+    {
+#>
+    public <#=code.Escape(complex)#>()
+    {
+<#
+        foreach (var edmProperty in propertiesWithDefaultValues)
+        {
+#>
+        this.<#=code.Escape(edmProperty)#> = <#=typeMapper.CreateLiteral(edmProperty.DefaultValue)#>;
+<#
+        }
+
+        foreach (var complexProperty in complexProperties)
+        {
+#>
+        this.<#=code.Escape(complexProperty)#> = new <#=typeMapper.GetTypeName(complexProperty.TypeUsage)#>();
+<#
+        }
+#>
+    }
+
+<#
+    }
+
+    var simpleProperties = typeMapper.GetSimpleProperties(complex);
+    if (simpleProperties.Any())
+    {
+        foreach(var edmProperty in simpleProperties)
+        {
+#>
+    <#=codeStringGenerator.Property(edmProperty)#>
+<#
+        }
+    }
+
+    if (complexProperties.Any())
+    {
+#>
+
+<#
+        foreach(var edmProperty in complexProperties)
+        {
+#>
+    <#=codeStringGenerator.Property(edmProperty)#>
+<#
+        }
+    }
+#>
+}
+
+<#
+    EndNamespace(code);
+}
+}
+
+foreach (var enumType in typeMapper.GetEnumItemsToGenerate(itemCollection))
+{
+    fileManager.StartNewFile(enumType.Name + ".cs");
+    BeginNamespace(code);
+#>
+<#=codeStringGenerator.UsingDirectives(inHeader: false, includeCollections: false)#>
+<#
+    if (typeMapper.EnumIsFlags(enumType))
+    {
+#>
+[Flags]
+<#
+    }
+#>
+<#=codeStringGenerator.EnumOpening(enumType)#>
+{
+<#
+    var foundOne = false;
+    
+    foreach (MetadataItem member in typeMapper.GetEnumMembers(enumType))
+    {
+        foundOne = true;
+#>
+    <#=code.Escape(typeMapper.GetEnumMemberName(member))#> = <#=typeMapper.GetEnumMemberValue(member)#>,
+<#
+    }
+
+    if (foundOne)
+    {
+        this.GenerationEnvironment.Remove(this.GenerationEnvironment.Length - 3, 1);
+    }
+#>
+}
+
+<#
+    EndNamespace(code);
+}
+fileManager.Process();
+
+#>

@@ -1,0 +1,74 @@
+﻿@model Apps.Models.Sys.SysRoleModel
+@using Apps.Web.Helper;
+@using Apps.Models;
+@using Apps.Locale;
+@{
+    ViewBag.Title = "分配用户";
+    Layout = "~/Views/Shared/_Index_LayoutEdit.cshtml";
+
+    List<PermissionModel> perm = ViewBag.sonBtns;
+}
+
+<style>
+    .l-btn-text {
+        line-height: 17px;
+    }
+</style>
+
+<script type="text/javascript">
+    $(function () {
+        $("#btnSave").click(function () {
+        if ($("form").valid()) {
+            $.ajax({
+                url: "@Url.Action("Edit")",
+                type: "Post",
+            data: $("form").serialize(),
+            dataType: "json",
+            success: function (data) {
+                if (data.Status == 1) {
+                    window.parent.frameReturnByMes(data.Msg);
+                    window.parent.frameReturnByReload(true);
+                    window.parent.frameReturnByClose()
+                }
+                else if (data.Status == 2) {
+                    window.parent.frameReturnByMes(data.Msg);
+                } else {
+                    msgProcess(data);
+                }
+            }
+            });
+        }
+        return false;
+        });
+        $("#btnReturn").click(function () {
+            window.parent.frameReturnByClose()
+        });
+    });
+</script>
+<div class="mvctool bgb">
+    @Html.ToolButton("btnSave", "fa fa-save", Resource.Save, perm, "Edit", true)
+    @Html.ToolButton("btnReturn", "fa fa-reply", Resource.Reply, false)
+</div>
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.Id)
+    <table class="formtable">
+        <tbody>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.Name)：
+                    @Html.TextBoxFor(o => o.Name, new { placeholder = @Html.DisplayNameFor(o => o.Name) })
+                    @Html.ValidationMessageFor(model => model.Name)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.Description)：
+                    @Html.TextBoxFor(o => o.Description, new { placeholder = @Html.DisplayNameFor(o => o.Description), @style = "" })
+                    @Html.ValidationMessageFor(model => model.Description)
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+}

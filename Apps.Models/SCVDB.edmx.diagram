@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="72ef0e9458ef4b2b93dce7d6d0e4e4fd" Name="Diagram1" ZoomLevel="47" >
+        <EntityTypeShape EntityType="SCVDB.ALLOCATION_RULE_DETAIL" Width="1.5" PointX="17.75" PointY="6.25" />
+        <EntityTypeShape EntityType="SCVDB.ALLOCATION_RULE_HEADER" Width="1.5" PointX="1.5" PointY="22.125" />
+        <EntityTypeShape EntityType="SCVDB.APPOINTMENT" Width="1.5" PointX="12" PointY="39.25" />
+        <EntityTypeShape EntityType="SCVDB.AR_RECEIPT_CONTAINER" Width="1.5" PointX="2.75" PointY="25.25" />
+        <EntityTypeShape EntityType="SCVDB.AR_RECEIPT_DETAIL" Width="1.5" PointX="16.75" PointY="26.25" />
+        <EntityTypeShape EntityType="SCVDB.AR_RECEIPT_HEADER" Width="1.5" PointX="18.75" PointY="26.25" />
+        <EntityTypeShape EntityType="SCVDB.AR_TASK_DETAIL" Width="1.5" PointX="20.75" PointY="26.25" />
+        <EntityTypeShape EntityType="SCVDB.AR_TASK_HEADER" Width="1.5" PointX="4.75" PointY="23.25" />
+        <EntityTypeShape EntityType="SCVDB.AR_TRANSACTION_HISTORY" Width="1.5" PointX="21.75" PointY="6.25" />
+        <EntityTypeShape EntityType="SCVDB.AREAS" Width="1.5" PointX="6.75" PointY="25.25" />
+        <EntityTypeShape EntityType="SCVDB.ATTRIBUTE" Width="1.5" PointX="14" PointY="30.75" />
+        <EntityTypeShape EntityType="SCVDB.ATTRIBUTE_TEMPLATE" Width="1.5" PointX="22.75" PointY="15.25" />
+        <EntityTypeShape EntityType="SCVDB.AUDIT_LOG" Width="1.5" PointX="8.75" PointY="25.25" />
+        <EntityTypeShape EntityType="SCVDB.BOM_DETAIL" Width="1.5" PointX="22.75" PointY="27.25" />
+        <EntityTypeShape EntityType="SCVDB.BOM_HEADER" Width="1.5" PointX="23.75" PointY="6.25" />
+        <EntityTypeShape EntityType="SCVDB.CART_DETAIL" Width="1.5" PointX="24.75" PointY="13.25" />
+        <EntityTypeShape EntityType="SCVDB.CART_HEADER" Width="1.5" PointX="13.75" PointY="26.25" />
+        <EntityTypeShape EntityType="SCVDB.COMPANY" Width="1.5" PointX="3.75" PointY="34.75" />
+        <EntityTypeShape EntityType="SCVDB.COMPANYSTATE" Width="1.5" PointX="24.75" PointY="19.25" />
+        <EntityTypeShape EntityType="SCVDB.CONFIG_VALUE" Width="1.5" PointX="6.75" PointY="28.25" />
+        <EntityTypeShape EntityType="SCVDB.CONTAINER_TYPE" Width="1.5" PointX="24.75" PointY="25.25" />
+        <EntityTypeShape EntityType="SCVDB.CUSTOM_RESOURCE" Width="1.5" PointX="8.75" PointY="28.25" />
+        <EntityTypeShape EntityType="SCVDB.CUSTOMER" Width="1.5" PointX="25.75" PointY="6.25" />
+        <EntityTypeShape EntityType="SCVDB.CYCLE_COUNT_DETAIL" Width="1.5" PointX="26.75" PointY="12.25" />
+        <EntityTypeShape EntityType="SCVDB.CYCLE_COUNT_HEADER" Width="1.5" PointX="26.75" PointY="23.25" />
+        <EntityTypeShape EntityType="SCVDB.CYCLE_COUNT_MASTER" Width="1.5" PointX="26.75" PointY="31.25" />
+        <EntityTypeShape EntityType="SCVDB.DOCUMENT_ROUTING" Width="1.5" PointX="28.75" PointY="6.25" />
+        <EntityTypeShape EntityType="SCVDB.DOWNLOAD_COMPANY" Width="1.5" PointX="28.75" PointY="13.25" />
+        <EntityTypeShape EntityType="SCVDB.DOWNLOAD_ITEM" Width="1.5" PointX="28.75" PointY="27.25" />
+        <EntityTypeShape EntityType="SCVDB.DOWNLOAD_ITEM_BARCODE" Width="1.5" PointX="22.75" PointY="34.25" />
+        <EntityTypeShape EntityType="SCVDB.DOWNLOAD_ITEM_UNIT_OF_MEASURE" Width="1.5" PointX="30.75" PointY="6.25" />
+        <EntityTypeShape EntityType="SCVDB.DOWNLOAD_ITEMS" Width="1.5" PointX="30.75" PointY="19.25" />
+        <EntityTypeShape EntityType="SCVDB.DOWNLOAD_RECEIPT_DETAIL" Width="1.5" PointX="30.75" PointY="26.25" />
+        <EntityTypeShape EntityType="SCVDB.DOWNLOAD_RECEIPT_HEADER" Width="1.5" PointX="14.75" PointY="37.25" />
+        <EntityTypeShape EntityType="SCVDB.DOWNLOAD_RECEIPTS" Width="1.5" PointX="16.75" PointY="37.25" />
+        <EntityTypeShape EntityType="SCVDB.DOWNLOAD_SHIPMENT_DETAIL" Width="1.5" PointX="24.75" PointY="37.25" />
+        <EntityTypeShape EntityType="SCVDB.DOWNLOAD_SHIPMENT_HEADER" Width="1.5" PointX="32.75" PointY="6.25" />
+        <EntityTypeShape EntityType="SCVDB.DOWNLOAD_SHIPMENTS" Width="1.5" PointX="18.75" PointY="38.25" />
+        <EntityTypeShape EntityType="SCVDB.DOWNLOAD_SHIPMENTS_UPDATE" Width="1.5" PointX="32.75" PointY="25.25" />
+        <EntityTypeShape EntityType="SCVDB.DYNAMIC_CALLING_DETAIL" Width="1.5" PointX="20.75" PointY="38.25" />
+        <EntityTypeShape EntityType="SCVDB.DYNAMIC_CALLING_HEADER" Width="1.5" PointX="32.75" PointY="36.25" />
+        <EntityTypeShape EntityType="SCVDB.EX_MENU" Width="1.5" PointX="34.75" PointY="6.25" />
+        <EntityTypeShape EntityType="SCVDB.FILTER_CONFIG_DETAIL" Width="1.5" PointX="34.75" PointY="11.25" />
+        <EntityTypeShape EntityType="SCVDB.FILTER_GROUP_BY" Width="1.5" PointX="34.75" PointY="15.25" />
+        <EntityTypeShape EntityType="SCVDB.FILTER_ORDER_BY" Width="1.5" PointX="34.75" PointY="19.25" />
+        <EntityTypeShape EntityType="SCVDB.FILTER_STATEMENT" Width="1.5" PointX="34.75" PointY="23.25" />
+        <EntityTypeShape EntityType="SCVDB.GENERIC_CONFIG_DETAIL" Width="1.5" PointX="34.75" PointY="28.25" />
+        <EntityTypeShape EntityType="SCVDB.GENERIC_CONFIG_HEADER" Width="1.5" PointX="26.75" PointY="40.25" />
+        <EntityTypeShape EntityType="SCVDB.INTERFACE_FAILURE" Width="1.5" PointX="34.75" PointY="33.25" />
+        <EntityTypeShape EntityType="SCVDB.INTERFACE_PROCESS" Width="1.5" PointX="28.75" PointY="40.25" />
+        <EntityTypeShape EntityType="SCVDB.INTERFACE_SESSION" Width="1.5" PointX="34.75" PointY="37.25" />
+        <EntityTypeShape EntityType="SCVDB.INTERFACE_TABLE_STATISTIC" Width="1.5" PointX="30.75" PointY="41.25" />
+        <EntityTypeShape EntityType="SCVDB.INVENTORY_TRANSACTION" Width="1.5" PointX="36.75" PointY="6.25" />
+        <EntityTypeShape EntityType="SCVDB.ITEM" Width="1.5" PointX="11.75" PointY="27" />
+        <EntityTypeShape EntityType="SCVDB.ITEM_BARCODE" Width="1.5" PointX="36.75" PointY="15.25" />
+        <EntityTypeShape EntityType="SCVDB.ITEM_BEIYONG" Width="1.5" PointX="36.75" PointY="20.25" />
+        <EntityTypeShape EntityType="SCVDB.ITEM_BEIYONG1" Width="1.5" PointX="36.75" PointY="24.25" />
+        <EntityTypeShape EntityType="SCVDB.ITEM_LOCATION_CAPACITY" Width="1.5" PointX="6" PointY="32.125" />
+        <EntityTypeShape EntityType="SCVDB.ITEM_UNIT_OF_MEASURE" Width="1.5" PointX="6" PointY="54.375" />
+        <EntityTypeShape EntityType="SCVDB.ITEM_WEIGHT_HIS" Width="1.5" PointX="36.75" PointY="28.25" />
+        <EntityTypeShape EntityType="SCVDB.ITEM_ZONE_CAPACITY" Width="1.5" PointX="36.75" PointY="32.25" />
+        <EntityTypeShape EntityType="SCVDB.LOCATING_RULE_DETAIL" Width="1.5" PointX="10.75" PointY="6.25" />
+        <EntityTypeShape EntityType="SCVDB.LOCATING_RULE_HEADER" Width="1.5" PointX="0.75" PointY="40.25" />
+        <EntityTypeShape EntityType="SCVDB.LOCATION" Width="1.5" PointX="9.75" PointY="13.25" />
+        <EntityTypeShape EntityType="SCVDB.LOCATION_CARRIER" Width="1.5" PointX="36.75" PointY="36.25" />
+        <EntityTypeShape EntityType="SCVDB.LOCATION_INVENTORY" Width="1.5" PointX="6" PointY="45.625" />
+        <EntityTypeShape EntityType="SCVDB.LOCATION_SELECTION" Width="1.5" PointX="36.75" PointY="42.25" />
+        <EntityTypeShape EntityType="SCVDB.MISC_INVENTORY_HANDLING" Width="1.5" PointX="32.75" PointY="43.25" />
+        <EntityTypeShape EntityType="SCVDB.NEXT_NUMBER" Width="1.5" PointX="38.75" PointY="6.25" />
+        <EntityTypeShape EntityType="SCVDB.PACKING_CLASS" Width="1.5" PointX="38.75" PointY="13.25" />
+        <EntityTypeShape EntityType="SCVDB.PACKING_PREFERENCE" Width="1.5" PointX="38.75" PointY="16.25" />
+        <EntityTypeShape EntityType="SCVDB.PROCESS_HISTORY" Width="1.5" PointX="38.75" PointY="19.25" />
+        <EntityTypeShape EntityType="SCVDB.PURCHASE_ORDER_DETAIL" Width="1.5" PointX="38.75" PointY="24.25" />
+        <EntityTypeShape EntityType="SCVDB.PURCHASE_ORDER_HEADER" Width="1.5" PointX="20.75" PointY="44.25" />
+        <EntityTypeShape EntityType="SCVDB.QUEUE_TASK_IN_CONFIRM" Width="1.5" PointX="38.75" PointY="31.25" />
+        <EntityTypeShape EntityType="SCVDB.RECEIPT_CONTAINER" Width="1.5" PointX="12" PointY="44.5" />
+        <EntityTypeShape EntityType="SCVDB.RECEIPT_DETAIL" Width="1.5" PointX="9.75" PointY="59.75" />
+        <EntityTypeShape EntityType="SCVDB.RECEIPT_HEADER" Width="1.5" PointX="9.75" PointY="31.125" />
+        <EntityTypeShape EntityType="SCVDB.RECEIPT_HEADER_TEMP" Width="1.5" PointX="38.75" PointY="35.25" />
+        <EntityTypeShape EntityType="SCVDB.RECEIPT_LOCATE_REQUEST" Width="1.5" PointX="28.75" PointY="45.25" />
+        <EntityTypeShape EntityType="SCVDB.RECEIVING_PREFERENCE" Width="1.5" PointX="3" PointY="93.5" />
+        <EntityTypeShape EntityType="SCVDB.REPLENISHMENT" Width="1.5" PointX="34.75" PointY="45.25" />
+        <EntityTypeShape EntityType="SCVDB.REPLENISHMENT_MASTER" Width="1.5" PointX="40.75" PointY="6.25" />
+        <EntityTypeShape EntityType="SCVDB.REPLENISHMENT_REQUEST" Width="1.5" PointX="6" PointY="36.375" />
+        <EntityTypeShape EntityType="SCVDB.REPORT_CONNECTION" Width="1.5" PointX="40.75" PointY="13.25" />
+        <EntityTypeShape EntityType="SCVDB.RETURNED_PACKAGE" Width="1.5" PointX="40.75" PointY="17.25" />
+        <EntityTypeShape EntityType="SCVDB.RULE_ASSIGNMENT_DETAIL" Width="1.5" PointX="40.75" PointY="24.25" />
+        <EntityTypeShape EntityType="SCVDB.RULE_ASSIGNMENT_HEADER" Width="1.5" PointX="40.75" PointY="28.25" />
+        <EntityTypeShape EntityType="SCVDB.SCHEDULE_JOB" Width="1.5" PointX="19" PointY="17.75" />
+        <EntityTypeShape EntityType="SCVDB.SCHEDULE_JOB_HISTORY" Width="1.5" PointX="40.75" PointY="33.25" />
+        <EntityTypeShape EntityType="SCVDB.SCHEDULE_JOB_TYPE" Width="1.5" PointX="16.75" PointY="18.625" />
+        <EntityTypeShape EntityType="SCVDB.SECURITY_FUNCTION" Width="1.5" PointX="40.75" PointY="39.25" />
+        <EntityTypeShape EntityType="SCVDB.SECURITY_ROLE_DETAIL" Width="1.5" PointX="19" PointY="11.625" />
+        <EntityTypeShape EntityType="SCVDB.SECURITY_ROLE_HEADER" Width="1.5" PointX="16.75" PointY="11.875" />
+        <EntityTypeShape EntityType="SCVDB.SERIAL_NUMBER" Width="1.5" PointX="40.75" PointY="45.25" />
+        <EntityTypeShape EntityType="SCVDB.SHIPMENT_ALLOC_REQUEST" Width="1.5" PointX="3" PointY="42.875" />
+        <EntityTypeShape EntityType="SCVDB.SHIPMENT_CARRIER_EDITRULE" Width="1.5" PointX="36.75" PointY="47.25" />
+        <EntityTypeShape EntityType="SCVDB.SHIPMENT_DETAIL" Width="1.5" PointX="0.75" PointY="27.625" />
+        <EntityTypeShape EntityType="SCVDB.SHIPMENT_EXPRESS" Width="1.5" PointX="42.75" PointY="6.25" />
+        <EntityTypeShape EntityType="SCVDB.SHIPMENT_HEADER" Width="1.5" PointX="1.5" PointY="0.75" />
+        <EntityTypeShape EntityType="SCVDB.SHIPMENT_HEADER_TEMP" Width="1.5" PointX="42.75" PointY="12.25" />
+        <EntityTypeShape EntityType="SCVDB.SHIPMENT_HEADER_TEMP1" Width="1.5" PointX="42.75" PointY="33.25" />
+        <EntityTypeShape EntityType="SCVDB.SHIPMENT_INVOICE" Width="1.5" PointX="44.75" PointY="6.25" />
+        <EntityTypeShape EntityType="SCVDB.SHIPMENT_SERIAL_NUMBER" Width="1.5" PointX="44.75" PointY="11.25" />
+        <EntityTypeShape EntityType="SCVDB.SHIPMENT_TRACKING_NUMBER" Width="1.5" PointX="44.75" PointY="16.25" />
+        <EntityTypeShape EntityType="SCVDB.SHIPPING_CART_DETAIL" Width="1.5" PointX="14.75" PointY="50.25" />
+        <EntityTypeShape EntityType="SCVDB.SHIPPING_CART_HEADER" Width="1.5" PointX="44.75" PointY="22.25" />
+        <EntityTypeShape EntityType="SCVDB.SHIPPING_CONTAINER" Width="1.5" PointX="9" PointY="42.875" />
+        <EntityTypeShape EntityType="SCVDB.SHIPPING_CONTAINER_HIS" Width="1.5" PointX="11.25" PointY="55.875" />
+        <EntityTypeShape EntityType="SCVDB.SHIPPING_LOAD" Width="1.5" PointX="3" PointY="100.75" />
+        <EntityTypeShape EntityType="SCVDB.STATISTICS_REPORT" Width="1.5" PointX="16.75" PointY="50.25" />
+        <EntityTypeShape EntityType="SCVDB.STATUS_FLOW_DETAIL" Width="1.5" PointX="14" PointY="21.5" />
+        <EntityTypeShape EntityType="SCVDB.STATUS_FLOW_HEADER" Width="1.5" PointX="11.75" PointY="21.5" />
+        <EntityTypeShape EntityType="SCVDB.TASK_CREATION_MASTER" Width="1.5" PointX="44.75" PointY="27.25" />
+        <EntityTypeShape EntityType="SCVDB.TASK_DETAIL" Width="1.5" PointX="22.75" PointY="50.25" />
+        <EntityTypeShape EntityType="SCVDB.TASK_HANDLING_OPTION" Width="1.5" PointX="44.75" PointY="34.25" />
+        <EntityTypeShape EntityType="SCVDB.TASK_HEADER" Width="1.5" PointX="7.75" PointY="13.25" />
+        <EntityTypeShape EntityType="SCVDB.TASK_PREF_USER_AUTH" Width="1.5" PointX="8" PointY="8.125" />
+        <EntityTypeShape EntityType="SCVDB.TASK_PREFERENCE" Width="1.5" PointX="5.75" PointY="6.75" />
+        <EntityTypeShape EntityType="SCVDB.TRANSACTION_HISTORY" Width="1.5" PointX="44.75" PointY="40.25" />
+        <EntityTypeShape EntityType="SCVDB.TRANSFER_LOCATE_REQUEST" Width="1.5" PointX="36.75" PointY="50.25" />
+        <EntityTypeShape EntityType="SCVDB.TRANSFER_ORDER_DETAIL" Width="1.5" PointX="44.75" PointY="49.25" />
+        <EntityTypeShape EntityType="SCVDB.TRANSFER_ORDER_HEADER" Width="1.5" PointX="18.75" PointY="51.25" />
+        <EntityTypeShape EntityType="SCVDB.UPLOAD_INVENTORY" Width="1.5" PointX="46.75" PointY="6.25" />
+        <EntityTypeShape EntityType="SCVDB.UPLOAD_INVENTORY_TRANS" Width="1.5" PointX="46.75" PointY="12.25" />
+        <EntityTypeShape EntityType="SCVDB.UPLOAD_LOCATION_INVENTORY" Width="1.5" PointX="3.75" PointY="6.25" />
+        <EntityTypeShape EntityType="SCVDB.UPLOAD_OBJECT" Width="1.5" PointX="46.75" PointY="22.25" />
+        <EntityTypeShape EntityType="SCVDB.UPLOAD_ORDER_STATUS" Width="1.5" PointX="46.75" PointY="26.25" />
+        <EntityTypeShape EntityType="SCVDB.UPLOAD_RECEIPT_CONTAINER" Width="1.5" PointX="46.75" PointY="31.25" />
+        <EntityTypeShape EntityType="SCVDB.UPLOAD_RECEIPT_DETAIL" Width="1.5" PointX="46.75" PointY="42.25" />
+        <EntityTypeShape EntityType="SCVDB.UPLOAD_RECEIPT_HEADER" Width="1.5" PointX="46.75" PointY="52.25" />
+        <EntityTypeShape EntityType="SCVDB.UPLOAD_RECEIPTS" Width="1.5" PointX="38.75" PointY="53.25" />
+        <EntityTypeShape EntityType="SCVDB.UPLOAD_SHIPMENT_DETAIL" Width="1.5" PointX="48.75" PointY="6.25" />
+        <EntityTypeShape EntityType="SCVDB.UPLOAD_SHIPMENT_HEADER" Width="1.5" PointX="48.75" PointY="17.25" />
+        <EntityTypeShape EntityType="SCVDB.UPLOAD_SHIPPING_CONTAINER" Width="1.5" PointX="48.75" PointY="33.25" />
+        <EntityTypeShape EntityType="SCVDB.USER" Width="1.5" PointX="5.75" PointY="15.625" />
+        <EntityTypeShape EntityType="SCVDB.USER_COMPANY_AUTH" Width="1.5" PointX="28.75" PointY="54.25" />
+        <EntityTypeShape EntityType="SCVDB.USER_WAREHOUSE_AUTH" Width="1.5" PointX="30.75" PointY="54.25" />
+        <EntityTypeShape EntityType="SCVDB.USER_ZONE_AUTH" Width="1.5" PointX="32.75" PointY="54.25" />
+        <EntityTypeShape EntityType="SCVDB.VENDOR" Width="1.5" PointX="48.75" PointY="46.25" />
+        <EntityTypeShape EntityType="SCVDB.VIEWER" Width="1.5" PointX="40.75" PointY="54.25" />
+        <EntityTypeShape EntityType="SCVDB.WAREHOUSE" Width="1.5" PointX="0.75" PointY="45.875" />
+        <EntityTypeShape EntityType="SCVDB.WAREHOUSE_ACTIVITY" Width="1.5" PointX="48.75" PointY="52.25" />
+        <EntityTypeShape EntityType="SCVDB.WAVE" Width="1.5" PointX="3" PointY="109" />
+        <EntityTypeShape EntityType="SCVDB.WAVE_FLOW_DETAIL" Width="1.5" PointX="15" PointY="6.5" />
+        <EntityTypeShape EntityType="SCVDB.WAVE_FLOW_HEADER" Width="1.5" PointX="12.75" PointY="7" />
+        <EntityTypeShape EntityType="SCVDB.WAVE_MASTER" Width="1.5" PointX="50.75" PointY="6.25" />
+        <EntityTypeShape EntityType="SCVDB.WAYBILL_INFO" Width="1.5" PointX="50.75" PointY="13.25" />
+        <EntityTypeShape EntityType="SCVDB.WORK_OPTION" Width="1.5" PointX="13.75" PointY="56.25" />
+        <EntityTypeShape EntityType="SCVDB.WORK_ORDER_DETAIL" Width="1.5" PointX="14" PointY="10.875" />
+        <EntityTypeShape EntityType="SCVDB.WORK_ORDER_HEADER" Width="1.5" PointX="11.75" PointY="11.625" />
+        <EntityTypeShape EntityType="SCVDB.ZONE" Width="1.5" PointX="50.75" PointY="21.25" />
+        <EntityTypeShape EntityType="SCVDB.AR_DOWNLOAD_ITEM" Width="1.5" PointX="15.75" PointY="56.25" />
+        <EntityTypeShape EntityType="SCVDB.AR_DOWNLOAD_ITEM_BARCODE" Width="1.5" PointX="50.75" PointY="24.25" />
+        <EntityTypeShape EntityType="SCVDB.AR_DOWNLOAD_ITEM_UNIT_OF_MEASURE" Width="1.5" PointX="50.75" PointY="28.25" />
+        <EntityTypeShape EntityType="SCVDB.AR_DOWNLOAD_RECEIPT_DETAIL" Width="1.5" PointX="50.75" PointY="41.25" />
+        <EntityTypeShape EntityType="SCVDB.AR_DOWNLOAD_RECEIPT_HEADER" Width="1.5" PointX="50.75" PointY="53.25" />
+        <EntityTypeShape EntityType="SCVDB.AR_DOWNLOAD_SHIPMENT_DETAIL" Width="1.5" PointX="0.75" PointY="57.25" />
+        <EntityTypeShape EntityType="SCVDB.AR_DOWNLOAD_SHIPMENT_HEADER" Width="1.5" PointX="2.75" PointY="57.25" />
+        <EntityTypeShape EntityType="SCVDB.AR_LOCATION_INVENTORY" Width="1.5" PointX="17.75" PointY="57.25" />
+        <EntityTypeShape EntityType="SCVDB.AR_PROCESS_HISTORY" Width="1.5" PointX="19.75" PointY="57.25" />
+        <EntityTypeShape EntityType="SCVDB.AR_RECEIPT_LOCATE_REQUEST" Width="1.5" PointX="24.75" PointY="57.25" />
+        <EntityTypeShape EntityType="SCVDB.AR_SHIPMENT_ALLOC_REQUEST" Width="1.5" PointX="26.75" PointY="57.25" />
+        <EntityTypeShape EntityType="SCVDB.AR_SHIPMENT_DETAIL" Width="1.5" PointX="28.75" PointY="57.25" />
+        <EntityTypeShape EntityType="SCVDB.AR_SHIPMENT_HEADER" Width="1.5" PointX="30.75" PointY="57.25" />
+        <EntityTypeShape EntityType="SCVDB.AR_SHIPMENT_HISTORY" Width="1.5" PointX="32.75" PointY="57.25" />
+        <EntityTypeShape EntityType="SCVDB.AR_SHIPPING_CONTAINER" Width="1.5" PointX="52.75" PointY="6.25" />
+        <EntityTypeShape EntityType="SCVDB.AR_SHIPPING_LOAD" Width="1.5" PointX="52.75" PointY="18.25" />
+        <EntityTypeShape EntityType="SCVDB.AR_UPLOAD_INVENTORY" Width="1.5" PointX="52.75" PointY="27.25" />
+        <EntityTypeShape EntityType="SCVDB.AR_UPLOAD_INVENTORY_TRANS" Width="1.5" PointX="52.75" PointY="33.25" />
+        <EntityTypeShape EntityType="SCVDB.AR_UPLOAD_LOCATION_INVENTORY" Width="1.5" PointX="52.75" PointY="43.25" />
+        <EntityTypeShape EntityType="SCVDB.AR_UPLOAD_ORDER_STATUS" Width="1.5" PointX="52.75" PointY="52.25" />
+        <EntityTypeShape EntityType="SCVDB.AR_UPLOAD_RECEIPT_CONTAINER" Width="1.5" PointX="52.75" PointY="57.25" />
+        <EntityTypeShape EntityType="SCVDB.AR_UPLOAD_RECEIPT_DETAIL" Width="1.5" PointX="34.75" PointY="59.25" />
+        <EntityTypeShape EntityType="SCVDB.AR_UPLOAD_RECEIPT_HEADER" Width="1.5" PointX="40.75" PointY="59.25" />
+        <EntityTypeShape EntityType="SCVDB.AR_UPLOAD_SHIPMENT_DETAIL" Width="1.5" PointX="54.75" PointY="6.25" />
+        <EntityTypeShape EntityType="SCVDB.AR_UPLOAD_SHIPMENT_HEADER" Width="1.5" PointX="54.75" PointY="17.25" />
+        <EntityTypeShape EntityType="SCVDB.AR_UPLOAD_SHIPPING_CONTAINER" Width="1.5" PointX="54.75" PointY="33.25" />
+        <EntityTypeShape EntityType="SCVDB.CHART_CONFIG" Width="1.5" PointX="54.75" PointY="46.25" />
+        <EntityTypeShape EntityType="SCVDB.CONSOLIDATE_SHIPMENT_HEADER" Width="1.5" PointX="54.75" PointY="53.25" />
+        <EntityTypeShape EntityType="SCVDB.CYCLE_COUNT_PREFERENCE" Width="1.5" PointX="42.75" PointY="61.25" />
+        <EntityTypeShape EntityType="SCVDB.DELETED_SHIPMENT_DETAIL" Width="1.5" PointX="56.75" PointY="6.25" />
+        <EntityTypeShape EntityType="SCVDB.DELETED_SHIPMENT_HEADER" Width="1.5" PointX="4.75" PointY="62.25" />
+        <EntityTypeShape EntityType="SCVDB.DOWNLOAD_RECEIPT_HEADER_FAILED" Width="1.5" PointX="6.75" PointY="62.25" />
+        <EntityTypeShape EntityType="SCVDB.DOWNLOAD_SHIPMENT_HEADER_FAILED" Width="1.5" PointX="56.75" PointY="18.25" />
+        <EntityTypeShape EntityType="SCVDB.END_POINT" Width="1.5" PointX="19.75" PointY="62.25" />
+        <EntityTypeShape EntityType="SCVDB.g_login_history" Width="1.5" PointX="56.75" PointY="34.25" />
+        <EntityTypeShape EntityType="SCVDB.g_user" Width="1.5" PointX="56.75" PointY="38.25" />
+        <EntityTypeShape EntityType="SCVDB.GENERIC_USER_AUTH" Width="1.5" PointX="56.75" PointY="42.25" />
+        <EntityTypeShape EntityType="SCVDB.GSP_CODE" Width="1.5" PointX="36.75" PointY="62.25" />
+        <EntityTypeShape EntityType="SCVDB.INTERFACE_REQUEST" Width="1.5" PointX="56.75" PointY="46.25" />
+        <EntityTypeShape EntityType="SCVDB.LOCATION_INVENTORY_HIS" Width="1.5" PointX="44.75" PointY="62.25" />
+        <EntityTypeShape EntityType="SCVDB.LOCATION_INVENTORY_TEMP" Width="1.5" PointX="56.75" PointY="51.25" />
+        <EntityTypeShape EntityType="SCVDB.MESSAGE" Width="1.5" PointX="46.75" PointY="62.25" />
+        <EntityTypeShape EntityType="SCVDB.MESSAGE_ROUTE" Width="1.5" PointX="56.75" PointY="60.25" />
+        <EntityTypeShape EntityType="SCVDB.PT_QTY" Width="1.5" PointX="11.75" PointY="63.25" />
+        <EntityTypeShape EntityType="SCVDB.RECEIPT_HISTORY" Width="1.5" PointX="21.75" PointY="63.25" />
+        <EntityTypeShape EntityType="SCVDB.RECEIVING_CART" Width="1.5" PointX="58.75" PointY="6.25" />
+        <EntityTypeShape EntityType="SCVDB.SECURITY_FUNCTION_bak" Width="1.5" PointX="58.75" PointY="12.25" />
+        <EntityTypeShape EntityType="SCVDB.SHIPMENT_HISTORY" Width="1.5" PointX="58.75" PointY="18.25" />
+        <EntityTypeShape EntityType="SCVDB.test_LOC_V" Width="1.5" PointX="58.75" PointY="24.25" />
+        <EntityTypeShape EntityType="SCVDB.UPLOAD_SHIPMENT_HISTORY" Width="1.5" PointX="58.75" PointY="33.25" />
+        <EntityTypeShape EntityType="SCVDB.USER_ADDRESS_CARRIER_AUTH" Width="1.5" PointX="58.75" PointY="40.25" />
+        <EntityTypeShape EntityType="SCVDB.WAREHOUSE_ISSUE" Width="1.5" PointX="58.75" PointY="44.25" />
+        <AssociationConnector Association="SCVDB.FK_ALLOCATION_RULE" />
+        <AssociationConnector Association="SCVDB.R_547" />
+        <AssociationConnector Association="SCVDB.FK_ATTRIBUTE_ATTRIBUTE" />
+        <AssociationConnector Association="SCVDB.FK_LOCATION_INVENTORY_COMPANY" />
+        <AssociationConnector Association="SCVDB.R_211" />
+        <AssociationConnector Association="SCVDB.R_268" />
+        <AssociationConnector Association="SCVDB.R_271" />
+        <AssociationConnector Association="SCVDB.R_287" />
+        <AssociationConnector Association="SCVDB.R_297" />
+        <AssociationConnector Association="SCVDB.FK_LOCATING_RULE_DETAIL_LOCATING_RULE_DETAIL" />
+        <AssociationConnector Association="SCVDB.FK_LOCATION_LOCATION" />
+        <AssociationConnector Association="SCVDB.FK_LOCATION_INVENTORY_WAREHOUSE" />
+        <AssociationConnector Association="SCVDB.R_334" />
+        <AssociationConnector Association="SCVDB.R_335" />
+        <AssociationConnector Association="SCVDB.R_338" />
+        <AssociationConnector Association="SCVDB.FK_RECEIPT_DETAIL_RECEIPT_HEADER" />
+        <AssociationConnector Association="SCVDB.FK_RECEIVING_PREFERENCE_WAREHOUSE" />
+        <AssociationConnector Association="SCVDB.R_290" />
+        <AssociationConnector Association="SCVDB.FK_SCHEDULE_JOB_SCHEDULE_JOB_TYPE" />
+        <AssociationConnector Association="SCVDB.FK_SECURITY_ROLE_DETAIL_SECURITY_ROLE_DETAIL" />
+        <AssociationConnector Association="SCVDB.r_294" />
+        <AssociationConnector Association="SCVDB.R_296" />
+        <AssociationConnector Association="SCVDB.R_298" />
+        <AssociationConnector Association="SCVDB.R_36" />
+        <AssociationConnector Association="SCVDB.R_10" />
+        <AssociationConnector Association="SCVDB.R_60" />
+        <AssociationConnector Association="SCVDB.FK_SHIPPING_CONTAINER_HIS_SHIPPING_CONTAINER" />
+        <AssociationConnector Association="SCVDB.R_59" />
+        <AssociationConnector Association="SCVDB.FK_WAREHOUSE" />
+        <AssociationConnector Association="SCVDB.FK_STATUS_FLOW_DETAIL_STATUS_FLOW_HEADER" />
+        <AssociationConnector Association="SCVDB.FK_TASK_HEADER_TASK_HEADER" />
+        <AssociationConnector Association="SCVDB.FK_TASK_PREF_USER_AUTH_TASK_PREFERENCE" />
+        <AssociationConnector Association="SCVDB.FK_TASK_PREF_USER_AUTH_USER" />
+        <AssociationConnector Association="SCVDB.FK_UPLOAD_LOCATION_INVENTORY_UPLOAD_LOCATION_INVENTORY" />
+        <AssociationConnector Association="SCVDB.R_26" />
+        <AssociationConnector Association="SCVDB.R_88" />
+        <AssociationConnector Association="SCVDB.R_456" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

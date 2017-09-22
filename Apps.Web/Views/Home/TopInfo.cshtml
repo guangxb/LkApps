@@ -1,0 +1,35 @@
+﻿@using Apps.Locale
+@model Apps.Models.AccountModel
+@{
+    Layout = null;
+}
+
+<div>
+    <ul class="dropdown-menu">
+        <!-- User image -->
+        <li class="user-header">
+            <img src="@Model.Photo" class="img-circle" alt="User Image">
+            <p>
+                临空信息技术有限公司<br />
+                <small>@DateTime.Now.ToString()</small>
+            </p>
+        </li>
+        <!-- Menu Body -->
+        @*<li class="user-body">
+                <div class="col-xs-4 text-center">
+                    <a href="#">Followers</a>
+                </div>
+                <div class="col-xs-4 text-center">
+                    <a href="#">Sales</a>
+                </div>
+                <div class="col-xs-4 text-center">
+                    <a href="#">Friends</a>
+                </div>
+            </li>*@
+        <!-- Menu Footer-->
+        <li class="endbtndiv" style="margin-top:5px;">
+            @*<span class="easyui-linkbutton btns" style="float:left; margin-left:10px;">@Resource.Profile</span>*@
+            <a href="javascript:SignOut();" class="easyui-linkbutton btnc" style="width:80px;">@Resource.SignOut</a>
+        </li>
+    </ul>
+</div>

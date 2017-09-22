@@ -1,0 +1,61 @@
+﻿@using Apps.Web.Helper;
+@using Apps.Models;
+@using Apps.Locale;
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Index_Layout.cshtml";
+    
+    List<PermissionModel> perm = ViewBag.sonBtns;
+}
+<style>
+    .l-btn-text {
+        line-height: 17px;
+    }
+</style>
+
+<script type="text/javascript">
+    $(function () {
+        $("#btnReturn").click(function () {
+            window.parent.frameReturnByClose();
+        });
+
+        @*$('#List').treegrid({ "url": '@Url.Action("Details")?id=@ViewBag.Id'});*@
+    })
+   
+</script>
+
+<div class="mvctool bgb">
+    @Html.ToolButton("btnReturn", "fa fa-reply", Resource.Reply, false)
+</div>
+
+<table id="List"></table>
+
+<script>
+
+    $(function () {
+        $('#List').datagrid({
+            url: '@Url.Action("Details")?id=@ViewBag.Id',
+            height: SetGridHeightSub(50),
+            width: SetGridWidthSub(10),
+            methord: 'post',
+            fitColumns: true,
+            sortName: 'AcceptTime',
+            sortOrder: 'desc',
+            idField: 'Id',
+            pagination: false,
+            striped: true, //奇偶行是否区分
+            singleSelect: true,//单选模式
+            remoteFilter: true,
+
+            columns: [[
+                { field: 'Id', title: 'Id', width: 40, hidden: true },
+                { field: 'AcceptTime', title: '时间', width: 40, sortable: true },
+                { field: 'AcceptStation', title: '详情', width: 120 },
+            ]]
+        });
+    })
+   
+</script>
+
+
+

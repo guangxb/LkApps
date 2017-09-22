@@ -1,0 +1,361 @@
+﻿@using Apps.Web.Helper;
+@using Apps.Models;
+@using Apps.Locale;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Index_Layout.cshtml";
+
+    List<PermissionModel> perm = ViewBag.sonBtns;
+}
+
+<style>
+    .l-btn-text {
+        line-height: 17px;
+    }
+</style>
+
+
+<table style="width: 100%">
+    <tr>
+        <td style="vertical-align: top">
+            <div class="mvctool" style="width:500px;">
+                <div style="float:left">
+                    菜单类型切换： <select class="easyui-combobox" name="swicthType" id="swicthType" style="width:80px;height:26px;margin-right:10px; ">
+                        <option value="menu">系统菜单</option>
+                        <option value="api">Api接口</option>
+                    </select>
+                </div>
+                @Html.ToolButton("btnCreate", "fa fa-plus", Resource.Create, perm, "Create", true)
+                @Html.ToolButton("btnEdit", "fa fa-pencil", Resource.Edit, perm, "Edit", true)
+                @Html.ToolButton("btnDelete", "fa fa-trash", Resource.Delete, perm, "Delete", true)
+
+            </div>
+            <table id="List"></table>
+        </td>
+
+    </tr>
+    <tr>
+        <td style="width: 255px;  vertical-align: top">
+            <div class="mvctool" style="width:200px;">
+                @Html.ToolButton("CreateButton", "fa fa-plus", Resource.Create, perm, "Create", true)
+                @Html.ToolButton("EditButton", "fa fa-pencil", Resource.Edit, perm, "Edit", true)
+                @Html.ToolButton("DeleteButton", "fa fa-trash", Resource.Delete, perm, "Delete", false)
+            </div>
+            <table id="OptList"></table>
+        </td>
+    </tr>
+</table>
+
+<div id="modalwindow" class="easyui-window" data-options="modal:true,width:800,height:530,closed:true,minimizable:false,shadow:false"></div>
+
+<div id="modalwindowicon" style="display:none;overflow-y:auto;" class="easyui-window" data-options="width:800,height:530,closed:true,minimizable:false,shadow:false">
+    @Html.Partial("~/Views/Shared/_iconlist.cshtml")
+</div>
+<script type="text/javascript">
+    $(function () {
+
+        $('#swicthType').combobox({
+            editable: false,
+            onSelect: function (record) {
+                if (record.value == "api") {
+                    $('#List').treegrid({ "url": '@Url.Action("GetList")?id=ApiInterfaceAuth' });
+                } else {
+                    $('#List').treegrid({ "url": '@Url.Action("GetList")?id=0' });
+                }
+
+            }
+        });
+
+        $('#List').treegrid({
+            url: '@Url.Action("GetList")',
+            width: SetGridWidthSub(10),
+            height: $(window).height() / 2 - 42,
+            //width: SetGridWidthSub(402),
+            //height: SetGridHeightSub(45),
+            methord: 'post',
+
+
+            fitColumns: true,
+            treeField: 'Name',
+            idField: 'Id',
+            pagination: false,
+            striped: true, //奇偶行是否区分
+            singleSelect: true,//单选模式
+            //rownumbers: true,//行号
+            onLoadSuccess: function (data) {
+                //$('#OptList').datagrid('loadData', { total: 0, rows: [] });
+            },
+            loadFilter: function (data) {
+                //if (msgProcess(data) == false) return false;
+                //return data.Data;
+                msgProcess(data);
+                return data.Data;
+            },
+            columns: [[
+                { field: 'Id', title: 'ID', width: 50, hidden: true },
+                { field: 'Name', title: '@Resource.TitleName', width: 110, sortable: true },
+                //{ field: 'EnglishName', title: '英文名称', width: 220, sortable: true },
+                { field: 'ParentId', title: '上级', width: 60, sortable: true, hidden: true },
+                { field: 'AreasName', title: 'Areas', width: 40, sortable: true },
+                 { field: 'ControllerName', title: 'Controller', width: 60, sortable: true },
+                 { field: 'ActionName', title: 'Action', width: 60, sortable: true },
+                 {
+                     field: 'FormMethod', title: '请求方式', width: 60, sortable: true,
+                     formatter: function (value) {
+                         if (value == 1) {
+                             return "get";
+                         } else if (value == 2) {
+                             return "post";
+                         } else if (value == 3) {
+                             return "both";
+                         }
+                     }
+                 },
+                {
+                    field: 'Iconic', title: '图标', width: 40, sortable: true, formatter: function (value) {
+                        return "<div class='" + value + "'/>";
+                    }
+                },
+                { field: 'Sort', title: '排序', width: 70, sortable: true },
+                //{ field: 'Remark', title: '@Resource.TitleRemark', width: 90, sortable: true },
+                { field: 'IsLast', title: 'IsLast', width: 80, align: 'center', formatter: function (value) { return IsLastFormatter(value) } },
+                 { field: 'Enable', title: '@Resource.TitleState', width: 80, align: 'center', formatter: function (value) { return EnableFormatter(value) } },
+                { field: 'CreatePerson', title: '@Resource.TitleCreatePerson', width: 80, sortable: true, hidden: true },
+                { field: 'CreateTime', title: '@Resource.TitleCreateTime', width: 120, sortable: true, hidden: true },
+                {
+                    field: 'OperationType', title: '类型', align: 'center', width: 100, formatter: function (value) {
+                        if (value == 1) {
+                            return "<span class='label label-primary'>目录</span>";
+                        } else if (value == 2) {
+                            return "<span class='label label-success'>链接</span>";
+                        } else if (value == 4) {
+                            return "<span class='label label-warning'>其他</span>";
+                        }
+                    }
+                },
+            ]],
+            onClickRow: function (index, data) {
+                var row = $('#List').treegrid('getSelected');
+                if (row != null && (row.OperationType == 2)) {
+                    $('#OptList').treegrid({
+                        url: '@Url.Action("GetList")?id=' + row.Id
+                    });
+                }
+            }
+        });
+        $('#OptList').treegrid({
+            //url: '@Url.Action("GetList")',
+            //width: 385,
+            //height: SetGridHeightSub(45),
+            width: SetGridWidthSub(10),
+            height: $(window).height() / 2 - 37,
+            methord: 'post',
+            fitColumns: true,
+            sortName: 'Sort',
+            sortOrder: 'asc',
+            idField: 'Id',
+            treeField: 'Name',
+            pagination: false,
+            striped: true, //奇偶行是否区分
+            singleSelect: true,//单选模式
+            //rownumbers: true,//行号
+            loadFilter: function (data) {
+                //if (msgProcess(data) == false) return false;
+                //return data.Data;
+                msgProcess(data);
+                return data.Data;
+            },
+            columns: [[
+                { field: 'Id', title: 'ID', width: 50, hidden: true },
+                { field: 'Name', title: '@Resource.TitleName', width: 110, sortable: true },
+                //{ field: 'EnglishName', title: '英文名称', width: 220, sortable: true },
+                { field: 'ParentId', title: '上级', width: 60, sortable: true, hidden: true },
+                { field: 'AreasName', title: 'Areas', width: 40, sortable: true, hidden: false },
+                 { field: 'ControllerName', title: 'Controller', width: 60, sortable: true, hidden: false },
+                 { field: 'ActionName', title: 'Action', width: 60, sortable: true },
+                 {
+                     field: 'FormMethod', title: '请求方式', width: 60, sortable: true,
+                     formatter: function (value) {
+                         if (value == 1) {
+                             return "get";
+                         } else if (value == 2) {
+                             return "post";
+                         } else if (value == 3) {
+                             return "both";
+                         }
+                     }
+                 },
+                {
+                    field: 'Iconic', title: '图标', width: 40, sortable: true, formatter: function (value) {
+                        return "<div class='" + value + "'/>";
+                    }
+                },
+                { field: 'Sort', title: '排序', width: 70, sortable: true },
+                //{ field: 'Remark', title: '@Resource.TitleRemark', width: 90, sortable: true },
+                { field: 'IsLast', title: 'IsLast', width: 80, align: 'center', formatter: function (value) { return IsLastFormatter(value) } },
+                { field: 'Enable', title: '@Resource.TitleState', width: 80, align: 'center', formatter: function (value) { return EnableFormatter(value) } },
+                { field: 'CreatePerson', title: '@Resource.TitleCreatePerson', width: 80, sortable: true, hidden: true },
+                { field: 'CreateTime', title: '@Resource.TitleCreateTime', width: 120, sortable: true, hidden: true },
+                {
+                    field: 'OperationType', title: '类型', align: 'center', width: 100, formatter: function (value) {
+                        if (value == 1) {
+                            return "<span class='label label-primary'>目录</span>";
+                        } else if (value == 2) {
+                            return "<span class='label label-success'>链接</span>";
+                        } else if (value == 3) {
+                            return "<span class='label label-info'>按钮</span>";
+                        } else if (value == 4) {
+                            return "<span class='label label-warning'>其他</span>";
+                        }
+                    }
+                },
+            ]]
+        });
+
+        //自动宽高
+        $(window).resize(function () {
+            $('#List').datagrid('resize', {
+                width: SetGridWidthSub(10),
+                height: $(window).height() / 2 - 42,
+            }).datagrid('resize', {
+                width: SetGridWidthSub(10),
+            });
+            $('#OptList').datagrid('resize', {
+                width: SetGridWidthSub(10),
+                height: $(window).height() / 2 - 37,
+            });
+        });
+    });
+
+
+
+    //ifram 返回
+    function frameReturnByClose() {
+        $("#modalwindow").window('close');
+    }
+    function frameReturnByReload(flag) {
+        if (flag) {
+            $("#List").treegrid('reload');
+            $("#OptList").treegrid('reload');
+        }
+        else
+            $("#List").treegrid('load');
+        $("#OptList").treegrid('load');
+    }
+    //function frameReturnByReloadOpt(flag) {
+    //    if (flag)
+    //        $("#OptList").datagrid('load');
+    //    else
+    //        $("#OptList").datagrid('reload');
+    //}
+    function frameReturnByMes(mes) {
+        $.messageBox5s('@Resource.Tip', mes);
+    }
+    $(function () {
+        $("#btnCreate").click(function () {
+            var row = $('#List').treegrid('getSelected');
+
+            if (row != null && row.OperationType == 4) {
+                return;
+            }
+            $("#modalwindow").html("<iframe id='editWin' width='100%' height='100%'  frameborder='0' src='/SysModule/Create?id=" + (row != null ? row.Id : "0") + "&Ieguid=" + GetGuid() + "'></iframe>");
+            $("#modalwindow").window({ title: '@Resource.Create', width: 700, height: 500, iconCls: 'fa fa-plus' }).window('open');
+        });
+        $("#btnEdit").click(function () {
+            var row = $('#List').treegrid('getSelected');
+            if (row != null) {
+                $("#modalwindow").html("<iframe id='editWin' width='100%' height='100%'  frameborder='0' src='/SysModule/Edit?id=" + row.Id + "&Ieguid=" + GetGuid() + "'></iframe>");
+                $("#modalwindow").window({ title: '@Resource.Edit', width: 700, height: 470, iconCls: 'fa fa-pencil' }).window('open');
+            } else { $.messageBox5s('@Resource.Tip', '@Resource.PlaseChooseToOperatingRecords'); }
+        });
+        $("#CreateButton").click(function () {
+            var row = $('#OptList').treegrid('getSelected');
+            if (row == null) {
+                return;
+            }
+            if (row != null && row.OperationType == 4) {
+                return;
+            }
+            $("#modalwindow").html("<iframe id='editWin' width='100%' height='100%'  frameborder='0'' src='/SysModule/Create?id=" + (row != null ? row.Id : "0") + "&Ieguid=" + GetGuid() + "'></iframe>");
+            $("#modalwindow").window({ title: '@Resource.Create', width: 700, height: 500, iconCls: 'fa fa-plus' }).window('open');
+        });
+        $("#EditButton").click(function () {
+            var row = $('#OptList').treegrid('getSelected');
+            if (row != null) {
+                $("#modalwindow").html("<iframe id='editWin' width='100%' height='100%'  frameborder='0' src='/SysModule/Edit?id=" + row.Id + "&Ieguid=" + GetGuid() + "'></iframe>");
+                $("#modalwindow").window({ title: '@Resource.Edit', width: 700, height: 470, iconCls: 'fa fa-pencil' }).window('open');
+            } else { $.messageBox5s('@Resource.Tip', '@Resource.PlaseChooseToOperatingRecords'); }
+        });
+
+        $("#DeleteButton").click(function () {
+            var row = $('#OptList').treegrid('getSelected');
+            if (row != null) {
+                $.messager.confirm('@Resource.Tip', '@Resource.YouWantToDeleteTheSelectedRecords', function (r) {
+                    if (r) {
+                        $.post("@Url.Action("Delete")?id=" + row.Id, function (data) {
+                            if (data.Status == 1) {
+                                $("#OptList").treegrid('reload');
+                            }
+                              
+                            $.messageBox5s('@Resource.Tip', data.Msg);
+                        }, "json");
+
+                    }
+                });
+            } else { $.messageBox5s('@Resource.Tip', '@Resource.PlaseChooseToOperatingRecords'); }
+        });
+
+        $("#btnDelete").click(function () {
+            var row = $('#List').treegrid('getSelected');
+            if (row != null) {
+                $.messager.confirm('@Resource.Tip', '@Resource.YouWantToDeleteTheSelectedRecords', function (r) {
+                    if (r) {
+                        $.post("@Url.Action("Delete")?id=" + row.Id, function (data) {
+                            if (data.Status == 1) {
+                                $("#List").treegrid('reload');
+                            }
+
+                            $.messageBox5s('@Resource.Tip', data.Msg);
+                        }, "json");
+
+                    }
+                });
+            } else { $.messageBox5s('@Resource.Tip', '@Resource.PlaseChooseToOperatingRecords'); }
+        });
+
+        @*$("#btnCreateOpt").click(function () {
+            var row = $('#List').treegrid('getSelected');
+            if (row != null) {
+                if (row.IsLast) {
+                    $("#modalwindow").html("<iframe width='100%' height='100%'  frameborder='0' src='/SysModule/CreateOpt?moduleId=" + row.Id + "&Ieguid=" + GetGuid() + "'></iframe>");
+                    $("#modalwindow").window({ title: '新增操作码', width: 500, height: 330, iconCls: 'fa fa-pencil' }).window('open');
+
+                } else {
+                    $.messageBox5s('@Resource.Tip', '只有最后一项的菜单才能设置操作码!');
+                }
+
+            } else { $.messageBox5s('@Resource.Tip', '请选择一个要赋予操作码的模块!'); }
+        });*@
+        @*$("#btnDeleteOpt").click(function () {
+            var row = $('#OptList').datagrid('getSelected');
+            if (row != null) {
+                $.messager.confirm('@Resource.Tip', '您确定要删除“' + row.Name + '”这个操作码？', function (r) {
+                    if (r) {
+                        $.post("@Url.Action("DeleteOpt")?id=" + row.Id, function (data) {
+                            if (data.type == 1) {
+                                $("#OptList").datagrid('load');
+                            }
+                        }, "json");
+
+                    }
+                });
+            } else { $.messageBox5s('@Resource.Tip', '请选择一个要赋予操作码的模块!'); }
+        });*@
+    });
+
+    function openIconList() {
+        $('#modalwindowicon').window({ title: '@Resource.Edit', iconCls: 'fa fa-pencil' }).window('open');
+        $('#modalwindowicon').parent("div").css("top", "50px");
+        $('#modalwindowicon').show();
+    }
+</script>

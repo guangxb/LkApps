@@ -1,0 +1,102 @@
+﻿@using Apps.Web.Helper;
+@using Apps.Models;
+@using Apps.Locale;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Index_LayoutEdit.cshtml";
+
+    List<PermissionModel> perm = ViewBag.sonBtns;
+}
+<style>
+    .l-btn-text {
+        line-height: 17px;
+    }
+</style>
+<div class="mvctool bgb">
+
+    @Html.ToolButton("btnSave", "fa fa-save", Resource.Save, perm, "AssignRole", true)
+
+
+</div>
+
+<div class="pd3">
+    <table id="UserList"></table>
+</div>
+<script type="text/javascript">
+
+    $(function () {
+        $('#UserList').datagrid({
+            url: '/SysUser/GetRoleListByUser?userId=@(ViewBag.UserId)',
+            width: SetGridWidthSub(6),
+            methord: 'post',
+            height: SetGridHeightSub(48),
+            fitColumns: true,
+            sortName: 'Id',
+            sortOrder: 'desc',
+            idField: 'Id',
+            pageSize: 12,
+            pageList: [12, 20, 30, 40, 50],
+            pagination: true,
+            striped: true, //奇偶行是否区分
+            singleSelect: true,//单选模式
+            columns: [[
+                { field: 'Id', title: '@Resource.TitleID', width: 80, hidden: true },
+                { field: 'Name', title: '角色名称', width: 120 },
+                { field: 'Description', title: '@Resource.TitleRemark', width: 80 },
+                { field: 'Flag', title: '选择', width: 80, editor: { type: 'checkbox', options: { on: '1', off: '0' } } }
+            ]],
+            onLoadSuccess: function () {
+                var rows = $("#UserList").datagrid("getRows");
+                for (var i = 0; i < rows.length; i++) {
+                    //获取每一行的数据
+                    $('#UserList').datagrid('beginEdit', i);
+                }
+            }
+        });
+    });
+</script>
+
+@*operation*@
+<script type="text/javascript">
+    $(function () {
+        $("#btnSave").click(function () {
+
+            var rows = $("#UserList").datagrid("getRows"); //这段代码是获取当前页的所有行。
+            var data = new Array();
+            //var jsonStr = '';
+            for (var i = 0; i < rows.length; i++) {
+                var setFlag = $("td[field='Flag'] input").eq(i).prop("checked");
+                var Flag = rows[i].Flag;
+                if (setFlag)//判断是否有作修改
+                {
+                    //jsonStr += ('{\"roleId\":\"' + rows[i].Id + '\",\"checked\":' + setFlag + '},');
+                    data.push(rows[i].Id);
+                }
+            }
+
+            @*if (jsonStr == '') {
+                //$.messageBox5s('@Resource.Tip', '@Resource.NoAnyChanges！');
+                window.parent.frameReturnByMes('@Resource.NoAnyChanges！');
+                return;
+            }*@
+
+            //var len = jsonStr.length - 1;
+            //jsonStr = '[' + jsonStr.substring(0, len) + ']'
+            //var json = JSON.parse(jsonStr);
+            var roleIds = data.join();
+            //提交数据库
+            $.post("/SysUser/AssignRole", { userId: '@(ViewBag.UserId)', roleIds: roleIds },
+             function (data) {
+                 if (data.Status == 1) {
+                     window.parent.frameReturnByMes(data.Msg);
+                     window.parent.frameReturnByReload(true);
+                     window.parent.frameReturnByClose()
+                 }
+                 else {
+                     window.parent.frameReturnByMes(data.Msg);
+                 }
+             }, "json");
+        });
+
+    });
+</script>

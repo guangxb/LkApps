@@ -1,0 +1,46 @@
+﻿<#@ template language="C#" debug="false" hostspecific="true"#>
+<#@ include file="../Apps.Models/Common.ttinclude"#><#@ 
+ output extension=".cs"#>using Microsoft.Practices.Unity;
+namespace Apps.Core
+{
+	public partial class DependencyRegisterType
+	{
+		public static void SCVContainer(UnityContainer container)
+		{
+ <#
+
+const string inputFile = @"../Apps.Models/SCVDB.edmx";
+var textTransform = DynamicTextTransformation.Create(this);
+var code = new CodeGenerationTools(this);
+var ef = new MetadataTools(this);
+var typeMapper = new TypeMapper(code, ef, textTransform.Errors);
+var	fileManager = EntityFrameworkTemplateFileManager.Create(this);
+var itemCollection = new EdmMetadataLoader(textTransform.Host, textTransform.Errors).CreateEdmItemCollection(inputFile);
+var codeStringGenerator = new CodeStringGenerator(code, typeMapper, ef);
+
+if (!typeMapper.VerifyCaseInsensitiveTypeUniqueness(typeMapper.GetAllGlobalItems(itemCollection), inputFile))
+{
+	return string.Empty;
+}
+
+WriteHeader(codeStringGenerator, fileManager);
+
+foreach (var entity in typeMapper.GetItemsToGenerate<EntityType>(itemCollection))
+{
+		if(!entity.Name.StartsWith("V_"))
+		{
+		   
+			var simpleProperties = typeMapper.GetSimpleProperties(entity);
+#>
+			container.RegisterType<Apps.IService.SCV.<#=entity.Name.IndexOf("_")>0?entity.Name.Substring(0,entity.Name.IndexOf("_")):"Sys" #>.I<#=entity.Name#>_SERVICE, Apps.Service.SCV.<#=entity.Name.IndexOf("_")>0?entity.Name.Substring(0,entity.Name.IndexOf("_")):"Sys" #>.<#=entity.Name#>_SERVICE>();
+			container.RegisterType<Apps.IRepository.SCV.<#=entity.Name.IndexOf("_")>0?entity.Name.Substring(0,entity.Name.IndexOf("_")):"Sys" #>.I<#=entity.Name#>_REPOSITORY, Apps.Repository.SCV.<#=entity.Name.IndexOf("_")>0?entity.Name.Substring(0,entity.Name.IndexOf("_")):"Sys" #>.<#=entity.Name#>_REPOSITORY>();
+<#
+	  
+		}
+}
+
+
+#>
+		}
+	}
+}

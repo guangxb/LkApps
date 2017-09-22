@@ -1,0 +1,2957 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{05B8D312-C663-4D4A-8950-E7FBB86FC317}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Apps.Models</RootNamespace>
+    <AssemblyName>Apps.Models</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ALLOCATION_RULE_DETAIL.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ALLOCATION_RULE_HEADER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="APPOINTMENT.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AREAS.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AR_DOWNLOAD_ITEM.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AR_DOWNLOAD_ITEM_BARCODE.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AR_DOWNLOAD_ITEM_UNIT_OF_MEASURE.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AR_DOWNLOAD_RECEIPT_DETAIL.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AR_DOWNLOAD_RECEIPT_HEADER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AR_DOWNLOAD_SHIPMENT_DETAIL.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AR_DOWNLOAD_SHIPMENT_HEADER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AR_LOCATION_INVENTORY.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AR_PROCESS_HISTORY.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AR_RECEIPT_CONTAINER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AR_RECEIPT_DETAIL.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AR_RECEIPT_HEADER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AR_RECEIPT_LOCATE_REQUEST.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AR_SHIPMENT_ALLOC_REQUEST.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AR_SHIPMENT_DETAIL.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AR_SHIPMENT_HEADER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AR_SHIPMENT_HISTORY.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AR_SHIPPING_CONTAINER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AR_SHIPPING_LOAD.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AR_TASK_DETAIL.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AR_TASK_HEADER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AR_TRANSACTION_HISTORY.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AR_UPLOAD_INVENTORY.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AR_UPLOAD_INVENTORY_TRANS.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AR_UPLOAD_LOCATION_INVENTORY.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AR_UPLOAD_ORDER_STATUS.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AR_UPLOAD_RECEIPT_CONTAINER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AR_UPLOAD_RECEIPT_DETAIL.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AR_UPLOAD_RECEIPT_HEADER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AR_UPLOAD_SHIPMENT_DETAIL.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AR_UPLOAD_SHIPMENT_HEADER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AR_UPLOAD_SHIPPING_CONTAINER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ATTRIBUTE.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ATTRIBUTE_TEMPLATE.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AUDIT_LOG.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\BaseModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\QiMen_PushLogModel.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\QiMen_PushTimeStatusModel.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\QiMen_RequestLogModel.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\Spl_PersonModel.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\Spl_ProductCategoryModel.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\Spl_ProductModel.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\Spm_ExpressInfoModel.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\Spm_LastTimeModel.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\Spm_TracesInfoModel.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\SysAreasModel.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\SysExceptionModel.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\SysLog4NetModel.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\SysLogModel.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\SysModuleModel.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\SysPositionModel.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\SysRightModel.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\SysRoleModel.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\SysSampleModel.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\SysStructModel.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\SysUserConfigModel.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\SysUserMerchantCodeModel.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\SysUserModel.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\VirtualModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\Virtual_QiMen_PushLogModel.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\Virtual_QiMen_PushTimeStatusModel.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\Virtual_QiMen_RequestLogModel.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\Virtual_Spl_PersonModel.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\Virtual_Spl_ProductCategoryModel.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\Virtual_Spl_ProductModel.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\Virtual_Spm_ExpressInfoModel.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\Virtual_Spm_LastTimeModel.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\Virtual_Spm_TracesInfoModel.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\Virtual_SysAreasModel.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\Virtual_SysExceptionModel.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\Virtual_SysLog4NetModel.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\Virtual_SysLogModel.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\Virtual_SysModuleModel.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\Virtual_SysPositionModel.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\Virtual_SysRightModel.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\Virtual_SysRoleModel.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\Virtual_SysSampleModel.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\Virtual_SysStructModel.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\Virtual_SysUserConfigModel.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\Virtual_SysUserMerchantCodeModel.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoGenerated\Virtual_SysUserModel.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BOM_DETAIL.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BOM_HEADER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CART_DETAIL.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CART_HEADER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CHART_CONFIG.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Common\ChartsModel.cs" />
+    <Compile Include="Common\FormatModel.cs" />
+    <Compile Include="Common\AccountModel.cs" />
+    <Compile Include="Common\Kd100Model.cs" />
+    <Compile Include="Common\KdSearchModel.cs" />
+    <Compile Include="Common\OrderDistinguishModel.cs" />
+    <Compile Include="Common\permModel.cs" />
+    <Compile Include="Common\Trackingmore\SubscribeModel.cs" />
+    <Compile Include="Common\Trackingmore\TrackingBatchModel.cs" />
+    <Compile Include="Common\Trackingmore\TrackingInfoModel.cs" />
+    <Compile Include="Common\TreeNode.cs" />
+    <Compile Include="COMPANY.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="COMPANYSTATE.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CONFIG_VALUE.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CONSOLIDATE_SHIPMENT_HEADER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CONTAINER_TYPE.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CUSTOMER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CUSTOM_RESOURCE.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CYCLE_COUNT_DETAIL.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CYCLE_COUNT_HEADER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CYCLE_COUNT_MASTER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CYCLE_COUNT_PREFERENCE.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DELETED_SHIPMENT_DETAIL.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DELETED_SHIPMENT_HEADER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DOCUMENT_ROUTING.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DOWNLOAD_COMPANY.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DOWNLOAD_ITEM.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DOWNLOAD_ITEMS.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DOWNLOAD_ITEM_BARCODE.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DOWNLOAD_ITEM_UNIT_OF_MEASURE.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DOWNLOAD_RECEIPTS.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DOWNLOAD_RECEIPT_DETAIL.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DOWNLOAD_RECEIPT_HEADER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DOWNLOAD_RECEIPT_HEADER_FAILED.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DOWNLOAD_SHIPMENTS.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DOWNLOAD_SHIPMENTS_UPDATE.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DOWNLOAD_SHIPMENT_DETAIL.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DOWNLOAD_SHIPMENT_HEADER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DOWNLOAD_SHIPMENT_HEADER_FAILED.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DYNAMIC_CALLING_DETAIL.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DYNAMIC_CALLING_HEADER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EFPartialModel\SysModule.cs" />
+    <Compile Include="END_POINT.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EX_MENU.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FILTER_CONFIG_DETAIL.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FILTER_GROUP_BY.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FILTER_ORDER_BY.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FILTER_STATEMENT.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GENERIC_CONFIG_DETAIL.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GENERIC_CONFIG_HEADER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GENERIC_USER_AUTH.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GSP_CODE.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="g_login_history.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="g_user.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="INTERFACE_FAILURE.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="INTERFACE_PROCESS.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="INTERFACE_REQUEST.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="INTERFACE_SESSION.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="INTERFACE_TABLE_STATISTIC.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="INVENTORY_TRANSACTION.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ITEM.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ITEM_BARCODE.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ITEM_BEIYONG.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ITEM_BEIYONG1.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ITEM_LOCATION_CAPACITY.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ITEM_UNIT_OF_MEASURE.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ITEM_WEIGHT_HIS.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ITEM_ZONE_CAPACITY.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LOCATING_RULE_DETAIL.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LOCATING_RULE_HEADER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LOCATION.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LOCATION_CARRIER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LOCATION_INVENTORY.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LOCATION_INVENTORY_HIS.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LOCATION_INVENTORY_TEMP.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LOCATION_SELECTION.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MESSAGE.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MESSAGE_ROUTE.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MISC_INVENTORY_HANDLING.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NEXT_NUMBER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PACKING_CLASS.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PACKING_PREFERENCE.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCO\POCO.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCO\QiMen_PushLog.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCO\QiMen_PushTimeStatus.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCO\QiMen_RequestLog.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCO\Spl_Person.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCO\Spl_Product.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCO\Spl_ProductCategory.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCO\Spm_ExpressInfo.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCO\Spm_LastTime.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCO\Spm_TracesInfo.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCO\SysAreas.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCO\SysException.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCO\SysLog.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCO\SysLog4Net.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCO\SysModule.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCO\SysPosition.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCO\SysRight.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCO\SysRole.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCO\SysSample.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCO\SysStruct.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCO\SysUser.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCO\SysUserConfig.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCO\SysUserMerchantCode.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROCESS_HISTORY.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PT_QTY.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PURCHASE_ORDER_DETAIL.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PURCHASE_ORDER_HEADER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="P_Sys_GetRoleByUserId_Result.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="P_Sys_GetUserByDepId_Result.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="P_Sys_GetUserByRoleId_Result.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QiMen_PushLog.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QiMen_PushTimeStatus.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QiMen_RequestLog.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QUEUE_TASK_IN_CONFIRM.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RECEIPT_CONTAINER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RECEIPT_DETAIL.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RECEIPT_HEADER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RECEIPT_HEADER_TEMP.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RECEIPT_HISTORY.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RECEIPT_LOCATE_REQUEST.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RECEIVING_CART.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RECEIVING_PREFERENCE.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="REPLENISHMENT.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="REPLENISHMENT_MASTER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="REPLENISHMENT_REQUEST.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_CONNECTION.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RETURNED_PACKAGE.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RULE_ASSIGNMENT_DETAIL.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RULE_ASSIGNMENT_HEADER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCHEDULE_JOB.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCHEDULE_JOB_HISTORY.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCHEDULE_JOB_TYPE.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCVDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SCVDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCVDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCVDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SCVDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\ALLOCATION_RULE_DETAIL_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\ALLOCATION_RULE_HEADER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\APPOINTMENT_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\AREAS_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\AR_DOWNLOAD_ITEM_BARCODE_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\AR_DOWNLOAD_ITEM_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\AR_DOWNLOAD_ITEM_UNIT_OF_MEASURE_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\AR_DOWNLOAD_RECEIPT_DETAIL_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\AR_DOWNLOAD_RECEIPT_HEADER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\AR_DOWNLOAD_SHIPMENT_DETAIL_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\AR_DOWNLOAD_SHIPMENT_HEADER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\AR_LOCATION_INVENTORY_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\AR_PROCESS_HISTORY_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\AR_RECEIPT_CONTAINER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\AR_RECEIPT_DETAIL_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\AR_RECEIPT_HEADER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\AR_RECEIPT_LOCATE_REQUEST_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\AR_SHIPMENT_ALLOC_REQUEST_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\AR_SHIPMENT_DETAIL_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\AR_SHIPMENT_HEADER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\AR_SHIPMENT_HISTORY_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\AR_SHIPPING_CONTAINER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\AR_SHIPPING_LOAD_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\AR_TASK_DETAIL_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\AR_TASK_HEADER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\AR_TRANSACTION_HISTORY_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\AR_UPLOAD_INVENTORY_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\AR_UPLOAD_INVENTORY_TRANS_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\AR_UPLOAD_LOCATION_INVENTORY_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\AR_UPLOAD_ORDER_STATUS_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\AR_UPLOAD_RECEIPT_CONTAINER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\AR_UPLOAD_RECEIPT_DETAIL_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\AR_UPLOAD_RECEIPT_HEADER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\AR_UPLOAD_SHIPMENT_DETAIL_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\AR_UPLOAD_SHIPMENT_HEADER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\AR_UPLOAD_SHIPPING_CONTAINER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\ATTRIBUTE_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\ATTRIBUTE_TEMPLATE_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\AUDIT_LOG_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\BaseModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\BOM_DETAIL_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\BOM_HEADER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\CART_DETAIL_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\CART_HEADER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\CHART_CONFIG_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\COMPANYSTATE_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\COMPANY_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\CONFIG_VALUE_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\CONSOLIDATE_SHIPMENT_HEADER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\CONTAINER_TYPE_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\CUSTOMER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\CUSTOM_RESOURCE_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\CYCLE_COUNT_DETAIL_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\CYCLE_COUNT_HEADER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\CYCLE_COUNT_MASTER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\CYCLE_COUNT_PREFERENCE_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\DELETED_SHIPMENT_DETAIL_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\DELETED_SHIPMENT_HEADER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\DOCUMENT_ROUTING_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\DOWNLOAD_COMPANY_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\DOWNLOAD_ITEMS_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\DOWNLOAD_ITEM_BARCODE_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\DOWNLOAD_ITEM_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\DOWNLOAD_ITEM_UNIT_OF_MEASURE_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\DOWNLOAD_RECEIPTS_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\DOWNLOAD_RECEIPT_DETAIL_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\DOWNLOAD_RECEIPT_HEADER_FAILED_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\DOWNLOAD_RECEIPT_HEADER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\DOWNLOAD_SHIPMENTS_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\DOWNLOAD_SHIPMENTS_UPDATE_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\DOWNLOAD_SHIPMENT_DETAIL_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\DOWNLOAD_SHIPMENT_HEADER_FAILED_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\DOWNLOAD_SHIPMENT_HEADER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\DYNAMIC_CALLING_DETAIL_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\DYNAMIC_CALLING_HEADER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\END_POINT_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\EX_MENU_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\FILTER_CONFIG_DETAIL_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\FILTER_GROUP_BY_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\FILTER_ORDER_BY_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\FILTER_STATEMENT_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\GENERIC_CONFIG_DETAIL_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\GENERIC_CONFIG_HEADER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\GENERIC_USER_AUTH_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\GSP_CODE_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\g_login_history_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\g_user_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\INTERFACE_FAILURE_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\INTERFACE_PROCESS_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\INTERFACE_REQUEST_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\INTERFACE_SESSION_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\INTERFACE_TABLE_STATISTIC_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\INVENTORY_TRANSACTION_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\ITEM_BARCODE_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\ITEM_BEIYONG1_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\ITEM_BEIYONG_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\ITEM_LOCATION_CAPACITY_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\ITEM_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\ITEM_UNIT_OF_MEASURE_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\ITEM_WEIGHT_HIS_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\ITEM_ZONE_CAPACITY_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\LOCATING_RULE_DETAIL_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\LOCATING_RULE_HEADER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\LOCATION_CARRIER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\LOCATION_INVENTORY_HIS_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\LOCATION_INVENTORY_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\LOCATION_INVENTORY_TEMP_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\LOCATION_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\LOCATION_SELECTION_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\MESSAGE_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\MESSAGE_ROUTE_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\MISC_INVENTORY_HANDLING_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\NEXT_NUMBER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\PACKING_CLASS_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\PACKING_PREFERENCE_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\PROCESS_HISTORY_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\PT_QTY_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\PURCHASE_ORDER_DETAIL_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\PURCHASE_ORDER_HEADER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\QUEUE_TASK_IN_CONFIRM_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\RECEIPT_CONTAINER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\RECEIPT_DETAIL_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\RECEIPT_HEADER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\RECEIPT_HEADER_TEMP_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\RECEIPT_HISTORY_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\RECEIPT_LOCATE_REQUEST_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\RECEIVING_CART_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\RECEIVING_PREFERENCE_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\REPLENISHMENT_MASTER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\REPLENISHMENT_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\REPLENISHMENT_REQUEST_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\REPORT_CONNECTION_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\RETURNED_PACKAGE_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\RULE_ASSIGNMENT_DETAIL_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\RULE_ASSIGNMENT_HEADER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\SCHEDULE_JOB_HISTORY_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\SCHEDULE_JOB_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\SCHEDULE_JOB_TYPE_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\SECURITY_FUNCTION_bak_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\SECURITY_FUNCTION_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\SECURITY_ROLE_DETAIL_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\SECURITY_ROLE_HEADER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\SERIAL_NUMBER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\SHIPMENT_ALLOC_REQUEST_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\SHIPMENT_CARRIER_EDITRULE_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\SHIPMENT_DETAIL_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\SHIPMENT_EXPRESS_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\SHIPMENT_HEADER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\SHIPMENT_HEADER_TEMP1_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\SHIPMENT_HEADER_TEMP_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\SHIPMENT_HISTORY_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\SHIPMENT_INVOICE_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\SHIPMENT_SERIAL_NUMBER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\SHIPMENT_TRACKING_NUMBER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\SHIPPING_CART_DETAIL_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\SHIPPING_CART_HEADER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\SHIPPING_CONTAINER_HIS_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\SHIPPING_CONTAINER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\SHIPPING_LOAD_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\STATISTICS_REPORT_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\STATUS_FLOW_DETAIL_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\STATUS_FLOW_HEADER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\TASK_CREATION_MASTER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\TASK_DETAIL_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\TASK_HANDLING_OPTION_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\TASK_HEADER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\TASK_PREFERENCE_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\TASK_PREF_USER_AUTH_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\test_LOC_V_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\TRANSACTION_HISTORY_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\TRANSFER_LOCATE_REQUEST_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\TRANSFER_ORDER_DETAIL_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\TRANSFER_ORDER_HEADER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\UPLOAD_INVENTORY_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\UPLOAD_INVENTORY_TRANS_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\UPLOAD_LOCATION_INVENTORY_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\UPLOAD_OBJECT_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\UPLOAD_ORDER_STATUS_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\UPLOAD_RECEIPTS_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\UPLOAD_RECEIPT_CONTAINER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\UPLOAD_RECEIPT_DETAIL_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\UPLOAD_RECEIPT_HEADER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\UPLOAD_SHIPMENT_DETAIL_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\UPLOAD_SHIPMENT_HEADER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\UPLOAD_SHIPMENT_HISTORY_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\UPLOAD_SHIPPING_CONTAINER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\USER_ADDRESS_CARRIER_AUTH_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\USER_COMPANY_AUTH_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\USER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\USER_WAREHOUSE_AUTH_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\USER_ZONE_AUTH_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\VENDOR_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\VIEWER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\VirtualModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_ALLOCATION_RULE_DETAIL_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_ALLOCATION_RULE_HEADER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_APPOINTMENT_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_AREAS_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_AR_DOWNLOAD_ITEM_BARCODE_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_AR_DOWNLOAD_ITEM_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_AR_DOWNLOAD_ITEM_UNIT_OF_MEASURE_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_AR_DOWNLOAD_RECEIPT_DETAIL_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_AR_DOWNLOAD_RECEIPT_HEADER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_AR_DOWNLOAD_SHIPMENT_DETAIL_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_AR_DOWNLOAD_SHIPMENT_HEADER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_AR_LOCATION_INVENTORY_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_AR_PROCESS_HISTORY_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_AR_RECEIPT_CONTAINER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_AR_RECEIPT_DETAIL_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_AR_RECEIPT_HEADER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_AR_RECEIPT_LOCATE_REQUEST_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_AR_SHIPMENT_ALLOC_REQUEST_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_AR_SHIPMENT_DETAIL_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_AR_SHIPMENT_HEADER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_AR_SHIPMENT_HISTORY_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_AR_SHIPPING_CONTAINER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_AR_SHIPPING_LOAD_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_AR_TASK_DETAIL_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_AR_TASK_HEADER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_AR_TRANSACTION_HISTORY_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_AR_UPLOAD_INVENTORY_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_AR_UPLOAD_INVENTORY_TRANS_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_AR_UPLOAD_LOCATION_INVENTORY_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_AR_UPLOAD_ORDER_STATUS_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_AR_UPLOAD_RECEIPT_CONTAINER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_AR_UPLOAD_RECEIPT_DETAIL_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_AR_UPLOAD_RECEIPT_HEADER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_AR_UPLOAD_SHIPMENT_DETAIL_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_AR_UPLOAD_SHIPMENT_HEADER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_AR_UPLOAD_SHIPPING_CONTAINER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_ATTRIBUTE_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_ATTRIBUTE_TEMPLATE_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_AUDIT_LOG_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_BOM_DETAIL_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_BOM_HEADER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_CART_DETAIL_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_CART_HEADER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_CHART_CONFIG_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_COMPANYSTATE_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_COMPANY_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_CONFIG_VALUE_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_CONSOLIDATE_SHIPMENT_HEADER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_CONTAINER_TYPE_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_CUSTOMER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_CUSTOM_RESOURCE_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_CYCLE_COUNT_DETAIL_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_CYCLE_COUNT_HEADER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_CYCLE_COUNT_MASTER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_CYCLE_COUNT_PREFERENCE_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_DELETED_SHIPMENT_DETAIL_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_DELETED_SHIPMENT_HEADER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_DOCUMENT_ROUTING_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_DOWNLOAD_COMPANY_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_DOWNLOAD_ITEMS_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_DOWNLOAD_ITEM_BARCODE_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_DOWNLOAD_ITEM_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_DOWNLOAD_ITEM_UNIT_OF_MEASURE_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_DOWNLOAD_RECEIPTS_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_DOWNLOAD_RECEIPT_DETAIL_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_DOWNLOAD_RECEIPT_HEADER_FAILED_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_DOWNLOAD_RECEIPT_HEADER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_DOWNLOAD_SHIPMENTS_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_DOWNLOAD_SHIPMENTS_UPDATE_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_DOWNLOAD_SHIPMENT_DETAIL_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_DOWNLOAD_SHIPMENT_HEADER_FAILED_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_DOWNLOAD_SHIPMENT_HEADER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_DYNAMIC_CALLING_DETAIL_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_DYNAMIC_CALLING_HEADER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_END_POINT_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_EX_MENU_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_FILTER_CONFIG_DETAIL_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_FILTER_GROUP_BY_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_FILTER_ORDER_BY_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_FILTER_STATEMENT_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_GENERIC_CONFIG_DETAIL_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_GENERIC_CONFIG_HEADER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_GENERIC_USER_AUTH_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_GSP_CODE_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_g_login_history_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_g_user_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_INTERFACE_FAILURE_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_INTERFACE_PROCESS_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_INTERFACE_REQUEST_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_INTERFACE_SESSION_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_INTERFACE_TABLE_STATISTIC_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_INVENTORY_TRANSACTION_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_ITEM_BARCODE_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_ITEM_BEIYONG1_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_ITEM_BEIYONG_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_ITEM_LOCATION_CAPACITY_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_ITEM_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_ITEM_UNIT_OF_MEASURE_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_ITEM_WEIGHT_HIS_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_ITEM_ZONE_CAPACITY_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_LOCATING_RULE_DETAIL_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_LOCATING_RULE_HEADER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_LOCATION_CARRIER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_LOCATION_INVENTORY_HIS_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_LOCATION_INVENTORY_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_LOCATION_INVENTORY_TEMP_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_LOCATION_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_LOCATION_SELECTION_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_MESSAGE_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_MESSAGE_ROUTE_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_MISC_INVENTORY_HANDLING_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_NEXT_NUMBER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_PACKING_CLASS_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_PACKING_PREFERENCE_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_PROCESS_HISTORY_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_PT_QTY_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_PURCHASE_ORDER_DETAIL_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_PURCHASE_ORDER_HEADER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_QUEUE_TASK_IN_CONFIRM_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_RECEIPT_CONTAINER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_RECEIPT_DETAIL_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_RECEIPT_HEADER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_RECEIPT_HEADER_TEMP_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_RECEIPT_HISTORY_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_RECEIPT_LOCATE_REQUEST_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_RECEIVING_CART_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_RECEIVING_PREFERENCE_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_REPLENISHMENT_MASTER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_REPLENISHMENT_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_REPLENISHMENT_REQUEST_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_REPORT_CONNECTION_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_RETURNED_PACKAGE_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_RULE_ASSIGNMENT_DETAIL_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_RULE_ASSIGNMENT_HEADER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_SCHEDULE_JOB_HISTORY_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_SCHEDULE_JOB_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_SCHEDULE_JOB_TYPE_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_SECURITY_FUNCTION_bak_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_SECURITY_FUNCTION_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_SECURITY_ROLE_DETAIL_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_SECURITY_ROLE_HEADER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_SERIAL_NUMBER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_SHIPMENT_ALLOC_REQUEST_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_SHIPMENT_CARRIER_EDITRULE_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_SHIPMENT_DETAIL_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_SHIPMENT_EXPRESS_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_SHIPMENT_HEADER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_SHIPMENT_HEADER_TEMP1_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_SHIPMENT_HEADER_TEMP_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_SHIPMENT_HISTORY_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_SHIPMENT_INVOICE_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_SHIPMENT_SERIAL_NUMBER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_SHIPMENT_TRACKING_NUMBER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_SHIPPING_CART_DETAIL_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_SHIPPING_CART_HEADER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_SHIPPING_CONTAINER_HIS_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_SHIPPING_CONTAINER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_SHIPPING_LOAD_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_STATISTICS_REPORT_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_STATUS_FLOW_DETAIL_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_STATUS_FLOW_HEADER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_TASK_CREATION_MASTER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_TASK_DETAIL_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_TASK_HANDLING_OPTION_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_TASK_HEADER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_TASK_PREFERENCE_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_TASK_PREF_USER_AUTH_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_test_LOC_V_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_TRANSACTION_HISTORY_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_TRANSFER_LOCATE_REQUEST_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_TRANSFER_ORDER_DETAIL_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_TRANSFER_ORDER_HEADER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_UPLOAD_INVENTORY_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_UPLOAD_INVENTORY_TRANS_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_UPLOAD_LOCATION_INVENTORY_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_UPLOAD_OBJECT_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_UPLOAD_ORDER_STATUS_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_UPLOAD_RECEIPTS_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_UPLOAD_RECEIPT_CONTAINER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_UPLOAD_RECEIPT_DETAIL_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_UPLOAD_RECEIPT_HEADER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_UPLOAD_SHIPMENT_DETAIL_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_UPLOAD_SHIPMENT_HEADER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_UPLOAD_SHIPMENT_HISTORY_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_UPLOAD_SHIPPING_CONTAINER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_USER_ADDRESS_CARRIER_AUTH_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_USER_COMPANY_AUTH_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_USER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_USER_WAREHOUSE_AUTH_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_USER_ZONE_AUTH_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_VENDOR_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_VIEWER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_WAREHOUSE_ACTIVITY_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_WAREHOUSE_ISSUE_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_WAREHOUSE_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_WAVE_FLOW_DETAIL_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_WAVE_FLOW_HEADER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_WAVE_MASTER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_WAVE_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_WAYBILL_INFO_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_WORK_OPTION_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_WORK_ORDER_DETAIL_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_WORK_ORDER_HEADER_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\Virtual_ZONE_MODEL.cs">
+      <DependentUpon>VirtualModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\WAREHOUSE_ACTIVITY_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\WAREHOUSE_ISSUE_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\WAREHOUSE_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\WAVE_FLOW_DETAIL_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\WAVE_FLOW_HEADER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\WAVE_MASTER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\WAVE_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\WAYBILL_INFO_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\WORK_OPTION_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\WORK_ORDER_DETAIL_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\WORK_ORDER_HEADER_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\AutoGenerated\ZONE_MODEL.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\ALLOCATION_RULE_DETAIL.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\ALLOCATION_RULE_HEADER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\APPOINTMENT.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\AREAS.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\AR_DOWNLOAD_ITEM.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\AR_DOWNLOAD_ITEM_BARCODE.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\AR_DOWNLOAD_ITEM_UNIT_OF_MEASURE.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\AR_DOWNLOAD_RECEIPT_DETAIL.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\AR_DOWNLOAD_RECEIPT_HEADER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\AR_DOWNLOAD_SHIPMENT_DETAIL.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\AR_DOWNLOAD_SHIPMENT_HEADER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\AR_LOCATION_INVENTORY.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\AR_PROCESS_HISTORY.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\AR_RECEIPT_CONTAINER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\AR_RECEIPT_DETAIL.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\AR_RECEIPT_HEADER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\AR_RECEIPT_LOCATE_REQUEST.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\AR_SHIPMENT_ALLOC_REQUEST.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\AR_SHIPMENT_DETAIL.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\AR_SHIPMENT_HEADER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\AR_SHIPMENT_HISTORY.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\AR_SHIPPING_CONTAINER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\AR_SHIPPING_LOAD.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\AR_TASK_DETAIL.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\AR_TASK_HEADER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\AR_TRANSACTION_HISTORY.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\AR_UPLOAD_INVENTORY.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\AR_UPLOAD_INVENTORY_TRANS.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\AR_UPLOAD_LOCATION_INVENTORY.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\AR_UPLOAD_ORDER_STATUS.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\AR_UPLOAD_RECEIPT_CONTAINER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\AR_UPLOAD_RECEIPT_DETAIL.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\AR_UPLOAD_RECEIPT_HEADER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\AR_UPLOAD_SHIPMENT_DETAIL.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\AR_UPLOAD_SHIPMENT_HEADER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\AR_UPLOAD_SHIPPING_CONTAINER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\ATTRIBUTE.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\ATTRIBUTE_TEMPLATE.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\AUDIT_LOG.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\BOM_DETAIL.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\BOM_HEADER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\CART_DETAIL.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\CART_HEADER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\CHART_CONFIG.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\COMPANY.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\COMPANYSTATE.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\CONFIG_VALUE.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\CONSOLIDATE_SHIPMENT_HEADER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\CONTAINER_TYPE.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\CUSTOMER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\CUSTOM_RESOURCE.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\CYCLE_COUNT_DETAIL.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\CYCLE_COUNT_HEADER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\CYCLE_COUNT_MASTER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\CYCLE_COUNT_PREFERENCE.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\DELETED_SHIPMENT_DETAIL.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\DELETED_SHIPMENT_HEADER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\DOCUMENT_ROUTING.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\DOWNLOAD_COMPANY.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\DOWNLOAD_ITEM.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\DOWNLOAD_ITEMS.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\DOWNLOAD_ITEM_BARCODE.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\DOWNLOAD_ITEM_UNIT_OF_MEASURE.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\DOWNLOAD_RECEIPTS.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\DOWNLOAD_RECEIPT_DETAIL.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\DOWNLOAD_RECEIPT_HEADER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\DOWNLOAD_RECEIPT_HEADER_FAILED.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\DOWNLOAD_SHIPMENTS.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\DOWNLOAD_SHIPMENTS_UPDATE.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\DOWNLOAD_SHIPMENT_DETAIL.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\DOWNLOAD_SHIPMENT_HEADER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\DOWNLOAD_SHIPMENT_HEADER_FAILED.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\DYNAMIC_CALLING_DETAIL.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\DYNAMIC_CALLING_HEADER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\END_POINT.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\EX_MENU.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\FILTER_CONFIG_DETAIL.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\FILTER_GROUP_BY.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\FILTER_ORDER_BY.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\FILTER_STATEMENT.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\GENERIC_CONFIG_DETAIL.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\GENERIC_CONFIG_HEADER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\GENERIC_USER_AUTH.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\GSP_CODE.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\g_login_history.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\g_user.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\INTERFACE_FAILURE.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\INTERFACE_PROCESS.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\INTERFACE_REQUEST.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\INTERFACE_SESSION.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\INTERFACE_TABLE_STATISTIC.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\INVENTORY_TRANSACTION.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\ITEM.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\ITEM_BARCODE.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\ITEM_BEIYONG.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\ITEM_BEIYONG1.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\ITEM_LOCATION_CAPACITY.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\ITEM_UNIT_OF_MEASURE.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\ITEM_WEIGHT_HIS.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\ITEM_ZONE_CAPACITY.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\LOCATING_RULE_DETAIL.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\LOCATING_RULE_HEADER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\LOCATION.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\LOCATION_CARRIER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\LOCATION_INVENTORY.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\LOCATION_INVENTORY_HIS.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\LOCATION_INVENTORY_TEMP.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\LOCATION_SELECTION.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\MESSAGE.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\MESSAGE_ROUTE.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\MISC_INVENTORY_HANDLING.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\NEXT_NUMBER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\PACKING_CLASS.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\PACKING_PREFERENCE.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\POCO.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\PROCESS_HISTORY.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\PT_QTY.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\PURCHASE_ORDER_DETAIL.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\PURCHASE_ORDER_HEADER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\QUEUE_TASK_IN_CONFIRM.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\RECEIPT_CONTAINER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\RECEIPT_DETAIL.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\RECEIPT_HEADER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\RECEIPT_HEADER_TEMP.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\RECEIPT_HISTORY.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\RECEIPT_LOCATE_REQUEST.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\RECEIVING_CART.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\RECEIVING_PREFERENCE.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\REPLENISHMENT.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\REPLENISHMENT_MASTER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\REPLENISHMENT_REQUEST.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\REPORT_CONNECTION.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\RETURNED_PACKAGE.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\RULE_ASSIGNMENT_DETAIL.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\RULE_ASSIGNMENT_HEADER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\SCHEDULE_JOB.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\SCHEDULE_JOB_HISTORY.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\SCHEDULE_JOB_TYPE.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\SECURITY_FUNCTION.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\SECURITY_FUNCTION_bak.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\SECURITY_ROLE_DETAIL.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\SECURITY_ROLE_HEADER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\SERIAL_NUMBER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\SHIPMENT_ALLOC_REQUEST.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\SHIPMENT_CARRIER_EDITRULE.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\SHIPMENT_DETAIL.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\SHIPMENT_EXPRESS.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\SHIPMENT_HEADER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\SHIPMENT_HEADER_TEMP.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\SHIPMENT_HEADER_TEMP1.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\SHIPMENT_HISTORY.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\SHIPMENT_INVOICE.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\SHIPMENT_SERIAL_NUMBER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\SHIPMENT_TRACKING_NUMBER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\SHIPPING_CART_DETAIL.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\SHIPPING_CART_HEADER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\SHIPPING_CONTAINER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\SHIPPING_CONTAINER_HIS.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\SHIPPING_LOAD.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\STATISTICS_REPORT.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\STATUS_FLOW_DETAIL.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\STATUS_FLOW_HEADER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\TASK_CREATION_MASTER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\TASK_DETAIL.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\TASK_HANDLING_OPTION.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\TASK_HEADER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\TASK_PREFERENCE.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\TASK_PREF_USER_AUTH.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\test_LOC_V.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\TRANSACTION_HISTORY.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\TRANSFER_LOCATE_REQUEST.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\TRANSFER_ORDER_DETAIL.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\TRANSFER_ORDER_HEADER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\UPLOAD_INVENTORY.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\UPLOAD_INVENTORY_TRANS.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\UPLOAD_LOCATION_INVENTORY.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\UPLOAD_OBJECT.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\UPLOAD_ORDER_STATUS.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\UPLOAD_RECEIPTS.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\UPLOAD_RECEIPT_CONTAINER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\UPLOAD_RECEIPT_DETAIL.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\UPLOAD_RECEIPT_HEADER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\UPLOAD_SHIPMENT_DETAIL.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\UPLOAD_SHIPMENT_HEADER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\UPLOAD_SHIPMENT_HISTORY.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\UPLOAD_SHIPPING_CONTAINER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\USER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\USER_ADDRESS_CARRIER_AUTH.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\USER_COMPANY_AUTH.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\USER_WAREHOUSE_AUTH.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\USER_ZONE_AUTH.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\VENDOR.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\VIEWER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\WAREHOUSE.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\WAREHOUSE_ACTIVITY.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\WAREHOUSE_ISSUE.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\WAVE.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\WAVE_FLOW_DETAIL.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\WAVE_FLOW_HEADER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\WAVE_MASTER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\WAYBILL_INFO.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\WORK_OPTION.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\WORK_ORDER_DETAIL.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\WORK_ORDER_HEADER.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\POCO\ZONE.cs">
+      <DependentUpon>POCO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCV\Sys\COMPANY_MODEL.cs" />
+    <Compile Include="SECURITY_FUNCTION.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SECURITY_FUNCTION_bak.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SECURITY_ROLE_DETAIL.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SECURITY_ROLE_HEADER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SERIAL_NUMBER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SHIPMENT_ALLOC_REQUEST.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SHIPMENT_CARRIER_EDITRULE.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SHIPMENT_DETAIL.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SHIPMENT_EXPRESS.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SHIPMENT_HEADER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SHIPMENT_HEADER_TEMP.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SHIPMENT_HEADER_TEMP1.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SHIPMENT_HISTORY.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SHIPMENT_INVOICE.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SHIPMENT_SERIAL_NUMBER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SHIPMENT_TRACKING_NUMBER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SHIPPING_CART_DETAIL.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SHIPPING_CART_HEADER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SHIPPING_CONTAINER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SHIPPING_CONTAINER_HIS.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SHIPPING_LOAD.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Spl\Spl_ProductModel.cs" />
+    <Compile Include="Spl_Person.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Spl_Product.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Spl_ProductCategory.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Spm\Spm_ExpressInfoModel.cs" />
+    <Compile Include="Spm\Spm_LastTimeModel.cs" />
+    <Compile Include="Spm\Spm_TracesInfoModel.cs" />
+    <Compile Include="Spm_ExpressInfo.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Spm_LastTime.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Spm_TracesInfo.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="STATISTICS_REPORT.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="STATUS_FLOW_DETAIL.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="STATUS_FLOW_HEADER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SysAreas.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SysException.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SysLog.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SysLog4Net.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SysModule.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SysPosition.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SysRight.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SysRole.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SysSample.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SysStruct.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SysUser.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SysUserConfig.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SysUserMerchantCode.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sys\SysAreasModel.cs" />
+    <Compile Include="Sys\SysExceptionModel.cs" />
+    <Compile Include="Sys\SysLogModel.cs" />
+    <Compile Include="Sys\SysModuleModel.cs" />
+    <Compile Include="Sys\SysPositionModel.cs" />
+    <Compile Include="Sys\SysRightModel.cs" />
+    <Compile Include="Sys\SysRoleModel.cs" />
+    <Compile Include="Sys\SysStructModel.cs" />
+    <Compile Include="Sys\SysUserConfigModel.cs" />
+    <Compile Include="Sys\SysUserModel.cs" />
+    <Compile Include="TASK_CREATION_MASTER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TASK_DETAIL.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TASK_HANDLING_OPTION.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TASK_HEADER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TASK_PREFERENCE.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TASK_PREF_USER_AUTH.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="test_LOC_V.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TRANSACTION_HISTORY.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TRANSFER_LOCATE_REQUEST.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TRANSFER_ORDER_DETAIL.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TRANSFER_ORDER_HEADER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UPLOAD_INVENTORY.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UPLOAD_INVENTORY_TRANS.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UPLOAD_LOCATION_INVENTORY.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UPLOAD_OBJECT.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UPLOAD_ORDER_STATUS.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UPLOAD_RECEIPTS.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UPLOAD_RECEIPT_CONTAINER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UPLOAD_RECEIPT_DETAIL.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UPLOAD_RECEIPT_HEADER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UPLOAD_SHIPMENT_DETAIL.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UPLOAD_SHIPMENT_HEADER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UPLOAD_SHIPMENT_HISTORY.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UPLOAD_SHIPPING_CONTAINER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="USER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="USER_ADDRESS_CARRIER_AUTH.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="USER_COMPANY_AUTH.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="USER_WAREHOUSE_AUTH.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="USER_ZONE_AUTH.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VENDOR.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VIEWER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\LoginModel.cs" />
+    <Compile Include="Common\PermissionModel.cs" />
+    <Compile Include="Common\SysConfigModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ValidateAttribute.cs" />
+    <Compile Include="WAREHOUSE.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WAREHOUSE_ACTIVITY.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WAREHOUSE_ISSUE.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WAVE.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WAVE_FLOW_DETAIL.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WAVE_FLOW_HEADER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WAVE_MASTER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WAYBILL_INFO.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WORK_OPTION.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WORK_ORDER_DETAIL.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WORK_ORDER_HEADER.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ZONE.cs">
+      <DependentUpon>SCVDB.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="Common.ttinclude" />
+    <EntityDeploy Include="DB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DB.edmx.diagram">
+      <DependentUpon>DB.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <EntityDeploy Include="SCVDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SCVDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="SCVDB.edmx.diagram">
+      <DependentUpon>SCVDB.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Apps.Locale\Apps.Locale.csproj">
+      <Project>{370FA025-2A09-4A3C-BEB8-6DFDDFA7F22C}</Project>
+      <Name>Apps.Locale</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AutoGenerated\BaseModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>BaseModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="AutoGenerated\VirtualModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>VirtualModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="DB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DB.Context.cs</LastGenOutput>
+      <DependentUpon>DB.edmx</DependentUpon>
+    </Content>
+    <Content Include="DB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DB.cs</LastGenOutput>
+      <DependentUpon>DB.edmx</DependentUpon>
+    </Content>
+    <Content Include="POCO\POCO.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>POCO.cs</LastGenOutput>
+    </Content>
+    <Content Include="SCVDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SCVDB.Context.cs</LastGenOutput>
+      <DependentUpon>SCVDB.edmx</DependentUpon>
+    </Content>
+    <Content Include="SCVDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SCVDB.cs</LastGenOutput>
+      <DependentUpon>SCVDB.edmx</DependentUpon>
+    </Content>
+    <Content Include="SCV\AutoGenerated\BaseModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>BaseModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="SCV\AutoGenerated\VirtualModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>VirtualModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="SCV\POCO\POCO.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>POCO.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

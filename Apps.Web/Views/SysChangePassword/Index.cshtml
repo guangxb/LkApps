@@ -1,0 +1,105 @@
+﻿@using Apps.Web.Helper;
+@using Apps.Models;
+@using Apps.Locale;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Index_Layout.cshtml";
+
+    List<PermissionModel> perm = ViewBag.sonBtns;
+}
+
+<div class="mvctool">
+    <input id="txtQuery" type="text" class="searchText" />
+    @Html.ToolButton("btnReSet", "fa fa-key", Resource.ResetPassword, perm, "ReSet", true)
+
+
+</div>
+<div id="modalwindow" class="easyui-window" data-options="modal:true,closed:true,minimizable:false,shadow:false"></div>
+<table id="List"></table>
+<div id="Pager"></div>
+@*Jqgrid*@
+<script type="text/javascript">
+    $(function () {
+        $('#List').datagrid({
+            url: '/SysChangePassword/GetList',
+            width: SetGridWidthSub(10),
+            methord: 'post',
+            height: SetGridHeightSub(45),
+            fitColumns: true,
+            sortName: 'Id',
+            sortOrder: 'desc',
+            idField: 'Id',
+            pageSize: 30,
+            pageList: [15, 20, 30, 40, 50],
+            pagination: true,
+            striped: true, //奇偶行是否区分
+            singleSelect: true,//单选模式
+            loadFilter: function (data) {
+                msgProcess(data);
+                return data.Data;
+            },
+            columns: [[
+                        { field: 'Id', title: '@Resource.TitleID', width: 25, hidden: true },
+                        { field: 'UserName', title: '用户名', width: 55 },
+                        { field: 'TrueName', title: '真实名称', width: 55 },
+                         { field: 'DepName', title: '部门', width: 55 },
+                          { field: 'PosName', title: '职位', width: 55 },
+                        //{ field: 'MobileNumber', title: '手机号码', width: 55 },
+                        { field: 'SelectedMerchantCodesStr', title: '商家代码', width: 200 },
+                        {field: 'State', title: '@Resource.TitleEnable', width: 35,align:'center', formatter: function (value) {return EnableFormatter(value)}},
+                        @*{ field: 'CreateTime', title: '@Resource.TitleCreateTime', width: 75 },
+                        { field: 'CreatePerson', title: '@Resource.TitleCreatePerson', width: 55 },*@
+                        { field: 'RoleName', title: '拥有角色', width: 55 }
+            ]]
+        });
+    });
+</script>
+@Html.Partial("~/Views/Shared/_Partial_AutoGrid.cshtml")
+
+@*operation*@
+<script type="text/javascript">
+    //ifram 返回
+    function frameReturnByClose() {
+        $("#modalwindow").window('close');
+    }
+    function frameReturnByReload(flag) {
+        if (flag)
+            $("#List").datagrid('load');
+        else
+            $("#List").datagrid('reload');
+    }
+    function frameReturnByMes(mes) {
+        $.messageBox5s('@Resource.Tip', mes);
+    }
+    $(function () {
+        $("#btnReSet").click(function () {
+            var row = $('#List').datagrid('getSelected');
+            if (row != null) {
+
+                var SelId = row.Id;
+                $.messager.prompt('初始化密码', row.TrueName + '的密码:', function (r) {
+                        if (r == "" || r.length < 6) {
+                            $.messageBox5s('@Resource.Tip', '密码最小长度为6位');
+                        }
+                        else {
+                            $.post("/SysChangePassword/ReSet", { Id: SelId, Pwd: r }, function (data) {
+                                if (data.Status == 1) {
+                                    $.messageBox5s('@Resource.Tip', data.Msg+'请重新登录');
+                                    setTimeout(function () {
+                                        window.top.location = '/Account/LogOut';
+                                        //window.location.href = '/Account/LogOut';
+                                    }, 5000)
+                                    
+                                }
+                                else {
+                                    $.messageBox5s('@Resource.Tip', data.Msg);
+                                }
+                            }, "json");
+                        }
+                    });
+            } else {$.messageBox5s('@Resource.Tip','@Resource.PlaseChooseToOperatingRecords'); }
+        });
+    });
+</script>
+
+

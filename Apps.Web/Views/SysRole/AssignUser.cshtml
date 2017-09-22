@@ -1,0 +1,147 @@
+﻿@model Apps.Models.Sys.SysModuleModel
+@using Apps.Web.Helper;
+@using Apps.Models;
+@using Apps.Locale;
+@{
+    ViewBag.Title = "分配用户";
+    Layout = "~/Views/Shared/_Index_LayoutEdit.cshtml";
+
+    List<PermissionModel> perm = ViewBag.sonBtns;
+}
+
+<style>
+    .l-btn-text {
+        line-height: 17px;
+    }
+</style>
+
+<div class="mvctool bgb">
+    <input id="txtQuery" type="text" class="searchText" />
+    @Html.ToolButton("btnQuery", "fa fa-search", Resource.Query, perm, "GetUserListByRole", true)
+    @Html.ToolButton("btnSave", "fa fa-save", Resource.Save, perm, "AssignUser", true)
+</div>
+<table>
+    <tr>
+        <td style="vertical-align: top; width: 200px;">
+            @Html.Raw(ViewBag.StructTree)
+        </td>
+        <td style="padding: 3px">
+            <table id="UserList"></table>
+        </td>
+    </tr>
+</table>
+<script type="text/javascript">
+    function getSelected() {
+        var node = $('#StructTree').tree('getSelected');
+        if (node) {
+            //var s = node.text;
+            //if (node.attributes) {
+            //    s += "," + node.attributes.id;
+            //}
+            var id = node.attributes.id;
+            $("#UserList").datagrid("load", { depId: id });
+        }
+    }
+    $(function () {
+        $("#btnQuery").click(function () {
+            var queryStr = $("#txtQuery").val();
+            if (queryStr == null) {
+                queryStr = "%";
+            }
+            $("#UserList").datagrid("load", { depId: 'root', queryStr: queryStr });
+        });
+        $('#UserList').datagrid({
+            url: '/SysRole/GetUserListByRole?roleId=@(ViewBag.RoleId)&depId=root',
+            width: SetGridWidthSub(190),
+            methord: 'post',
+            height: SetGridHeightSub(46),
+            fitColumns: true,
+            sortName: 'Id',
+            sortOrder: 'desc',
+            idField: 'Id',
+            pageSize: 12,
+            pageList: [12, 20, 30, 40, 50],
+            pagination: true,
+            striped: true, //奇偶行是否区分
+            singleSelect: true,//单选模式
+            loadFilter: function (data) {
+                msgProcess(data);
+                return data.Data;
+            },
+            columns: [[
+                { field: 'Id', title: '@Resource.TitleID', width: 80, hidden: true },
+                { field: 'UserName', title: '用户名', width: 120 },
+                { field: 'TrueName', title: '姓名', width: 80 },
+                { field: 'Flag', title: '是否分配', width: 80, editor: { type: 'checkbox', options: { on: '1', off: '0' } } }
+            ]],
+            onLoadSuccess: function () {
+                var rows = $("#UserList").datagrid("getRows");
+                for (var i = 0; i < rows.length; i++) {
+                    //获取每一行的数据
+                    $('#UserList').datagrid('beginEdit', i);
+                }
+            }
+        });
+    });
+</script>
+
+@*operation*@
+<script type="text/javascript">
+    $(function () {
+        $("#btnSave").click(function () {
+
+            var rows = $("#UserList").datagrid("getRows"); //这段代码是获取当前页的所有行。
+            //var data = new Array();
+            var jsonStr = '';
+            for (var i = 0; i < rows.length; i++) {
+                var setFlag = $("td[field='Flag'] input").eq(i).prop("checked");
+                var Flag = rows[i].Flag;
+                if (Flag != setFlag)//判断是否有作修改
+                {
+                    jsonStr += ('{\"userId\":\"' + rows[i].Id + '\",\"checked\":' + setFlag + '},');
+                    //data.push(rows[i].Id);
+                }
+            }
+
+            if (jsonStr == '') {
+                //$.messageBox5s('@Resource.Tip', '@Resource.NoAnyChanges！');
+                window.parent.frameReturnByMes('@Resource.NoAnyChanges！');
+                return;
+            }
+            var len = jsonStr.length - 1;
+            jsonStr = '[' + jsonStr.substring(0, len) + ']'
+            var json = JSON.parse(jsonStr);
+
+            //var userIds = data.join();
+            //提交数据库
+            //$.post("/SysRole/AssignUser", { roleId: '@(ViewBag.RoleId)', userIds: userIds },
+            //$.post("/SysRole/AssignUser", { roleId: '@(ViewBag.RoleId)', 'users' = '"'+ jsonStr +'"'},
+
+            $.ajax({
+                url: '@Url.Action("AssignUser")',
+                //async: false, // 此处需要同步，因为返回完数据后，下面才能让结果的第一条selected
+                type: "POST",
+                data: { roleId: '@(ViewBag.RoleId)', users: json },
+                dataType: "json",
+                success: function (data) {
+                    if (data.Status == 1) {
+                        window.parent.frameReturnByMes(data.Msg);
+                        window.parent.frameReturnByReload(true);
+                        window.parent.frameReturnByClose()
+                    }
+                    else if (ata.Status == 2) {
+                        window.parent.frameReturnByMes(data.Msg);
+                    } else {
+                        msgProcess(data);
+                    }
+                },
+                error: function () {
+                    window.parent.frameReturnByMes('通讯失败');
+                }
+
+            });
+
+        });
+
+    });
+</script>

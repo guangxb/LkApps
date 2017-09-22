@@ -1,0 +1,126 @@
+﻿@model Apps.Models.Sys.SysPositionModel
+@using Apps.Web.Helper;
+@using Apps.Locale;
+@{
+    ViewBag.Title = "创建职位";
+    Layout = "~/Views/Shared/_Index_LayoutEdit.cshtml";
+
+    List<Apps.Models.PermissionModel> perm = ViewBag.sonBtns;
+}
+
+<style>
+    .l-btn-text {
+        line-height: 17px;
+    }
+
+    input[type="text"] {
+        width: 170px !important;
+    }
+</style>
+
+<script type="text/javascript">
+    function SetPosTree(depId, refFlag) {
+        $('#posTree').combotree({
+            url: '/SysStruct/GetPosListByComTree?depId=' + depId
+                 , onSelect: function (node) {
+                     $("#PosId").val(node.id);
+                 }, onLoadSuccess: function (node, data) { //加载成功选择第一行
+
+                 }
+        });
+    }
+    $(function () {
+        //分类combotree
+        $('#structTree').combotree({
+            url: '/SysStruct/GetListByComTree?id=root'
+            , onSelect: function (node) {
+                $("#DepId").val(node.id);
+                $("#PosId").val("");
+                $('#posTree').combotree('setValue', "");
+                SetPosTree(node.id)
+            }, onLoadSuccess: function (node, data) { //加载成功选择第一行
+
+                SetPosTree($("#DepId").val(), true);
+            }
+        });
+
+        $("#btnSave").click(function () {
+            if ($("form").valid()) {
+                $.ajax({
+                    url: "@Url.Action("Create")",
+                    type: "Post",
+                    data: $("form").serialize(),
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.Status == 1) {
+                            window.parent.frameReturnByMes(data.Msg);
+                            window.parent.frameReturnByReload(true);
+                            window.parent.frameReturnByClose();
+                        }
+                        else if (data.Status == 2) {
+                            window.parent.frameReturnByMes(data.Msg);
+                        } else {
+                            msgProcess(data);
+                        }
+                    }
+                });
+            }
+            return false;
+        });
+        $("#btnReturn").click(function () {
+            window.parent.frameReturnByClose();
+        });
+    });
+</script>
+<div class="mvctool bgb">
+    @Html.ToolButton("btnSave", "fa fa-save", Resource.Save, perm, "Create", true)
+    @Html.ToolButton("btnReturn", "fa fa-reply", Resource.Reply, false)
+</div>
+@using (Ajax.BeginForm("Create", "SysPosition", null, new AjaxOptions { HttpMethod = "POST", OnComplete = "complete" }, new { Id = "EditForm" }))
+{
+    @Html.HiddenFor(model => model.Id)
+    <input id="CreateTime" type="hidden" name="CreateTime" value="2000-1-1" />
+    <table class="formtable">
+        <tbody>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.Name)：
+                    @Html.EditorFor(o => o.Name,new { @style=""})
+                    @Html.ValidationMessageFor(model => model.Name)
+                </td>
+                <td>
+                    说明：
+                    @Html.EditorFor(o => o.Remark)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    职位人数：
+                    <input class="text-box single-line valid" data-val="true" data-val-number="字段 职位允许人数 必须是数字。" data-val-required="职位允许人数 字段是必须的。" id="MemberCount" name="MemberCount" type="number" value="0" min="0" />
+                    <span class="field-validation-valid" data-valmsg-replace="true"></span>
+                    @*@Html.EditorFor(o => o.MemberCount, new { @style="Min:0;" })
+                        @Html.ValidationMessageFor(model => model.MemberCount)*@
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.Sort)：
+                    @Html.EditorFor(o => o.Sort)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    选择部门：
+                    <div style="display:none">
+                        @Html.EditorFor(model => model.DepId)
+                    </div>
+                    <input class="easyui-combotree" id="structTree" style="width: 178px; height: 28px;">
+                </td>
+                <td>
+                    启用职位：
+                    @Html.SwitchButtonByEdit("Enable", false)
+                    @Html.ValidationMessageFor(model => model.Enable)
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}
