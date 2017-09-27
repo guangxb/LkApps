@@ -61,7 +61,8 @@ namespace QiMenPush.Jobs
                         //var confirmlList = header.Where(h => h.COMPANY == cId && h.TRAILING_STS == 900 && h.ACTUAL_SHIP_DATE_TIME >= lastTime).OrderByDescending(h => h.ACTUAL_SHIP_DATE_TIME).Include(s => s.SHIPMENT_DETAIL).Include(s => s.SHIPPING_CONTAINER).AsNoTracking().ToList();
 
                         var confirmlList = header.Where(h => h.COMPANY == cId
-                        && (h.SHIPMENT_CATEGORY6 == null || h.SHIPMENT_CATEGORY6 == QimenPushStatus.Failure.ToString())
+                        && (h.SHIPMENT_CATEGORY6 == null || h.SHIPMENT_CATEGORY6 == QimenPushStatus.Failure.ToString()
+                        ||  h.SHIPMENT_CATEGORY6 == "1" || h.SHIPMENT_CATEGORY6 == "2" || h.SHIPMENT_CATEGORY6 == "3" || h.SHIPMENT_CATEGORY6 == "4" || h.SHIPMENT_CATEGORY6 == "5")
                         && (h.TRAILING_STS == 800 || h.TRAILING_STS == 850 || h.TRAILING_STS == 900)
                         && (h.PROCESS_TYPE == "NORMAL")
                         ).Include(s => s.SHIPMENT_DETAIL).Include(s => s.SHIPPING_CONTAINER).ToList();
@@ -166,6 +167,18 @@ namespace QiMenPush.Jobs
                             }
                             else
                             {
+                                if (string.IsNullOrEmpty(itemHeader.SHIPMENT_CATEGORY6))
+                                {
+                                    itemHeader.SHIPMENT_CATEGORY6 = "1";
+                                }
+                                else
+                                {
+                                    int parseResult;
+                                    if (int.TryParse(itemHeader.SHIPMENT_CATEGORY6, out parseResult))
+                                    {
+                                        itemHeader.SHIPMENT_CATEGORY6 = (parseResult++).ToString();
+                                    }
+                                }
                                 //if (rsp.Message.Length > 50)
                                 //{
                                 //    pushFlag = false;

@@ -61,8 +61,10 @@ namespace QiMenPush.Jobs
 
                         //var confirmlList = header.Where(h => h.COMPANY == cId && h.TRAILING_STS == 900 && (h.RECEIPT_TYPE).Equals("THRK",StringComparison.OrdinalIgnoreCase) && h.CLOSE_DATE >= lastTime).Include(r => r.RECEIPT_DETAIL).OrderByDescending(h => h.CLOSE_DATE).ToList();
                         var confirmlList = header.Where(h => h.COMPANY == cId
-                        && (h.USER_DEF8 == null || h.USER_DEF8 == QimenPushStatus.Failure.ToString())
+                        && (h.USER_DEF8 == null || h.USER_DEF8 == QimenPushStatus.Failure.ToString()
+                        || h.USER_DEF8 == "1" || h.USER_DEF8 == "2" || h.USER_DEF8 == "3" || h.USER_DEF8 == "4" || h.USER_DEF8 == "5")
                         && (h.TRAILING_STS == 800 || h.TRAILING_STS == 850 || h.TRAILING_STS == 900)
+                        &&  h.RECEIPT_TYPE.Equals("THRK", StringComparison.OrdinalIgnoreCase)
                         ).Include(s => s.RECEIPT_DETAIL).ToList();
 
                         req.CustomerId = cId;
@@ -123,6 +125,18 @@ namespace QiMenPush.Jobs
                             }
                             else
                             {
+                                if (string.IsNullOrEmpty(itemHeader.USER_DEF8))
+                                {
+                                    itemHeader.USER_DEF8 = "1";
+                                }
+                                else
+                                {
+                                    int parseResult;
+                                    if (int.TryParse(itemHeader.USER_DEF8, out parseResult))
+                                    {
+                                        itemHeader.USER_DEF8 = (parseResult++).ToString();
+                                    }
+                                }
                                 //if (rsp.Message.Length > 50)
                                 //{
                                 //    pushFlag = false;

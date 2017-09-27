@@ -102,7 +102,7 @@ namespace Apps.Web
             sched.ScheduleJob(job1, trigger1);
             sched.ScheduleJob(job0, trigger0);
             sched.ScheduleJob(job, trigger);
-            sched.Start();
+            //sched.Start();
         }
 
         protected void Application_Error(object sender, EventArgs e)
