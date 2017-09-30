@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -59,10 +62,15 @@
     <Compile Include="Request\EntryorderConfirmRequest.cs" />
     <Compile Include="Request\ReturnorderConfirmRequest.cs" />
     <Compile Include="Request\StockoutConfirmRequest.cs" />
+    <Compile Include="Request\ZQHJsonDeliveryorderConfirmRequest.cs" />
     <Compile Include="Response\DeliveryorderConfirmResponse.cs" />
     <Compile Include="Response\EntryorderConfirmResponse.cs" />
     <Compile Include="Response\ReturnorderConfirmResponse.cs" />
     <Compile Include="Response\StockoutConfirmResponse.cs" />
+    <Compile Include="Response\ZQHJsonDeliveryorderConfirmResponse.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

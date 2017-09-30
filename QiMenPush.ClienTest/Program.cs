@@ -12,7 +12,8 @@ namespace QiMenPush.ClienTest
     {
         static void Main(string[] args)
         {
-            DeliveryorderConfirmResponse rsp = DeliveryorderConfirmManager.InitRequest();
+
+            ZQHJsonDeliveryorderConfirmResponse rsp = DeliveryorderConfirmManager.InitRequest();
             //ReturnorderConfirmResponse rsp = ReturnorderConfirmManager.InitRequest();
             //DeliveryorderConfirmResponse rsp = DeliveryorderConfirmManager.InitRequest();
             //Console.WriteLine(rsp.Body);
@@ -20,7 +21,10 @@ namespace QiMenPush.ClienTest
             //Console.WriteLine(DeliveryorderQueryStatusEnum.NEW);
             //Console.WriteLine(DeliveryorderQueryStatusEnum.CANCELEDFAIL);
             //Console.WriteLine(AjaxMsgStatu.Ok);
-            Console.WriteLine(rsp.Message);
+            Console.WriteLine("Success:" + rsp.Success);
+            Console.WriteLine("Error:" + rsp.Err);
+            Console.WriteLine("OutValue:" + rsp.OutValue);
+            Console.WriteLine("OutContext:" + rsp.OutContext);
             Console.ReadKey();
         }
     }

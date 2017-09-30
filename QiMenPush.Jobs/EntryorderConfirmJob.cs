@@ -141,7 +141,7 @@ namespace QiMenPush.Jobs
                                     int parseResult;
                                     if (int.TryParse(itemHeader.USER_DEF8, out parseResult))
                                     {
-                                        itemHeader.USER_DEF8 = (parseResult++).ToString();
+                                        itemHeader.USER_DEF8 = (parseResult + 1).ToString();
                                     }
                                 }
                                 _logger.Info("入库单:" + itemHeader.RECEIPT_ID + "确认失败:-" + rsp.Message + DateTime.Now);

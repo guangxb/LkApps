@@ -176,7 +176,7 @@ namespace QiMenPush.Jobs
                                     int parseResult;
                                     if (int.TryParse(itemHeader.SHIPMENT_CATEGORY6, out parseResult))
                                     {
-                                        itemHeader.SHIPMENT_CATEGORY6 = (parseResult++).ToString();
+                                        itemHeader.SHIPMENT_CATEGORY6 = (parseResult + 1).ToString();
                                     }
                                 }
                                 //if (rsp.Message.Length > 50)

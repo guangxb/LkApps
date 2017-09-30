@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using CustomHttpClient.Helper;
+using Newtonsoft.Json;
 
 namespace CustomHttpClient
 {
@@ -51,15 +52,24 @@ namespace CustomHttpClient
                 parameters.AddAll(request.GetQueryParameters());
             }
 
-            parameters.Add(Constants.METHOD, request.GetApiName());
-            parameters.Add(Constants.VERSION, request.Version);
-            parameters.Add(Constants.APP_KEY, appKey);
-            parameters.Add(Constants.TIMESTAMP, request.Timestamp);
-            parameters.Add(Constants.FORMAT, format);
-            parameters.Add(Constants.SIGN_METHOD, signMethod);
-            parameters.Add(Constants.SESSION, session);
-            parameters.Add(Constants.PARTNER_ID, Constants.SDK_VERSION);
-            parameters.Add(Constants.QM_CUSTOMER_ID, request.CustomerId);
+            if (string.IsNullOrEmpty(appKey) && string.IsNullOrEmpty(appSecret)) {
+                parameters.Add("accept", "application/json");
+            }
+            else
+            {
+                parameters.Add(Constants.METHOD, request.GetApiName());
+                parameters.Add(Constants.VERSION, request.Version);
+                parameters.Add(Constants.APP_KEY, appKey);
+                parameters.Add(Constants.TIMESTAMP, request.Timestamp);
+                parameters.Add(Constants.FORMAT, format);
+                parameters.Add(Constants.SIGN_METHOD, signMethod);
+                parameters.Add(Constants.SESSION, session);
+                parameters.Add(Constants.PARTNER_ID, Constants.SDK_VERSION);
+                parameters.Add(Constants.QM_CUSTOMER_ID, request.CustomerId);
+            }
+
+            //json
+            //parameters.Add();
 
             // 添加头部参数
             if (this.useGzipEncoding)
@@ -74,8 +84,15 @@ namespace CustomHttpClient
                 {
                     //XmlWriter writer = new XmlWriter(Constants.QM_ROOT_TAG_REQ, typeof(QimenRequest<T>));
                     //reqBody = writer.Write(request);
+                    if (string.IsNullOrEmpty(appKey) && string.IsNullOrEmpty(appSecret))
+                    {
+                        reqBody = JsonConvert.SerializeObject(request);
+                    }
+                    else
+                    {
+                        reqBody = XmlSerializeHelper.XmlSerialize(request);
+                    }
 
-                    reqBody = XmlSerializeHelper.XmlSerialize(request);
                 }
 
                 // 添加签名参数
@@ -92,11 +109,19 @@ namespace CustomHttpClient
                 }
                 else
                 {
-                    if (Constants.FORMAT_XML.Equals(format, StringComparison.OrdinalIgnoreCase))
+                    if (string.IsNullOrEmpty(appKey) && string.IsNullOrEmpty(appSecret))
                     {
-                        XmlDeserializeHelper<T> helper = new XmlDeserializeHelper<T>();
-                        rsp = helper.Parse(rspBody);
+                        rsp = JsonConvert.DeserializeObject<T>(rspBody);
                     }
+                    else
+                    {
+                        if (Constants.FORMAT_XML.Equals(format, StringComparison.OrdinalIgnoreCase))
+                        {
+                            XmlDeserializeHelper<T> helper = new XmlDeserializeHelper<T>();
+                            rsp = helper.Parse(rspBody);
+                        }
+                    }
+                  
                 }
 
                 // 追踪错误的请求

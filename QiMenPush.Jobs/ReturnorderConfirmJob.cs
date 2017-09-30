@@ -134,7 +134,7 @@ namespace QiMenPush.Jobs
                                     int parseResult;
                                     if (int.TryParse(itemHeader.USER_DEF8, out parseResult))
                                     {
-                                        itemHeader.USER_DEF8 = (parseResult++).ToString();
+                                        itemHeader.USER_DEF8 = (parseResult + 1).ToString();
                                     }
                                 }
                                 //if (rsp.Message.Length > 50)

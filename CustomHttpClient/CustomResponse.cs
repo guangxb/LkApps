@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Xml.Serialization;
@@ -9,15 +10,15 @@ namespace CustomHttpClient
     public abstract class CustomResponse
     {
 
-        [XmlElement("flag")]
+        [XmlElement("flag"),JsonProperty(PropertyName = "flag")]
         public string Flag { get; set; }
 
-        [XmlElement("code")]
+        [XmlElement("code"), JsonProperty(PropertyName = "code")]
         public string Code { get; set; }
 
-        [XmlElement("message")]
+        [XmlElement("message"), JsonProperty(PropertyName = "message")]
         public string Message { get; set; }
-        [XmlElement("body")]
+        [XmlElement("body"), JsonProperty(PropertyName = "body")]
         public string Body { get; set; }
 
         public bool IsError

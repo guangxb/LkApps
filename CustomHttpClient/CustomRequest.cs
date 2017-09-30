@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Xml.Serialization;
@@ -43,14 +44,14 @@ namespace CustomHttpClient
         /// 客户ID号
         /// </summary>
         /// 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public string CustomerId { get; set; }
 
         /// <summary>
         /// 请求时间戳
         /// </summary>
         /// 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public DateTime Timestamp { get; set; }
 
         private string _version = "1.0";
@@ -58,21 +59,21 @@ namespace CustomHttpClient
         /// API版本号
         /// </summary>
         /// 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public string Version { get { return this._version; } set { this._version = value; } }
 
         /// <summary>
         /// 测试类型
         /// </summary>
         /// 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public string TestType { get; set; }
 
         /// <summary>
         /// 请求body体
         /// </summary>
         /// 
-        [XmlIgnore]
+        [XmlIgnore, JsonIgnore]
         public string Body { get; set; }
 
         /// <summary>
