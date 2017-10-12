@@ -74,7 +74,7 @@ namespace QiMenApi.Models.DeliveryorderCreateModel
             /// 投递时延要求(1=工作日;2=节假日;101=当日达;102=次晨达;103=次日达;104= 预约 达)
             /// </summary>
             [XmlElement("scheduleType")]
-            public Nullable<long> ScheduleType { get; set; }
+            public string ScheduleType { get; set; }
         }
 
         /// <summary>
