@@ -31,20 +31,21 @@ namespace QiMenPush.Jobs
             try
             {
                 _logger.Info("StockoutConfirmJob 开始执行... " + DateTime.Now + "");
-
-                using (SCVDBContainer dbContext = new SCVDBContainer())
-                using (DBContainer dbContext1 = new DBContainer())
+                foreach (var cId in customerArr)
                 {
-                    DbSet<SHIPMENT_HEADER> header = dbContext.Set<SHIPMENT_HEADER>();
-                    DbSet<SHIPMENT_DETAIL> detail = dbContext.Set<SHIPMENT_DETAIL>();
-                    //DbSet<QiMen_PushTimeStatus> dbSet0 = dbContext1.Set<QiMen_PushTimeStatus>();
-                    DbSet<QiMen_PushLog> dbSet1 = dbContext1.Set<QiMen_PushLog>();
-
-                    IQimenClient client = new DefaultQimenClient(url, appkey, secret);
-                    StockoutConfirmRequest req = new StockoutConfirmRequest();
-
-                    foreach (var cId in customerArr)
+                    using (SCVDBContainer dbContext = new SCVDBContainer())
+                    using (DBContainer dbContext1 = new DBContainer())
                     {
+                        DbSet<SHIPMENT_HEADER> header = dbContext.Set<SHIPMENT_HEADER>();
+                        DbSet<SHIPMENT_DETAIL> detail = dbContext.Set<SHIPMENT_DETAIL>();
+                        //DbSet<QiMen_PushTimeStatus> dbSet0 = dbContext1.Set<QiMen_PushTimeStatus>();
+                        DbSet<QiMen_PushLog> dbSet1 = dbContext1.Set<QiMen_PushLog>();
+
+                        IQimenClient client = new DefaultQimenClient(url, appkey, secret);
+                        StockoutConfirmRequest req = new StockoutConfirmRequest();
+
+
+
                         //DateTime lastTime;
                         //QiMen_PushTimeStatus qmt = dbSet0.Where(q => q.CustomerId == cId && q.OrderType == SHIPMENT && q.Interface == INTERFACE).FirstOrDefault();
                         //if (qmt == null)
@@ -59,13 +60,81 @@ namespace QiMenPush.Jobs
                         //}
                         //&& (h.SHIPMENT_TYPE.Equals("LKCK", StringComparison.OrdinalIgnoreCase))
                         //var confirmlList = header.Where(h => h.COMPANY == cId && h.TRAILING_STS == 900 && h.ACTUAL_SHIP_DATE_TIME >= lastTime).OrderByDescending(h => h.ACTUAL_SHIP_DATE_TIME).Include(s => s.SHIPMENT_DETAIL).Include(s => s.SHIPPING_CONTAINER).AsNoTracking().ToList();
+                        var confirmlList = new List<SHIPMENT_HEADER>();
 
-                        var confirmlList = header.Where(h => h.COMPANY == cId
-                        && (h.SHIPMENT_CATEGORY6 == null || h.SHIPMENT_CATEGORY6 == QimenPushStatus.Failure.ToString()
-                        ||  h.SHIPMENT_CATEGORY6 == "1" || h.SHIPMENT_CATEGORY6 == "2" || h.SHIPMENT_CATEGORY6 == "3" || h.SHIPMENT_CATEGORY6 == "4" || h.SHIPMENT_CATEGORY6 == "5")
-                        && (h.TRAILING_STS == 800 || h.TRAILING_STS == 850 || h.TRAILING_STS == 900)
-                        && (h.PROCESS_TYPE == "NORMAL")
-                        ).Include(s => s.SHIPMENT_DETAIL).Include(s => s.SHIPPING_CONTAINER).ToList();
+                        if (cId == "YS")
+                        {
+                            confirmlList = header.Where(h => h.COMPANY == cId
+                                && (h.SHIPMENT_CATEGORY6 == null || h.SHIPMENT_CATEGORY6 == QimenPushStatus.Failure.ToString()
+                                || h.SHIPMENT_CATEGORY6 == "1" || h.SHIPMENT_CATEGORY6 == "2" || h.SHIPMENT_CATEGORY6 == "3" || h.SHIPMENT_CATEGORY6 == "4" || h.SHIPMENT_CATEGORY6 == "5")
+                                && (h.TRAILING_STS == 800 || h.TRAILING_STS == 850 || h.TRAILING_STS == 900)
+                                && (h.PROCESS_TYPE == "NORMAL")
+                                ).Include(s => s.SHIPMENT_DETAIL).Include(s => s.SHIPPING_CONTAINER).ToList();
+                        }
+                        else
+                        {
+                            confirmlList = header.Where(h => h.COMPANY == cId
+                               //&& h.CREATE_USER == "StockOutCreate"
+                               && (h.SHIPMENT_CATEGORY6 == null || h.SHIPMENT_CATEGORY6 == QimenPushStatus.Failure.ToString()
+                               || h.SHIPMENT_CATEGORY6 == "1" || h.SHIPMENT_CATEGORY6 == "2" || h.SHIPMENT_CATEGORY6 == "3" || h.SHIPMENT_CATEGORY6 == "4" || h.SHIPMENT_CATEGORY6 == "5")
+                               && (h.TRAILING_STS == 800 || h.TRAILING_STS == 850 || h.TRAILING_STS == 900)
+                               && (h.PROCESS_TYPE == "NORMAL")
+                               ).Include(s => s.SHIPMENT_DETAIL).Include(s => s.SHIPPING_CONTAINER).ToList();
+                        }
+
+
+                        if (cId == "CQHGE")
+                        {
+                            confirmlList = confirmlList.Where(l => l.CREATE_USER == "StockOutCreate").ToList();
+                        }
+
+                        if (cId == "YS")
+                        {
+                            CustomHttpClient.Request.YSJsonDeliveryorderConfirmRequest ysReq = new CustomHttpClient.Request.YSJsonDeliveryorderConfirmRequest();
+                            string ysUrl = ysReq.GetApiName();
+                            CustomHttpClient.ICustomClient customClient = new CustomHttpClient.DefaultCustomClient(ysUrl, null, null);
+                            ysReq.Db = "shop01";
+                            ysReq.Function = "sp_mobile";
+                            ysReq.Intype = "qrcode_out";
+                            foreach (var itemHeader in confirmlList)
+                            {
+                                ysReq.Inpara = "20170416591020," + "MAI2800000009001";
+                                CustomHttpClient.Response.YSJsonDeliveryorderConfirmResponse ysRsp = customClient.Execute(ysReq);
+                                QiMen_PushLog log = new QiMen_PushLog();
+                                log.InternalOrderID = itemHeader.INTERNAL_SHIPMENT_NUM;
+                                log.OrderType = INTERFACE;
+                                log.CustomerId = cId;
+                                log.Flag = ysRsp.Success ? "success" : "failure";
+                                log.Message = ysRsp.Err;
+                                log.CreateTime = DateTime.Now;
+                                dbSet1.Add(log);
+
+                                if (ysRsp.Flag == "success")
+                                {
+                                    itemHeader.SHIPMENT_CATEGORY6 = QimenPushStatus.Success.ToString();
+                                    _logger.Info("出库单:" + itemHeader.SHIPMENT_ID + "确认成功----" + DateTime.Now);
+                                }
+                                else
+                                {
+                                    if (string.IsNullOrEmpty(itemHeader.SHIPMENT_CATEGORY6))
+                                    {
+                                        itemHeader.SHIPMENT_CATEGORY6 = "1";
+                                    }
+                                    else
+                                    {
+                                        int parseResult;
+                                        if (int.TryParse(itemHeader.SHIPMENT_CATEGORY6, out parseResult))
+                                        {
+                                            itemHeader.SHIPMENT_CATEGORY6 = (parseResult + 1).ToString();
+                                        }
+                                    }
+                                    _logger.Info("出库单:" + itemHeader.SHIPMENT_ID + "确认失败:-" + ysRsp.Err + DateTime.Now);
+                                }
+                            }
+                            dbContext.SaveChanges();
+                            dbContext1.SaveChanges();
+                            continue;
+                        }
 
                         req.CustomerId = cId;
                         req.Version = v;
@@ -191,9 +260,9 @@ namespace QiMenPush.Jobs
                         //{
                         //    qmt.ActualShipTime = (DateTime)confirmlList.First().ACTUAL_SHIP_DATE_TIME;
                         //}
+                        dbContext.SaveChanges();
+                        dbContext1.SaveChanges();
                     }
-                    dbContext.SaveChanges();
-                    dbContext1.SaveChanges();
                 }
                 _logger.Info("StockoutConfirmJob 执行完成... " + DateTime.Now + "");
             }

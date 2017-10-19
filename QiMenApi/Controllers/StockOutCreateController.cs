@@ -68,6 +68,7 @@ namespace QiMenApi.Controllers
                 header.WAREHOUSE = "LK01";
                 header.SHIPMENT_TYPE = model.DeliveryOrder.OrderType;
                 header.SHIPMENT_ID = model.DeliveryOrder.DeliveryOrderCode;
+                header.CREATE_USER = "StockOutCreate";
                 DateTime time;
                 if (DateTime.TryParse(model.DeliveryOrder.CreateTime,out time)) {
                     header.CREATE_DATE_TIME = time;

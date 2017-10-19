@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CustomHttpClient.Response
 {
-    public class ZQHJsonDeliveryorderConfirmResponse:CustomResponse
+    public class YSJsonDeliveryorderConfirmResponse:CustomResponse
     {
         [JsonProperty(PropertyName = "success")]
         public bool Success { get; set; }

@@ -88,6 +88,10 @@
       <Project>{05B8D312-C663-4D4A-8950-E7FBB86FC317}</Project>
       <Name>Apps.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CustomHttpClient\CustomHttpClient.csproj">
+      <Project>{C929C337-2DEA-48EC-A92D-E85E7E55D642}</Project>
+      <Name>CustomHttpClient</Name>
+    </ProjectReference>
     <ProjectReference Include="..\log4net.Ext\log4net.Ext.csproj">
       <Project>{28D7D061-7FFD-4F1A-8E36-3738BEF65ABC}</Project>
       <Name>log4net.Ext</Name>

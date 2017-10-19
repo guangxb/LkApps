@@ -11,7 +11,7 @@ namespace QiMenPush.ClienTest.Manager
 {
     public class DeliveryorderConfirmManager
     {
-        public static ZQHJsonDeliveryorderConfirmResponse InitRequest()
+        public static YSJsonDeliveryorderConfirmResponse InitRequest()
         {
             //string url = "http://106.87.85.97:9090/api/QiMenApi";
             //string appkey = "1023883919";
@@ -46,7 +46,7 @@ namespace QiMenPush.ClienTest.Manager
             //req.OrderLines = orderLines;
 
             
-            ZQHJsonDeliveryorderConfirmRequest req = new ZQHJsonDeliveryorderConfirmRequest();
+            YSJsonDeliveryorderConfirmRequest req = new YSJsonDeliveryorderConfirmRequest();
             string url = req.GetApiName();
             ICustomClient client = new DefaultCustomClient(url, null, null);
             req.Db = "shop01";

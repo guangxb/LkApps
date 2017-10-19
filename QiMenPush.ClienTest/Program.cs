@@ -13,7 +13,7 @@ namespace QiMenPush.ClienTest
         static void Main(string[] args)
         {
 
-            ZQHJsonDeliveryorderConfirmResponse rsp = DeliveryorderConfirmManager.InitRequest();
+            YSJsonDeliveryorderConfirmResponse rsp = DeliveryorderConfirmManager.InitRequest();
             //ReturnorderConfirmResponse rsp = ReturnorderConfirmManager.InitRequest();
             //DeliveryorderConfirmResponse rsp = DeliveryorderConfirmManager.InitRequest();
             //Console.WriteLine(rsp.Body);

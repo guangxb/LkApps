@@ -89,7 +89,7 @@ namespace QiMenApi.Controllers
                 header.SHIP_TO_ADDRESS1 = model.DeliveryOrder.ReceiverInfo.DetailAddress;
                 header.PROCESS_TYPE = "NORMAL";
                 header.CARRIER = model.DeliveryOrder.LogisticsCode;
-                header.CREATE_USER = "interface";
+                header.CREATE_USER = "DeliveryorderCreate";
                 header.TOTAL_LINES = model.OrderLines.Count();
                 int totalQty = 0;
 

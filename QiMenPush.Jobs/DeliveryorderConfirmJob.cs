@@ -41,22 +41,23 @@ namespace QiMenPush.Jobs
                 //    _logger.Info("SimpleQuartzJob start... " + i + " " + DateTime.Now + "");
                 //    Console.WriteLine("SimpleQuartzJob running..." + i);
                 //}
-                using (SCVDBContainer dbContext = new SCVDBContainer())
-                using (DBContainer dbContext1 = new DBContainer())
+                foreach (var cId in customerArr)
                 {
-                    DbSet<SHIPMENT_HEADER> header = dbContext.Set<SHIPMENT_HEADER>();
-                    DbSet<SHIPMENT_DETAIL> detail = dbContext.Set<SHIPMENT_DETAIL>();
-                    //DbSet<SHIPMENT_HEADER_TEMP> headerTemp = dbContext.Set<SHIPMENT_HEADER_TEMP>();
-                    //DbSet<QiMen_PushTimeStatus> dbSet0 = dbContext1.Set<QiMen_PushTimeStatus>();
-                    DbSet<QiMen_PushLog> dbSet1 = dbContext1.Set<QiMen_PushLog>();
-                    //Spm_LastTime sl = dbSet0.Find("1");
-                    //DateTime lastTime = ((DateTime)sl.ActualShipDateTime).AddMinutes(-1);
-
-                    IQimenClient client = new DefaultQimenClient(url, appkey, secret);
-                    DeliveryorderConfirmRequest req = new DeliveryorderConfirmRequest();
-
-                    foreach (var cId in customerArr)
+                    using (SCVDBContainer dbContext = new SCVDBContainer())
+                    using (DBContainer dbContext1 = new DBContainer())
                     {
+                        DbSet<SHIPMENT_HEADER> header = dbContext.Set<SHIPMENT_HEADER>();
+                        DbSet<SHIPMENT_DETAIL> detail = dbContext.Set<SHIPMENT_DETAIL>();
+                        //DbSet<SHIPMENT_HEADER_TEMP> headerTemp = dbContext.Set<SHIPMENT_HEADER_TEMP>();
+                        //DbSet<QiMen_PushTimeStatus> dbSet0 = dbContext1.Set<QiMen_PushTimeStatus>();
+                        DbSet<QiMen_PushLog> dbSet1 = dbContext1.Set<QiMen_PushLog>();
+                        //Spm_LastTime sl = dbSet0.Find("1");
+                        //DateTime lastTime = ((DateTime)sl.ActualShipDateTime).AddMinutes(-1);
+
+                        IQimenClient client = new DefaultQimenClient(url, appkey, secret);
+                        DeliveryorderConfirmRequest req = new DeliveryorderConfirmRequest();
+
+
                         //DateTime lastTime;
                         //QiMen_PushTimeStatus qmt = dbSet0.Where(q => q.CustomerId == cId && q.OrderType == SHIPMENT && q.Interface == INTERFACE).FirstOrDefault();
                         //if (qmt == null)
@@ -72,11 +73,17 @@ namespace QiMenPush.Jobs
                         //DateTime lastTime = dbSet0.Where()   //&& !(h.SHIPMENT_TYPE.Equals("LKCK", StringComparison.OrdinalIgnoreCase))
                         //var confirmlList = header.Where(h => h.COMPANY == cId && h.TRAILING_STS == 900 && h.ACTUAL_SHIP_DATE_TIME >= lastTime).OrderByDescending(h => h.ACTUAL_SHIP_DATE_TIME).Include(s => s.SHIPMENT_DETAIL).Include(s => s.SHIPPING_CONTAINER).AsNoTracking().ToList();
                         var confirmlList = header.Where(h => h.COMPANY == cId
+                        //&& h.CREATE_USER == "DeliveryorderCreate"
                         && (h.SHIPMENT_CATEGORY6 == null || h.SHIPMENT_CATEGORY6 == QimenPushStatus.Failure.ToString()
-                        ||  h.SHIPMENT_CATEGORY6 == "1" || h.SHIPMENT_CATEGORY6 == "2" || h.SHIPMENT_CATEGORY6 == "3" || h.SHIPMENT_CATEGORY6 == "4" || h.SHIPMENT_CATEGORY6 == "5")
+                        || h.SHIPMENT_CATEGORY6 == "1" || h.SHIPMENT_CATEGORY6 == "2" || h.SHIPMENT_CATEGORY6 == "3" || h.SHIPMENT_CATEGORY6 == "4" || h.SHIPMENT_CATEGORY6 == "5")
                         && (h.TRAILING_STS == 800 || h.TRAILING_STS == 850 || h.TRAILING_STS == 900)
                         && (h.PROCESS_TYPE == "NORMAL")
                         ).Include(s => s.SHIPMENT_DETAIL).Include(s => s.SHIPPING_CONTAINER).ToList();
+
+                        if (cId == "CQHGE")
+                        {
+                            confirmlList = confirmlList.Where(l => l.CREATE_USER == "DeliveryorderCreate").ToList();
+                        }
 
                         req.CustomerId = cId;
                         req.Version = v;
@@ -190,9 +197,9 @@ namespace QiMenPush.Jobs
                         //{
                         //    qmt.ActualShipTime = (DateTime)confirmlList.First().ACTUAL_SHIP_DATE_TIME;
                         //}
+                        dbContext.SaveChanges();
+                        dbContext1.SaveChanges();
                     }
-                    dbContext.SaveChanges();
-                    dbContext1.SaveChanges();
                 }
                 _logger.Info("DeliveryorderConfirmJob 执行完成... " + DateTime.Now + "");
             }

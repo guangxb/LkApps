@@ -71,6 +71,7 @@ namespace QiMenApi.Controllers
                 header.LEADING_STS = 100;
                 header.TRAILING_STS = 100;
                 header.RECEIPT_TYPE =model.EntryOrder.OrderType;
+                header.CREATE_USER = "EntryorderCreate";
                 DateTime orderCreateTime;
                 if (DateTime.TryParse(model.EntryOrder.OrderCreateTime, out orderCreateTime)) {
                     header.CREATE_DATE = orderCreateTime;

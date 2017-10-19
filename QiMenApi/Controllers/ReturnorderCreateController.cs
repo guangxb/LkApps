@@ -70,6 +70,7 @@ namespace QiMenApi.Controllers
                 header.LEADING_STS = 100;
                 header.TRAILING_STS = 100;
                 header.RECEIPT_TYPE = model.ReturnOrder.OrderType;
+                header.CREATE_USER = "ReturnorderCreate";
 
                 if (!string.IsNullOrEmpty(model.ReturnOrder.ExpressCode))
                     header.ERP_ORDER_ID = model.ReturnOrder.ExpressCode;

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CustomHttpClient.Request
 {
-    public class ZQHJsonDeliveryorderConfirmRequest : CustomRequest<Response.ZQHJsonDeliveryorderConfirmResponse>
+    public class YSJsonDeliveryorderConfirmRequest : CustomRequest<Response.YSJsonDeliveryorderConfirmResponse>
     {
 
         [JsonProperty(PropertyName = "db")]
@@ -24,7 +24,7 @@ namespace CustomHttpClient.Request
 
         public override string GetApiName()
         {
-            return "http://106.75.66.42:8020/restful/rpc";
+            return "http://106.75.66.42:8010/restful/rpc";
         }
     }
 }

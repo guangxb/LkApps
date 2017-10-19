@@ -31,21 +31,21 @@ namespace QiMenPush.Jobs
             try
             {
                 _logger.Info("ReturnorderConfirm 开始执行... " + DateTime.Now + "");
-
-                using (SCVDBContainer dbContext0 = new SCVDBContainer())
-                using (DBContainer dbContext1 = new DBContainer())
+                foreach (var cId in customerArr)
                 {
-                    DbSet<RECEIPT_HEADER> header = dbContext0.Set<RECEIPT_HEADER>();
-                    DbSet<RECEIPT_DETAIL> detail = dbContext0.Set<RECEIPT_DETAIL>();
-
-                    //DbSet<QiMen_PushTimeStatus> dbSet0 = dbContext1.Set<QiMen_PushTimeStatus>();
-                    DbSet<QiMen_PushLog> dbSet1 = dbContext1.Set<QiMen_PushLog>();
-
-                    IQimenClient client = new DefaultQimenClient(url, appkey, secret);
-                    ReturnorderConfirmRequest req = new ReturnorderConfirmRequest();
-
-                    foreach (var cId in customerArr)
+                    using (SCVDBContainer dbContext0 = new SCVDBContainer())
+                    using (DBContainer dbContext1 = new DBContainer())
                     {
+                        DbSet<RECEIPT_HEADER> header = dbContext0.Set<RECEIPT_HEADER>();
+                        DbSet<RECEIPT_DETAIL> detail = dbContext0.Set<RECEIPT_DETAIL>();
+
+                        //DbSet<QiMen_PushTimeStatus> dbSet0 = dbContext1.Set<QiMen_PushTimeStatus>();
+                        DbSet<QiMen_PushLog> dbSet1 = dbContext1.Set<QiMen_PushLog>();
+
+                        IQimenClient client = new DefaultQimenClient(url, appkey, secret);
+                        ReturnorderConfirmRequest req = new ReturnorderConfirmRequest();
+
+
                         //DateTime lastTime;
                         //QiMen_PushTimeStatus qmt = dbSet0.Where(q => q.CustomerId == cId && q.OrderType == RECEIPT && q.Interface == INTERFACE).FirstOrDefault();
                         //if (qmt == null)
@@ -61,11 +61,17 @@ namespace QiMenPush.Jobs
 
                         //var confirmlList = header.Where(h => h.COMPANY == cId && h.TRAILING_STS == 900 && (h.RECEIPT_TYPE).Equals("THRK",StringComparison.OrdinalIgnoreCase) && h.CLOSE_DATE >= lastTime).Include(r => r.RECEIPT_DETAIL).OrderByDescending(h => h.CLOSE_DATE).ToList();
                         var confirmlList = header.Where(h => h.COMPANY == cId
+                        //&& h.CREATE_USER == "ReturnorderCreate"
                         && (h.USER_DEF8 == null || h.USER_DEF8 == QimenPushStatus.Failure.ToString()
                         || h.USER_DEF8 == "1" || h.USER_DEF8 == "2" || h.USER_DEF8 == "3" || h.USER_DEF8 == "4" || h.USER_DEF8 == "5")
                         && (h.TRAILING_STS == 800 || h.TRAILING_STS == 850 || h.TRAILING_STS == 900)
-                        &&  h.RECEIPT_TYPE.Equals("THRK", StringComparison.OrdinalIgnoreCase)
+                        && h.RECEIPT_TYPE.Equals("THRK", StringComparison.OrdinalIgnoreCase)
                         ).Include(s => s.RECEIPT_DETAIL).ToList();
+
+                        if (cId == "CQHGE")
+                        {
+                            confirmlList = confirmlList.Where(l => l.CREATE_USER == "ReturnorderCreate").ToList();
+                        }
 
                         req.CustomerId = cId;
                         req.Version = v;
@@ -148,9 +154,9 @@ namespace QiMenPush.Jobs
                         //{
                         //    qmt.ActualArriveTime = (DateTime)confirmlList.First().CLOSE_DATE;
                         //}
+                        dbContext0.SaveChanges();
+                        dbContext1.SaveChanges();
                     }
-                    dbContext0.SaveChanges();
-                    dbContext1.SaveChanges();
                 }
 
                 _logger.Info("ReturnorderConfirm 执行完成... " + DateTime.Now + "");
