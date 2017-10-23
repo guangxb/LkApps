@@ -62,7 +62,7 @@ namespace QiMenPush.Jobs
                         //var confirmlList = header.Where(h => h.COMPANY == cId && h.TRAILING_STS == 900 && h.ACTUAL_SHIP_DATE_TIME >= lastTime).OrderByDescending(h => h.ACTUAL_SHIP_DATE_TIME).Include(s => s.SHIPMENT_DETAIL).Include(s => s.SHIPPING_CONTAINER).AsNoTracking().ToList();
                         var confirmlList = new List<SHIPMENT_HEADER>();
 
-                        if (cId == "YS")
+                        if (cId == "XGQQG")
                         {
                             confirmlList = header.Where(h => h.COMPANY == cId
                                 && (h.SHIPMENT_CATEGORY6 == null || h.SHIPMENT_CATEGORY6 == QimenPushStatus.Failure.ToString()
@@ -88,7 +88,7 @@ namespace QiMenPush.Jobs
                             confirmlList = confirmlList.Where(l => l.CREATE_USER == "StockOutCreate").ToList();
                         }
 
-                        if (cId == "YS")
+                        if (cId == "XGQQG")
                         {
                             CustomHttpClient.Request.YSJsonDeliveryorderConfirmRequest ysReq = new CustomHttpClient.Request.YSJsonDeliveryorderConfirmRequest();
                             string ysUrl = ysReq.GetApiName();
@@ -98,37 +98,42 @@ namespace QiMenPush.Jobs
                             ysReq.Intype = "qrcode_out";
                             foreach (var itemHeader in confirmlList)
                             {
-                                ysReq.Inpara = "20170416591020," + "MAI2800000009001";
-                                CustomHttpClient.Response.YSJsonDeliveryorderConfirmResponse ysRsp = customClient.Execute(ysReq);
-                                QiMen_PushLog log = new QiMen_PushLog();
-                                log.InternalOrderID = itemHeader.INTERNAL_SHIPMENT_NUM;
-                                log.OrderType = INTERFACE;
-                                log.CustomerId = cId;
-                                log.Flag = ysRsp.Success ? "success" : "failure";
-                                log.Message = ysRsp.Err;
-                                log.CreateTime = DateTime.Now;
-                                dbSet1.Add(log);
+                                var snList = dbContext.SERIAL_NUMBER.Where(s=>s.INTERNAL_SHIPMENT_NUM == itemHeader.INTERNAL_SHIPMENT_NUM).ToList();
 
-                                if (ysRsp.Flag == "success")
-                                {
-                                    itemHeader.SHIPMENT_CATEGORY6 = QimenPushStatus.Success.ToString();
-                                    _logger.Info("出库单:" + itemHeader.SHIPMENT_ID + "确认成功----" + DateTime.Now);
-                                }
-                                else
-                                {
-                                    if (string.IsNullOrEmpty(itemHeader.SHIPMENT_CATEGORY6))
+                                foreach (var sn in snList) {
+                                    ysReq.Inpara = itemHeader.SHIPMENT_ID + "," + sn.SERIAL_NUMBER1;
+                                    //ysReq.Inpara = "20170416591020," + "MAI2800000009001";
+                                    CustomHttpClient.Response.YSJsonDeliveryorderConfirmResponse ysRsp = customClient.Execute(ysReq);
+                                    QiMen_PushLog log = new QiMen_PushLog();
+                                    log.InternalOrderID = itemHeader.INTERNAL_SHIPMENT_NUM;
+                                    log.OrderType = INTERFACE;
+                                    log.CustomerId = cId;
+                                    log.Flag = ysRsp.Success ? "success" : "failure";
+                                    log.Message = ysRsp.Err + ":" + ysRsp.OutContext;
+                                    log.CreateTime = DateTime.Now;
+                                    dbSet1.Add(log);
+
+                                    if (ysRsp.Flag == "success")
                                     {
-                                        itemHeader.SHIPMENT_CATEGORY6 = "1";
+                                        itemHeader.SHIPMENT_CATEGORY6 = QimenPushStatus.Success.ToString();
+                                        _logger.Info("出库单:" + itemHeader.SHIPMENT_ID + "确认成功----" + DateTime.Now);
                                     }
                                     else
                                     {
-                                        int parseResult;
-                                        if (int.TryParse(itemHeader.SHIPMENT_CATEGORY6, out parseResult))
+                                        if (string.IsNullOrEmpty(itemHeader.SHIPMENT_CATEGORY6))
                                         {
-                                            itemHeader.SHIPMENT_CATEGORY6 = (parseResult + 1).ToString();
+                                            itemHeader.SHIPMENT_CATEGORY6 = "1";
                                         }
+                                        else
+                                        {
+                                            int parseResult;
+                                            if (int.TryParse(itemHeader.SHIPMENT_CATEGORY6, out parseResult))
+                                            {
+                                                itemHeader.SHIPMENT_CATEGORY6 = (parseResult + 1).ToString();
+                                            }
+                                        }
+                                        _logger.Info("出库单:" + itemHeader.SHIPMENT_ID + "确认失败:-" + ysRsp.OutContext + DateTime.Now);
                                     }
-                                    _logger.Info("出库单:" + itemHeader.SHIPMENT_ID + "确认失败:-" + ysRsp.Err + DateTime.Now);
                                 }
                             }
                             dbContext.SaveChanges();

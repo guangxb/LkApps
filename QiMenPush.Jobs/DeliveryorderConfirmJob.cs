@@ -80,6 +80,12 @@ namespace QiMenPush.Jobs
                         && (h.PROCESS_TYPE == "NORMAL")
                         ).Include(s => s.SHIPMENT_DETAIL).Include(s => s.SHIPPING_CONTAINER).ToList();
 
+                        if (cId == "XGQQG")
+                        {
+                            confirmlList.Clear();
+                        }
+
+
                         if (cId == "CQHGE")
                         {
                             confirmlList = confirmlList.Where(l => l.CREATE_USER == "DeliveryorderCreate").ToList();
