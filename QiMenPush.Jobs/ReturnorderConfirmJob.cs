@@ -68,6 +68,11 @@ namespace QiMenPush.Jobs
                         && h.RECEIPT_TYPE.Equals("THRK", StringComparison.OrdinalIgnoreCase)
                         ).Include(s => s.RECEIPT_DETAIL).ToList();
 
+                        if (cId == "XGQQG")
+                        {
+                            confirmlList.Clear();
+                        }
+
                         if (cId == "CQHGE")
                         {
                             confirmlList = confirmlList.Where(l => l.CREATE_USER == "ReturnorderCreate").ToList();
