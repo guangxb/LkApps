@@ -108,10 +108,10 @@ namespace QiMenPush.Jobs
                                 orderLine.ItemCode = itemDetail.ITEM;
                                 orderLine.PlanQty = (long)itemDetail.TOTAL_QTY;
                                 orderLine.ActualQty = (long)(itemDetail.TOTAL_QTY - itemDetail.OPEN_QTY);
-                                if (itemDetail.TOTAL_QTY != itemDetail.OPEN_QTY)
-                                {
-                                    entryOrder.Status = "PARTFULFILLED";
-                                }
+                                //if (itemDetail.TOTAL_QTY != itemDetail.OPEN_QTY)
+                                //{
+                                //    entryOrder.Status = "PARTFULFILLED";
+                                //}
                                 orderLine.OutBizCode = itemDetail.INTERNAL_RECEIPT_LINE_NUM.ToString();
 
 

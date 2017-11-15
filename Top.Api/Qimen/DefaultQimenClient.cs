@@ -18,6 +18,8 @@ namespace Qimen.Api
         protected int connectTimeout = 15000; // 默认连接超时时间为15秒
         protected int readTimeout = 30000; // 默认响应超时时间为30秒
 
+        private bool ownApi;
+
         private bool disableParser = false; // 禁用响应结果解释
         private bool disableTrace = false; // 禁用日志调试功能
         private bool useGzipEncoding = true;  // 是否启用响应GZIP压缩
@@ -25,11 +27,14 @@ namespace Qimen.Api
         protected WebUtils webUtils;
         protected ITopLogger topLogger;
 
-        public DefaultQimenClient(string serverUrl, string appKey, string appSecret)
+        public DefaultQimenClient(string serverUrl, string appKey, string appSecret, bool ownApi = false)
         {
             this.serverUrl = serverUrl;
             this.appKey = appKey;
             this.appSecret = appSecret;
+
+            this.ownApi = ownApi;
+
             this.webUtils = new WebUtils();
             this.topLogger = DefaultTopLogger.GetDefault();
         }
@@ -55,15 +60,24 @@ namespace Qimen.Api
                 parameters.AddAll(request.GetQueryParameters());
             }
 
-            parameters.Add(Constants.METHOD, request.GetApiName());
-            parameters.Add(Constants.VERSION, request.Version);
-            parameters.Add(Constants.APP_KEY, appKey);
-            parameters.Add(Constants.TIMESTAMP, request.Timestamp);
-            parameters.Add(Constants.FORMAT, format);
-            parameters.Add(Constants.SIGN_METHOD, signMethod);
-            parameters.Add(Constants.SESSION, session);
-            parameters.Add(Constants.PARTNER_ID, Constants.SDK_VERSION);
-            parameters.Add(Constants.QM_CUSTOMER_ID, request.CustomerId);
+            if (ownApi)
+            {
+                request.AddHeaderParameter("accept", "application/xml");
+                request.AddHeaderParameter("content-type", "application/xml");
+            }
+            else {
+                parameters.Add(Constants.METHOD, request.GetApiName());
+                parameters.Add(Constants.VERSION, request.Version);
+                parameters.Add(Constants.APP_KEY, appKey);
+                parameters.Add(Constants.TIMESTAMP, request.Timestamp);
+                parameters.Add(Constants.FORMAT, format);
+                parameters.Add(Constants.SIGN_METHOD, signMethod);
+                parameters.Add(Constants.SESSION, session);
+                parameters.Add(Constants.PARTNER_ID, Constants.SDK_VERSION);
+                parameters.Add(Constants.QM_CUSTOMER_ID, request.CustomerId);
+            }
+
+           
 
             // 添加头部参数
             if (this.useGzipEncoding)
@@ -78,12 +92,13 @@ namespace Qimen.Api
                 {
                     //XmlWriter writer = new XmlWriter(Constants.QM_ROOT_TAG_REQ, typeof(QimenRequest<T>));
                     //reqBody = writer.Write(request);
-
                     reqBody = XmlSerializeHelper.XmlSerialize(request);
                 }
 
                 // 添加签名参数
-                parameters.Add(Constants.SIGN, TopUtils.SignTopRequest(parameters, reqBody, appSecret, signMethod));
+                if (!ownApi) {
+                    parameters.Add(Constants.SIGN, TopUtils.SignTopRequest(parameters, reqBody, appSecret, signMethod));
+                }
 
                 string fullUrl = WebUtils.BuildRequestUrl(serverUrl, parameters);
                 string rspBody = webUtils.DoPost(fullUrl, Encoding.UTF8.GetBytes(reqBody), Constants.QM_CONTENT_TYPE, request.GetHeaderParameters());

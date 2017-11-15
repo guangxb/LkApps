@@ -40,8 +40,17 @@ namespace QiMenPush.Jobs
                         DbSet<SHIPMENT_DETAIL> detail = dbContext.Set<SHIPMENT_DETAIL>();
                         //DbSet<QiMen_PushTimeStatus> dbSet0 = dbContext1.Set<QiMen_PushTimeStatus>();
                         DbSet<QiMen_PushLog> dbSet1 = dbContext1.Set<QiMen_PushLog>();
+                        IQimenClient client;
+                        if (cId == "RB")
+                        {
+                            string rbUrl = "";
+                            client = new DefaultQimenClient(rbUrl, appkey, secret, true);
+                        }
+                        else {
+                            client = new DefaultQimenClient(url, appkey, secret);
+                        }
+                       
 
-                        IQimenClient client = new DefaultQimenClient(url, appkey, secret);
                         StockoutConfirmRequest req = new StockoutConfirmRequest();
 
 
@@ -230,6 +239,7 @@ namespace QiMenPush.Jobs
 
                             req.Packages = packageList;
                             req.OrderLines = orderLineList;
+
 
                             var rsp = client.Execute(req);
 

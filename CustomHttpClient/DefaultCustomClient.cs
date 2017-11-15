@@ -53,19 +53,24 @@ namespace CustomHttpClient
             }
 
             if (string.IsNullOrEmpty(appKey) && string.IsNullOrEmpty(appSecret)) {
-                parameters.Add("accept", "application/json");
+                //parameters.Add("accept", "application/json");
+                //parameters.Add("content-type", "application/json");
+                request.AddHeaderParameter("accept", "application/json");
+                request.AddHeaderParameter("content-type", "application/json");
             }
             else
             {
-                parameters.Add(Constants.METHOD, request.GetApiName());
-                parameters.Add(Constants.VERSION, request.Version);
-                parameters.Add(Constants.APP_KEY, appKey);
-                parameters.Add(Constants.TIMESTAMP, request.Timestamp);
-                parameters.Add(Constants.FORMAT, format);
-                parameters.Add(Constants.SIGN_METHOD, signMethod);
-                parameters.Add(Constants.SESSION, session);
-                parameters.Add(Constants.PARTNER_ID, Constants.SDK_VERSION);
-                parameters.Add(Constants.QM_CUSTOMER_ID, request.CustomerId);
+                //parameters.Add(Constants.METHOD, request.GetApiName());
+                //parameters.Add(Constants.VERSION, request.Version);
+                //parameters.Add(Constants.APP_KEY, appKey);
+                //parameters.Add(Constants.TIMESTAMP, request.Timestamp);
+                //parameters.Add(Constants.FORMAT, format);
+                //parameters.Add(Constants.SIGN_METHOD, signMethod);
+                //parameters.Add(Constants.SESSION, session);
+                //parameters.Add(Constants.PARTNER_ID, Constants.SDK_VERSION);
+                //parameters.Add(Constants.QM_CUSTOMER_ID, request.CustomerId);
+                request.AddHeaderParameter("accept", "application/xml");
+                request.AddHeaderParameter("content-type", "application/xml");
             }
 
             //json
