@@ -45,7 +45,6 @@ namespace QiMenPush.Jobs
                         StockoutConfirmRequest req = new StockoutConfirmRequest();
 
 
-
                         //DateTime lastTime;
                         //QiMen_PushTimeStatus qmt = dbSet0.Where(q => q.CustomerId == cId && q.OrderType == SHIPMENT && q.Interface == INTERFACE).FirstOrDefault();
                         //if (qmt == null)
@@ -74,7 +73,7 @@ namespace QiMenPush.Jobs
                         else
                         {
                             confirmlList = header.Where(h => h.COMPANY == cId
-                               //&& h.CREATE_USER == "StockOutCreate"
+                               && h.CREATE_USER == "StockOutCreate"
                                && (h.SHIPMENT_CATEGORY6 == null || h.SHIPMENT_CATEGORY6 == QimenPushStatus.Failure.ToString()
                                || h.SHIPMENT_CATEGORY6 == "1" || h.SHIPMENT_CATEGORY6 == "2" || h.SHIPMENT_CATEGORY6 == "3" || h.SHIPMENT_CATEGORY6 == "4" || h.SHIPMENT_CATEGORY6 == "5")
                                && (h.TRAILING_STS == 800 || h.TRAILING_STS == 850 || h.TRAILING_STS == 900)
@@ -83,10 +82,10 @@ namespace QiMenPush.Jobs
                         }
 
 
-                        if (cId == "CQHGE")
-                        {
-                            confirmlList = confirmlList.Where(l => l.CREATE_USER == "StockOutCreate").ToList();
-                        }
+                        //if (cId == "CQHGE")
+                        //{
+                        //    confirmlList = confirmlList.Where(l => l.CREATE_USER == "StockOutCreate").ToList();
+                        //}
 
                         if (cId == "XGQQG")
                         {
@@ -97,8 +96,14 @@ namespace QiMenPush.Jobs
                             ysReq.Function = "sp_mobile";
                             ysReq.Intype = "qrcode_out";
                             foreach (var itemHeader in confirmlList)
-                            {
+                            {  
                                 var snList = dbContext.SERIAL_NUMBER.Where(s=>s.INTERNAL_SHIPMENT_NUM == itemHeader.INTERNAL_SHIPMENT_NUM).ToList();
+
+                                if (!snList.Any()) {
+                                    itemHeader.SHIPMENT_CATEGORY6 = "Skip";
+                                }
+
+                                int successCount = 0;
 
                                 foreach (var sn in snList) {
                                     ysReq.Inpara = itemHeader.SHIPMENT_ID + "," + sn.SERIAL_NUMBER1;
@@ -113,10 +118,13 @@ namespace QiMenPush.Jobs
                                     log.CreateTime = DateTime.Now;
                                     dbSet1.Add(log);
 
-                                    if (ysRsp.Flag == "success")
+                                    if (ysRsp.Success)
                                     {
-                                        itemHeader.SHIPMENT_CATEGORY6 = QimenPushStatus.Success.ToString();
-                                        _logger.Info("出库单:" + itemHeader.SHIPMENT_ID + "确认成功----" + DateTime.Now);
+                                        successCount++;
+                                        if (successCount == snList.Count()) {
+                                            itemHeader.SHIPMENT_CATEGORY6 = QimenPushStatus.Success.ToString();
+                                            _logger.Info("出库单:" + itemHeader.SHIPMENT_ID + "确认成功----" + DateTime.Now);
+                                        }
                                     }
                                     else
                                     {

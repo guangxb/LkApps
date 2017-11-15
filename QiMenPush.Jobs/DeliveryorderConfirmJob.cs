@@ -73,7 +73,7 @@ namespace QiMenPush.Jobs
                         //DateTime lastTime = dbSet0.Where()   //&& !(h.SHIPMENT_TYPE.Equals("LKCK", StringComparison.OrdinalIgnoreCase))
                         //var confirmlList = header.Where(h => h.COMPANY == cId && h.TRAILING_STS == 900 && h.ACTUAL_SHIP_DATE_TIME >= lastTime).OrderByDescending(h => h.ACTUAL_SHIP_DATE_TIME).Include(s => s.SHIPMENT_DETAIL).Include(s => s.SHIPPING_CONTAINER).AsNoTracking().ToList();
                         var confirmlList = header.Where(h => h.COMPANY == cId
-                        //&& h.CREATE_USER == "DeliveryorderCreate"
+                        && h.CREATE_USER == "DeliveryorderCreate"
                         && (h.SHIPMENT_CATEGORY6 == null || h.SHIPMENT_CATEGORY6 == QimenPushStatus.Failure.ToString()
                         || h.SHIPMENT_CATEGORY6 == "1" || h.SHIPMENT_CATEGORY6 == "2" || h.SHIPMENT_CATEGORY6 == "3" || h.SHIPMENT_CATEGORY6 == "4" || h.SHIPMENT_CATEGORY6 == "5")
                         && (h.TRAILING_STS == 800 || h.TRAILING_STS == 850 || h.TRAILING_STS == 900)
@@ -86,10 +86,10 @@ namespace QiMenPush.Jobs
                         }
 
 
-                        if (cId == "CQHGE")
-                        {
-                            confirmlList = confirmlList.Where(l => l.CREATE_USER == "DeliveryorderCreate").ToList();
-                        }
+                        //if (cId == "CQHGE")
+                        //{
+                        //    confirmlList = confirmlList.Where(l => l.CREATE_USER == "DeliveryorderCreate").ToList();
+                        //}
 
                         req.CustomerId = cId;
                         req.Version = v;

@@ -1,0 +1,361 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SCVModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="SHIPMENT_HEADER">
+          <Key>
+            <PropertyRef Name="INTERNAL_SHIPMENT_NUM" />
+          </Key>
+          <Property Name="INTERNAL_SHIPMENT_NUM" Type="numeric" Precision="9" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WAREHOUSE" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="COMPANY" Type="nvarchar" MaxLength="50" />
+          <Property Name="INTERNAL_LOAD_NUM" Type="numeric" Precision="9" Scale="0" />
+          <Property Name="SHIPMENT_ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ERP_ORDER" Type="nvarchar" MaxLength="50" />
+          <Property Name="LEADING_STS" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="TRAILING_STS" Type="numeric" Precision="3" Scale="0" />
+          <Property Name="SHIPMENT_TYPE" Type="nvarchar" MaxLength="50" />
+          <Property Name="ROUTE" Type="nvarchar" MaxLength="50" />
+          <Property Name="SHIP_TO" Type="nvarchar" MaxLength="50" />
+          <Property Name="SHIP_TO_NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="SHIP_TO_ADDRESS1" Type="nvarchar" MaxLength="200" />
+          <Property Name="SHIP_TO_ADDRESS2" Type="nvarchar" MaxLength="200" />
+          <Property Name="SHIP_TO_DISTRICT" Type="nvarchar" MaxLength="50" />
+          <Property Name="SHIP_TO_CITY" Type="nvarchar" MaxLength="30" />
+          <Property Name="SHIP_TO_STATE" Type="nvarchar" MaxLength="50" />
+          <Property Name="SHIP_TO_COUNTRY" Type="nvarchar" MaxLength="50" />
+          <Property Name="SHIP_TO_POSTAL_CODE" Type="nvarchar" MaxLength="50" />
+          <Property Name="SHIP_TO_ATTENTION_TO" Type="nvarchar" MaxLength="50" />
+          <Property Name="SHIP_TO_PHONE_NUM" Type="nvarchar" MaxLength="50" />
+          <Property Name="SHIP_TO_MOBILE" Type="nvarchar" MaxLength="50" />
+          <Property Name="SHIP_TO_FAX_NUM" Type="nvarchar" MaxLength="50" />
+          <Property Name="SHIP_TO_EMAIL_ADDRESS" Type="nvarchar" MaxLength="50" />
+          <Property Name="PRIORITY" Type="numeric" Precision="3" Scale="0" />
+          <Property Name="USER_STAMP" Type="nvarchar" MaxLength="30" />
+          <Property Name="DATE_TIME_STAMP" Type="datetime" />
+          <Property Name="REQUESTED_DELIVERY_DATE" Type="datetime" />
+          <Property Name="REQUESTED_DELIVERY_TYPE" Type="nvarchar" MaxLength="10" />
+          <Property Name="SCHEDULED_SHIP_DATE" Type="datetime" />
+          <Property Name="ACTUAL_SHIP_DATE_TIME" Type="datetime" />
+          <Property Name="ACTUAL_DELIVERY_DATE_TIME" Type="datetime" />
+          <Property Name="DELIVERY_NOTE" Type="nvarchar" MaxLength="50" />
+          <Property Name="REJECTION_NOTE" Type="nvarchar" MaxLength="100" />
+          <Property Name="INTERNAL_WAVE_NUM" Type="numeric" Precision="9" Scale="0" />
+          <Property Name="SHIP_DOCK" Type="nvarchar" MaxLength="50" />
+          <Property Name="ALLOCATE_COMPLETE" Type="nchar" MaxLength="1" />
+          <Property Name="TOTAL_WEIGHT" Type="numeric" Precision="18" Scale="5" />
+          <Property Name="WEIGHT_UM" Type="nvarchar" MaxLength="50" />
+          <Property Name="TOTAL_VOLUME" Type="numeric" Precision="18" Scale="5" />
+          <Property Name="VOLUME_UM" Type="nvarchar" MaxLength="50" />
+          <Property Name="TOTAL_LINES" Type="numeric" Precision="9" Scale="0" />
+          <Property Name="TOTAL_CONTAINERS" Type="numeric" Precision="9" Scale="0" />
+          <Property Name="CARRIER" Type="nvarchar" MaxLength="50" />
+          <Property Name="CARRIER_SERVICE" Type="nvarchar" MaxLength="50" />
+          <Property Name="USER_DEF1" Type="nvarchar" MaxLength="500" />
+          <Property Name="USER_DEF2" Type="nvarchar" MaxLength="50" />
+          <Property Name="USER_DEF3" Type="nvarchar" MaxLength="50" />
+          <Property Name="USER_DEF4" Type="nvarchar" MaxLength="500" />
+          <Property Name="USER_DEF5" Type="nvarchar" MaxLength="50" />
+          <Property Name="USER_DEF6" Type="nvarchar" MaxLength="50" />
+          <Property Name="USER_DEF7" Type="nvarchar" MaxLength="50" />
+          <Property Name="USER_DEF8" Type="nvarchar" MaxLength="50" />
+          <Property Name="USER_DEF9" Type="numeric" Precision="18" Scale="5" />
+          <Property Name="USER_DEF10" Type="numeric" Precision="18" Scale="5" />
+          <Property Name="BACK_ORDER_NUM" Type="numeric" Precision="9" Scale="0" />
+          <Property Name="PROCESS_TYPE" Type="nvarchar" MaxLength="50" />
+          <Property Name="TOTAL_QTY" Type="numeric" Precision="9" Scale="0" />
+          <Property Name="LAST_WAVE_NUM" Type="numeric" Precision="9" Scale="0" />
+          <Property Name="GROUP_NUM" Type="numeric" Precision="9" Scale="0" />
+          <Property Name="GROUP_INDEX" Type="numeric" Precision="9" Scale="0" />
+          <Property Name="SIGN_VALUE" Type="nvarchar" MaxLength="500" />
+          <Property Name="SHIPMENT_SUB_TYPE" Type="nvarchar" MaxLength="50" />
+          <Property Name="SHIPMENT_CATEGORY1" Type="nvarchar" MaxLength="50" />
+          <Property Name="SHIPMENT_CATEGORY2" Type="nvarchar" MaxLength="50" />
+          <Property Name="SHIPMENT_CATEGORY3" Type="nvarchar" MaxLength="50" />
+          <Property Name="SHIPMENT_CATEGORY4" Type="nvarchar" MaxLength="50" />
+          <Property Name="SHIPMENT_CATEGORY5" Type="nvarchar" MaxLength="50" />
+          <Property Name="SHIPMENT_CATEGORY6" Type="nvarchar" MaxLength="50" />
+          <Property Name="SHIPMENT_CATEGORY7" Type="nvarchar" MaxLength="50" />
+          <Property Name="SHIPMENT_CATEGORY8" Type="nvarchar" MaxLength="50" />
+          <Property Name="UPLOAD_INTERFACE_FLAG" Type="nvarchar" MaxLength="50" />
+          <Property Name="TOTAL_VALUE" Type="numeric" Precision="18" Scale="5" />
+          <Property Name="SHIPMENT_NOTE" Type="nvarchar" MaxLength="200" />
+          <Property Name="STOP_SEQ" Type="numeric" Precision="18" Scale="5" />
+          <Property Name="CREATE_DATE_TIME" Type="datetime" />
+          <Property Name="CREATE_USER" Type="nvarchar" MaxLength="50" />
+          <Property Name="COD_REQUIRED" Type="nchar" MaxLength="1" />
+          <Property Name="COD_VALUE" Type="numeric" Precision="18" Scale="5" />
+          <Property Name="DEIVERY_WINDOW" Type="nvarchar" MaxLength="50" />
+          <Property Name="ALLOW_CONSOLIDATE" Type="nchar" MaxLength="1" />
+          <Property Name="CONSOLIDATED" Type="nchar" MaxLength="1" />
+          <Property Name="INVOICE_REQUIRED" Type="nchar" MaxLength="1" />
+          <Property Name="INTERNAL_INVOICE_NUM" Type="numeric" Precision="9" Scale="0" />
+          <Property Name="HOST_COMPANY" Type="nvarchar" MaxLength="50" />
+          <Property Name="UPLOAD_INTERFACE_DATE_TIME" Type="datetime" />
+          <Property Name="UPLOAD_INTERFACE_REQUIRED" Type="nvarchar" MaxLength="50" />
+          <Property Name="SO_OPERATOR" Type="nvarchar" MaxLength="50" />
+          <Property Name="SO_OPERATOR_PHONE_NUM" Type="nvarchar" MaxLength="50" />
+          <Property Name="SO_EMAIL_ADDRESS" Type="nvarchar" MaxLength="50" />
+          <Property Name="STATUS_FLOW" Type="nvarchar" MaxLength="50" />
+          <Property Name="ITF_USERDEF1" Type="nvarchar" MaxLength="50" />
+          <Property Name="ITF_USERDEF2" Type="nvarchar" MaxLength="50" />
+          <Property Name="ITF_USERDEF3" Type="nvarchar" MaxLength="50" />
+          <Property Name="ITF_USERDEF4" Type="nvarchar" MaxLength="50" />
+          <Property Name="ITF_USERDEF5" Type="nvarchar" MaxLength="50" />
+          <Property Name="ITF_USERDEF6" Type="nvarchar" MaxLength="50" />
+          <Property Name="ITF_USERDEF7" Type="nvarchar" MaxLength="50" />
+          <Property Name="ITF_USERDEF8" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="SCVModelStoreContainer">
+          <EntitySet Name="SHIPMENT_HEADER" EntityType="Self.SHIPMENT_HEADER" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SCVModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="SHIPMENT_HEADER">
+          <Key>
+            <PropertyRef Name="INTERNAL_SHIPMENT_NUM" />
+          </Key>
+          <Property Name="INTERNAL_SHIPMENT_NUM" Type="Decimal" Precision="9" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WAREHOUSE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="COMPANY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="INTERNAL_LOAD_NUM" Type="Decimal" Precision="9" Scale="0" />
+          <Property Name="SHIPMENT_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ERP_ORDER" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LEADING_STS" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="TRAILING_STS" Type="Decimal" Precision="3" Scale="0" />
+          <Property Name="SHIPMENT_TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ROUTE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SHIP_TO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SHIP_TO_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SHIP_TO_ADDRESS1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="SHIP_TO_ADDRESS2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="SHIP_TO_DISTRICT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SHIP_TO_CITY" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="SHIP_TO_STATE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SHIP_TO_COUNTRY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SHIP_TO_POSTAL_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SHIP_TO_ATTENTION_TO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SHIP_TO_PHONE_NUM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SHIP_TO_MOBILE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SHIP_TO_FAX_NUM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SHIP_TO_EMAIL_ADDRESS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PRIORITY" Type="Decimal" Precision="3" Scale="0" />
+          <Property Name="USER_STAMP" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="DATE_TIME_STAMP" Type="DateTime" Precision="3" />
+          <Property Name="REQUESTED_DELIVERY_DATE" Type="DateTime" Precision="3" />
+          <Property Name="REQUESTED_DELIVERY_TYPE" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="SCHEDULED_SHIP_DATE" Type="DateTime" Precision="3" />
+          <Property Name="ACTUAL_SHIP_DATE_TIME" Type="DateTime" Precision="3" />
+          <Property Name="ACTUAL_DELIVERY_DATE_TIME" Type="DateTime" Precision="3" />
+          <Property Name="DELIVERY_NOTE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="REJECTION_NOTE" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="INTERNAL_WAVE_NUM" Type="Decimal" Precision="9" Scale="0" />
+          <Property Name="SHIP_DOCK" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ALLOCATE_COMPLETE" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="TOTAL_WEIGHT" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="WEIGHT_UM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TOTAL_VOLUME" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="VOLUME_UM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TOTAL_LINES" Type="Decimal" Precision="9" Scale="0" />
+          <Property Name="TOTAL_CONTAINERS" Type="Decimal" Precision="9" Scale="0" />
+          <Property Name="CARRIER" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CARRIER_SERVICE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="USER_DEF1" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="USER_DEF2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="USER_DEF3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="USER_DEF4" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="USER_DEF5" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="USER_DEF6" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="USER_DEF7" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="USER_DEF8" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="USER_DEF9" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="USER_DEF10" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="BACK_ORDER_NUM" Type="Decimal" Precision="9" Scale="0" />
+          <Property Name="PROCESS_TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TOTAL_QTY" Type="Decimal" Precision="9" Scale="0" />
+          <Property Name="LAST_WAVE_NUM" Type="Decimal" Precision="9" Scale="0" />
+          <Property Name="GROUP_NUM" Type="Decimal" Precision="9" Scale="0" />
+          <Property Name="GROUP_INDEX" Type="Decimal" Precision="9" Scale="0" />
+          <Property Name="SIGN_VALUE" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="SHIPMENT_SUB_TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SHIPMENT_CATEGORY1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SHIPMENT_CATEGORY2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SHIPMENT_CATEGORY3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SHIPMENT_CATEGORY4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SHIPMENT_CATEGORY5" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SHIPMENT_CATEGORY6" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SHIPMENT_CATEGORY7" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SHIPMENT_CATEGORY8" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UPLOAD_INTERFACE_FLAG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TOTAL_VALUE" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="SHIPMENT_NOTE" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="STOP_SEQ" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="CREATE_DATE_TIME" Type="DateTime" Precision="3" />
+          <Property Name="CREATE_USER" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="COD_REQUIRED" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="COD_VALUE" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="DEIVERY_WINDOW" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ALLOW_CONSOLIDATE" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="CONSOLIDATED" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="INVOICE_REQUIRED" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="INTERNAL_INVOICE_NUM" Type="Decimal" Precision="9" Scale="0" />
+          <Property Name="HOST_COMPANY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UPLOAD_INTERFACE_DATE_TIME" Type="DateTime" Precision="3" />
+          <Property Name="UPLOAD_INTERFACE_REQUIRED" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SO_OPERATOR" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SO_OPERATOR_PHONE_NUM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SO_EMAIL_ADDRESS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="STATUS_FLOW" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ITF_USERDEF1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ITF_USERDEF2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ITF_USERDEF3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ITF_USERDEF4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ITF_USERDEF5" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ITF_USERDEF6" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ITF_USERDEF7" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ITF_USERDEF8" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="SCVEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="SHIPMENT_HEADER" EntityType="Self.SHIPMENT_HEADER" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SCVModelStoreContainer" CdmEntityContainer="SCVEntities">
+          <EntitySetMapping Name="SHIPMENT_HEADER">
+            <EntityTypeMapping TypeName="SCVModel.SHIPMENT_HEADER">
+              <MappingFragment StoreEntitySet="SHIPMENT_HEADER">
+                <ScalarProperty Name="INTERNAL_SHIPMENT_NUM" ColumnName="INTERNAL_SHIPMENT_NUM" />
+                <ScalarProperty Name="WAREHOUSE" ColumnName="WAREHOUSE" />
+                <ScalarProperty Name="COMPANY" ColumnName="COMPANY" />
+                <ScalarProperty Name="INTERNAL_LOAD_NUM" ColumnName="INTERNAL_LOAD_NUM" />
+                <ScalarProperty Name="SHIPMENT_ID" ColumnName="SHIPMENT_ID" />
+                <ScalarProperty Name="ERP_ORDER" ColumnName="ERP_ORDER" />
+                <ScalarProperty Name="LEADING_STS" ColumnName="LEADING_STS" />
+                <ScalarProperty Name="TRAILING_STS" ColumnName="TRAILING_STS" />
+                <ScalarProperty Name="SHIPMENT_TYPE" ColumnName="SHIPMENT_TYPE" />
+                <ScalarProperty Name="ROUTE" ColumnName="ROUTE" />
+                <ScalarProperty Name="SHIP_TO" ColumnName="SHIP_TO" />
+                <ScalarProperty Name="SHIP_TO_NAME" ColumnName="SHIP_TO_NAME" />
+                <ScalarProperty Name="SHIP_TO_ADDRESS1" ColumnName="SHIP_TO_ADDRESS1" />
+                <ScalarProperty Name="SHIP_TO_ADDRESS2" ColumnName="SHIP_TO_ADDRESS2" />
+                <ScalarProperty Name="SHIP_TO_DISTRICT" ColumnName="SHIP_TO_DISTRICT" />
+                <ScalarProperty Name="SHIP_TO_CITY" ColumnName="SHIP_TO_CITY" />
+                <ScalarProperty Name="SHIP_TO_STATE" ColumnName="SHIP_TO_STATE" />
+                <ScalarProperty Name="SHIP_TO_COUNTRY" ColumnName="SHIP_TO_COUNTRY" />
+                <ScalarProperty Name="SHIP_TO_POSTAL_CODE" ColumnName="SHIP_TO_POSTAL_CODE" />
+                <ScalarProperty Name="SHIP_TO_ATTENTION_TO" ColumnName="SHIP_TO_ATTENTION_TO" />
+                <ScalarProperty Name="SHIP_TO_PHONE_NUM" ColumnName="SHIP_TO_PHONE_NUM" />
+                <ScalarProperty Name="SHIP_TO_MOBILE" ColumnName="SHIP_TO_MOBILE" />
+                <ScalarProperty Name="SHIP_TO_FAX_NUM" ColumnName="SHIP_TO_FAX_NUM" />
+                <ScalarProperty Name="SHIP_TO_EMAIL_ADDRESS" ColumnName="SHIP_TO_EMAIL_ADDRESS" />
+                <ScalarProperty Name="PRIORITY" ColumnName="PRIORITY" />
+                <ScalarProperty Name="USER_STAMP" ColumnName="USER_STAMP" />
+                <ScalarProperty Name="DATE_TIME_STAMP" ColumnName="DATE_TIME_STAMP" />
+                <ScalarProperty Name="REQUESTED_DELIVERY_DATE" ColumnName="REQUESTED_DELIVERY_DATE" />
+                <ScalarProperty Name="REQUESTED_DELIVERY_TYPE" ColumnName="REQUESTED_DELIVERY_TYPE" />
+                <ScalarProperty Name="SCHEDULED_SHIP_DATE" ColumnName="SCHEDULED_SHIP_DATE" />
+                <ScalarProperty Name="ACTUAL_SHIP_DATE_TIME" ColumnName="ACTUAL_SHIP_DATE_TIME" />
+                <ScalarProperty Name="ACTUAL_DELIVERY_DATE_TIME" ColumnName="ACTUAL_DELIVERY_DATE_TIME" />
+                <ScalarProperty Name="DELIVERY_NOTE" ColumnName="DELIVERY_NOTE" />
+                <ScalarProperty Name="REJECTION_NOTE" ColumnName="REJECTION_NOTE" />
+                <ScalarProperty Name="INTERNAL_WAVE_NUM" ColumnName="INTERNAL_WAVE_NUM" />
+                <ScalarProperty Name="SHIP_DOCK" ColumnName="SHIP_DOCK" />
+                <ScalarProperty Name="ALLOCATE_COMPLETE" ColumnName="ALLOCATE_COMPLETE" />
+                <ScalarProperty Name="TOTAL_WEIGHT" ColumnName="TOTAL_WEIGHT" />
+                <ScalarProperty Name="WEIGHT_UM" ColumnName="WEIGHT_UM" />
+                <ScalarProperty Name="TOTAL_VOLUME" ColumnName="TOTAL_VOLUME" />
+                <ScalarProperty Name="VOLUME_UM" ColumnName="VOLUME_UM" />
+                <ScalarProperty Name="TOTAL_LINES" ColumnName="TOTAL_LINES" />
+                <ScalarProperty Name="TOTAL_CONTAINERS" ColumnName="TOTAL_CONTAINERS" />
+                <ScalarProperty Name="CARRIER" ColumnName="CARRIER" />
+                <ScalarProperty Name="CARRIER_SERVICE" ColumnName="CARRIER_SERVICE" />
+                <ScalarProperty Name="USER_DEF1" ColumnName="USER_DEF1" />
+                <ScalarProperty Name="USER_DEF2" ColumnName="USER_DEF2" />
+                <ScalarProperty Name="USER_DEF3" ColumnName="USER_DEF3" />
+                <ScalarProperty Name="USER_DEF4" ColumnName="USER_DEF4" />
+                <ScalarProperty Name="USER_DEF5" ColumnName="USER_DEF5" />
+                <ScalarProperty Name="USER_DEF6" ColumnName="USER_DEF6" />
+                <ScalarProperty Name="USER_DEF7" ColumnName="USER_DEF7" />
+                <ScalarProperty Name="USER_DEF8" ColumnName="USER_DEF8" />
+                <ScalarProperty Name="USER_DEF9" ColumnName="USER_DEF9" />
+                <ScalarProperty Name="USER_DEF10" ColumnName="USER_DEF10" />
+                <ScalarProperty Name="BACK_ORDER_NUM" ColumnName="BACK_ORDER_NUM" />
+                <ScalarProperty Name="PROCESS_TYPE" ColumnName="PROCESS_TYPE" />
+                <ScalarProperty Name="TOTAL_QTY" ColumnName="TOTAL_QTY" />
+                <ScalarProperty Name="LAST_WAVE_NUM" ColumnName="LAST_WAVE_NUM" />
+                <ScalarProperty Name="GROUP_NUM" ColumnName="GROUP_NUM" />
+                <ScalarProperty Name="GROUP_INDEX" ColumnName="GROUP_INDEX" />
+                <ScalarProperty Name="SIGN_VALUE" ColumnName="SIGN_VALUE" />
+                <ScalarProperty Name="SHIPMENT_SUB_TYPE" ColumnName="SHIPMENT_SUB_TYPE" />
+                <ScalarProperty Name="SHIPMENT_CATEGORY1" ColumnName="SHIPMENT_CATEGORY1" />
+                <ScalarProperty Name="SHIPMENT_CATEGORY2" ColumnName="SHIPMENT_CATEGORY2" />
+                <ScalarProperty Name="SHIPMENT_CATEGORY3" ColumnName="SHIPMENT_CATEGORY3" />
+                <ScalarProperty Name="SHIPMENT_CATEGORY4" ColumnName="SHIPMENT_CATEGORY4" />
+                <ScalarProperty Name="SHIPMENT_CATEGORY5" ColumnName="SHIPMENT_CATEGORY5" />
+                <ScalarProperty Name="SHIPMENT_CATEGORY6" ColumnName="SHIPMENT_CATEGORY6" />
+                <ScalarProperty Name="SHIPMENT_CATEGORY7" ColumnName="SHIPMENT_CATEGORY7" />
+                <ScalarProperty Name="SHIPMENT_CATEGORY8" ColumnName="SHIPMENT_CATEGORY8" />
+                <ScalarProperty Name="UPLOAD_INTERFACE_FLAG" ColumnName="UPLOAD_INTERFACE_FLAG" />
+                <ScalarProperty Name="TOTAL_VALUE" ColumnName="TOTAL_VALUE" />
+                <ScalarProperty Name="SHIPMENT_NOTE" ColumnName="SHIPMENT_NOTE" />
+                <ScalarProperty Name="STOP_SEQ" ColumnName="STOP_SEQ" />
+                <ScalarProperty Name="CREATE_DATE_TIME" ColumnName="CREATE_DATE_TIME" />
+                <ScalarProperty Name="CREATE_USER" ColumnName="CREATE_USER" />
+                <ScalarProperty Name="COD_REQUIRED" ColumnName="COD_REQUIRED" />
+                <ScalarProperty Name="COD_VALUE" ColumnName="COD_VALUE" />
+                <ScalarProperty Name="DEIVERY_WINDOW" ColumnName="DEIVERY_WINDOW" />
+                <ScalarProperty Name="ALLOW_CONSOLIDATE" ColumnName="ALLOW_CONSOLIDATE" />
+                <ScalarProperty Name="CONSOLIDATED" ColumnName="CONSOLIDATED" />
+                <ScalarProperty Name="INVOICE_REQUIRED" ColumnName="INVOICE_REQUIRED" />
+                <ScalarProperty Name="INTERNAL_INVOICE_NUM" ColumnName="INTERNAL_INVOICE_NUM" />
+                <ScalarProperty Name="HOST_COMPANY" ColumnName="HOST_COMPANY" />
+                <ScalarProperty Name="UPLOAD_INTERFACE_DATE_TIME" ColumnName="UPLOAD_INTERFACE_DATE_TIME" />
+                <ScalarProperty Name="UPLOAD_INTERFACE_REQUIRED" ColumnName="UPLOAD_INTERFACE_REQUIRED" />
+                <ScalarProperty Name="SO_OPERATOR" ColumnName="SO_OPERATOR" />
+                <ScalarProperty Name="SO_OPERATOR_PHONE_NUM" ColumnName="SO_OPERATOR_PHONE_NUM" />
+                <ScalarProperty Name="SO_EMAIL_ADDRESS" ColumnName="SO_EMAIL_ADDRESS" />
+                <ScalarProperty Name="STATUS_FLOW" ColumnName="STATUS_FLOW" />
+                <ScalarProperty Name="ITF_USERDEF1" ColumnName="ITF_USERDEF1" />
+                <ScalarProperty Name="ITF_USERDEF2" ColumnName="ITF_USERDEF2" />
+                <ScalarProperty Name="ITF_USERDEF3" ColumnName="ITF_USERDEF3" />
+                <ScalarProperty Name="ITF_USERDEF4" ColumnName="ITF_USERDEF4" />
+                <ScalarProperty Name="ITF_USERDEF5" ColumnName="ITF_USERDEF5" />
+                <ScalarProperty Name="ITF_USERDEF6" ColumnName="ITF_USERDEF6" />
+                <ScalarProperty Name="ITF_USERDEF7" ColumnName="ITF_USERDEF7" />
+                <ScalarProperty Name="ITF_USERDEF8" ColumnName="ITF_USERDEF8" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
