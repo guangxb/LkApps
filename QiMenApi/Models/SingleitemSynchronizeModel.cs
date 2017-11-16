@@ -15,8 +15,8 @@ namespace QiMenApi.Models.SingleitemSynchronizeModel
     {
         [XmlElement(ElementName = "actionType")]
         public string ActionType { get; set; }
-        [XmlElement(ElementName = "wareHouseCode")]
-        public string WareHouseCode { get; set; }
+        [XmlElement(ElementName = "warehouseCode")]
+        public string WarehouseCode { get; set; }
         [XmlElement(ElementName = "ownerCode")]
         public string OwnerCode { get; set; }
         [XmlElement(ElementName = "item")]

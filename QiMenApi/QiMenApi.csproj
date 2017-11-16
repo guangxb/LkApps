@@ -165,15 +165,13 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Common\CustomNamespaceXmlFormatter.cs" />
     <Compile Include="Common\QimenApiConfirm.cs" />
-    <Compile Include="Controllers\DeliveryorderConfirmController.cs" />
     <Compile Include="Controllers\DeliveryorderCreateController.cs" />
-    <Compile Include="Controllers\DeliveryorderQueryController.cs" />
     <Compile Include="Controllers\EntryorderCreateController.cs" />
-    <Compile Include="Controllers\EntryorderQueryController.cs" />
-    <Compile Include="Controllers\ItemsSynchronizeController.cs" />
+    <Compile Include="Controllers\InventoryQueryController.cs" />
     <Compile Include="Controllers\OrderCancelController.cs" />
     <Compile Include="Controllers\QiMenApiController.cs" />
     <Compile Include="Controllers\ReturnorderCreateController.cs" />
+    <Compile Include="Controllers\SingleitemQueryController.cs" />
     <Compile Include="Controllers\SingleitemSynchronizeController.cs" />
     <Compile Include="Controllers\StockOutCreateController.cs" />
     <Compile Include="Filter\RequestRedirectAttribute.cs" />

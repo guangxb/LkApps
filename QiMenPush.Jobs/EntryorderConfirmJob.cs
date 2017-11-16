@@ -90,6 +90,10 @@ namespace QiMenPush.Jobs
                             entryOrder.OwnerCode = itemHeader.COMPANY;
                             entryOrder.WarehouseCode = itemHeader.WAREHOUSE;
                             entryOrder.OutBizCode = itemHeader.INTERNAL_RECEIPT_NUM.ToString();
+                            //if (itemHeader.RECEIPT_ID == "RK1708240001")
+                            //{
+                            //    entryOrder.OutBizCode = "xxx1231";
+                            //}
                             entryOrder.Status = "FULFILLED";//item.TRAILING_STS.ToString();
                             entryOrder.ConfirmType = 0L;
                             entryOrder.EntryOrderType = itemHeader.RECEIPT_TYPE;
@@ -113,7 +117,11 @@ namespace QiMenPush.Jobs
                                 //    entryOrder.Status = "PARTFULFILLED";
                                 //}
                                 orderLine.OutBizCode = itemDetail.INTERNAL_RECEIPT_LINE_NUM.ToString();
-
+                                //if (itemHeader.RECEIPT_ID == "RK1708240001")
+                                //{
+                                //    orderLine.OutBizCode = itemDetail.INTERNAL_RECEIPT_LINE_NUM.ToString() + "x";
+                                //    orderLine.ActualQty = 0;
+                                //}
 
                                 orderLineList.Add(orderLine);
 

@@ -8,6 +8,8 @@ namespace Qimen.Api.Response
     /// <summary>
     /// InventoryQueryResponse.
     /// </summary>
+    /// 
+    [XmlRoot("response", Namespace = "", IsNullable = false)]
     public class InventoryQueryResponse : QimenResponse
     {
         /// <summary>

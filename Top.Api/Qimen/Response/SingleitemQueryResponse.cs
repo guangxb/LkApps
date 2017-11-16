@@ -8,6 +8,8 @@ namespace Qimen.Api.Response
     /// <summary>
     /// SingleitemQueryResponse.
     /// </summary>
+    /// 
+    [XmlRoot("response", Namespace = "", IsNullable = false)]
     public class SingleitemQueryResponse : QimenResponse
     {
         /// <summary>
