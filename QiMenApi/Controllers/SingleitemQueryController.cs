@@ -15,6 +15,7 @@ namespace QiMenApi.Controllers
         public SingleitemQueryResponse Post([FromBody]SingleitemQueryRequest model, string customerId)
         {
             var response = new SingleitemQueryResponse();
+            response.Item = new SingleitemQueryResponse.ItemDomain();
             if (customerId == "RB")
             {
                 using (SCVDBContainer dbContext = new SCVDBContainer())

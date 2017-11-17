@@ -9,18 +9,26 @@ namespace Qimen.Api.Request
     /// <summary>
     /// TOP API: taobao.qimen.inventory.query
     /// </summary>
+    /// 
+    [XmlRoot("request", Namespace = "", IsNullable = false)]
     public class InventoryQueryRequest : QimenRequest<Qimen.Api.Response.InventoryQueryResponse>
     {
+        [XmlArray("criteriaList")]
+        [XmlArrayItem("criteria")]
         public List<CriteriaDomain> CriteriaList { get; set; }
 
         /// <summary>
         /// 扩展属性
         /// </summary>
+        /// 
+        [XmlElement("extendProps")]
         public string ExtendProps { get; set; }
 
         /// <summary>
         /// 备注
         /// </summary>
+        /// 
+        [XmlElement("remark")]
         public string Remark { get; set; }
 
         #region ITopRequest Members
@@ -35,6 +43,7 @@ namespace Qimen.Api.Request
 /// CriteriaDomain Data Structure.
 /// </summary>
 [Serializable]
+
 
 public class CriteriaDomain
 {

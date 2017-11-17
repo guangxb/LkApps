@@ -9,13 +9,19 @@ namespace Qimen.Api.Request
     /// <summary>
     /// TOP API: taobao.qimen.singleitem.query
     /// </summary>
+    /// 
+
+    [XmlRoot("request", Namespace = "", IsNullable = false)]
     public class SingleitemQueryRequest : QimenRequest<Qimen.Api.Response.SingleitemQueryResponse>
     {
+
+        [XmlElement("itemCode")]
         /// <summary>
         /// 商品编码,S1234,string(50),必填,
         /// </summary>
         public string ItemCode { get; set; }
 
+        [XmlElement("itemId")]
         /// <summary>
         /// 仓储系统商品编码,C123,string(50),必填,
         /// </summary>
@@ -24,6 +30,8 @@ namespace Qimen.Api.Request
         /// <summary>
         /// 货主编码,H123,string(50),必填,
         /// </summary>
+        /// 
+        [XmlElement("ownerCode")]
         public string OwnerCode { get; set; }
 
         #region ITopRequest Members

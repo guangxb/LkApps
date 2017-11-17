@@ -15,6 +15,7 @@ namespace QiMenApi.Controllers
         public InventoryQueryResponse Post([FromBody]InventoryQueryRequest model, string customerId)
         {
             var response = new InventoryQueryResponse();
+            response.Items = new List<InventoryQueryResponse.ItemDomain>();
 
             if (customerId == "RB")
             {
@@ -65,8 +66,8 @@ namespace QiMenApi.Controllers
                 response.Message = "查询成功";
             }
             else {
-                response.Flag = "success";
-                response.Code = "1";
+                response.Flag = "failure";
+                response.Code = "-1";
                 response.Message = "无数据";
             }
            
