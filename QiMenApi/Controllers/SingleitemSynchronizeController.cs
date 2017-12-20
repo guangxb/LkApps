@@ -30,6 +30,10 @@ namespace QiMenApi.Controllers
         // POST: api/SingleitemSynchronize
         public SingleitemSynchronizeResponseModel Post([FromBody]SingleitemSynchronizeRequestModel model, string customerId)
         {
+            if (customerId == "CH1")
+            {
+                customerId = "CH";
+            }
             SingleitemSynchronizeResponseModel response = new SingleitemSynchronizeResponseModel();
 
             using (DBContainer context = new DBContainer())

@@ -30,6 +30,10 @@ namespace QiMenApi.Controllers
         // POST: api/StockoutCreate
         public StockOutCreateResponseModel Post([FromBody]StockOutCreateRequestModel model,string customerId)
         {
+            if (customerId == "CH1")
+            {
+                customerId = "CH";
+            }
             StockOutCreateResponseModel response = new StockOutCreateResponseModel();
 
             using (DBContainer context = new DBContainer())

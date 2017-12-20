@@ -32,6 +32,10 @@ namespace QiMenApi.Controllers
         public EntryorderCreateResponseModel Post([FromBody]EntryorderCreateRequestModel model, string customerId)
         {
             EntryorderCreateResponseModel response = new EntryorderCreateResponseModel();
+            if (customerId == "CH1")
+            {
+                customerId = "CH";
+            }
 
             using (DBContainer context = new DBContainer())
             {

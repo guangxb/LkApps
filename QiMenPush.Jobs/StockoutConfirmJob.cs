@@ -158,7 +158,14 @@ namespace QiMenPush.Jobs
                             continue;
                         }
 
-                        req.CustomerId = cId;
+                        if (cId == "CH")
+                        {
+                            req.CustomerId = "CH1";
+                        }
+                        else
+                        {
+                            req.CustomerId = cId;
+                        }
                         req.Version = v;
                         req.Timestamp = DateTime.Now;
                         //bool pushFlag = true;

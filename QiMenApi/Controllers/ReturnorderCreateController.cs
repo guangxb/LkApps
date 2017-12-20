@@ -30,6 +30,10 @@ namespace QiMenApi.Controllers
         // POST: api/ReturnorderCreate
         public ReturnorderCreateResponseModel Post([FromBody]ReturnorderCreateRequestModel model, [FromUri]string customerId)
         {
+            if (customerId == "CH1")
+            {
+                customerId = "CH";
+            }
             ReturnorderCreateResponseModel response = new ReturnorderCreateResponseModel();
 
             using (DBContainer context = new DBContainer())

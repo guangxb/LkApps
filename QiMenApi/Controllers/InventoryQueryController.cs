@@ -14,6 +14,10 @@ namespace QiMenApi.Controllers
     {
         public InventoryQueryResponse Post([FromBody]InventoryQueryRequest model, string customerId)
         {
+            if (customerId == "CH1")
+            {
+                customerId = "CH";
+            }
             var response = new InventoryQueryResponse();
             response.Items = new List<InventoryQueryResponse.ItemDomain>();
 

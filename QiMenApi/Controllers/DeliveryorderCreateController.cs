@@ -34,6 +34,10 @@ namespace QiMenApi.Controllers
         {
             DeliveryorderCreateResponseModel response = new DeliveryorderCreateResponseModel();
 
+            if (customerId == "CH1") {
+                customerId = "CH";
+            }
+
             using (DBContainer context = new DBContainer())
             {
                 QiMen_RequestLog log = new QiMen_RequestLog();

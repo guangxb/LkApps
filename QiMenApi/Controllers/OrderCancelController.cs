@@ -30,6 +30,10 @@ namespace QiMenApi.Controllers
         // POST: api/OrderCancel
         public OrderCancelResponseModel Post([FromBody]OrderCancelRequestModel model, string customerId)
         {
+            if (customerId == "CH1")
+            {
+                customerId = "CH";
+            }
             OrderCancelResponseModel response = new OrderCancelResponseModel();
 
             using (DBContainer context = new DBContainer())
