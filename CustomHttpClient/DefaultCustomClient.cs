@@ -55,8 +55,8 @@ namespace CustomHttpClient
             if (string.IsNullOrEmpty(appKey) && string.IsNullOrEmpty(appSecret)) {
                 //parameters.Add("accept", "application/json");
                 //parameters.Add("content-type", "application/json");
-                request.AddHeaderParameter("accept", "application/json");
-                request.AddHeaderParameter("content-type", "application/json");
+                //request.AddHeaderParameter("accept", "application/json");
+                //request.AddHeaderParameter("content-type", "application/json");
             }
             else
             {
@@ -69,8 +69,8 @@ namespace CustomHttpClient
                 //parameters.Add(Constants.SESSION, session);
                 //parameters.Add(Constants.PARTNER_ID, Constants.SDK_VERSION);
                 //parameters.Add(Constants.QM_CUSTOMER_ID, request.CustomerId);
-                request.AddHeaderParameter("accept", "application/xml");
-                request.AddHeaderParameter("content-type", "application/xml");
+                //request.AddHeaderParameter("accept", "application/xml");
+                //request.AddHeaderParameter("content-type", "application/xml");
             }
 
             //json
