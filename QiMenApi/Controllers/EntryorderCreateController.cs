@@ -61,9 +61,9 @@ namespace QiMenApi.Controllers
 
                 if (dbContext.RECEIPT_HEADER.Where(h => h.RECEIPT_ID == model.EntryOrder.EntryOrderCode && h.COMPANY == customerId).Any())
                 {
-                    response.Flag = "failure";
-                    response.Code = "-1";
-                    response.Message = model.EntryOrder.EntryOrderCode + ":创建失败:单号重复";
+                    response.Flag = "success";
+                    response.Code = "0";
+                    response.Message = model.EntryOrder.EntryOrderCode + ":单号重复";
                     response.EntryOrderId = "";
                     return response;
                 }
@@ -135,7 +135,7 @@ namespace QiMenApi.Controllers
                 if (dbContext.SaveChanges() > 0)
                 {
                     response.Flag = "success";
-                    response.Code = "0";
+                    response.Code = "1";
                     response.Message = "入库单:"+ model.EntryOrder.EntryOrderCode + ":创建成功";
                     response.EntryOrderId = header.INTERNAL_RECEIPT_NUM.ToString();
                 }

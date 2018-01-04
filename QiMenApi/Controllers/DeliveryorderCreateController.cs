@@ -62,9 +62,9 @@ namespace QiMenApi.Controllers
 
                 if (dbContext.SHIPMENT_HEADER.Where(h => h.SHIPMENT_ID == model.DeliveryOrder.DeliveryOrderCode && h.COMPANY == customerId).Any())
                 {
-                    response.Flag = "failure";
-                    response.Code = "-1";
-                    response.Message = model.DeliveryOrder.DeliveryOrderCode + ":创建失败:单号重复";
+                    response.Flag = "success";
+                    response.Code = "0";
+                    response.Message = model.DeliveryOrder.DeliveryOrderCode + ":单号重复";
                     response.DeliveryOrderId = "";
                     return response;
                 }
@@ -143,7 +143,7 @@ namespace QiMenApi.Controllers
                 if (dbContext.SaveChanges() > 0)
                 {
                     response.Flag = "success";
-                    response.Code = "0";
+                    response.Code = "1";
                     response.Message = model.DeliveryOrder.DeliveryOrderCode + ":创建成功";
                     response.DeliveryOrderId = header.INTERNAL_SHIPMENT_NUM.ToString();
                 }
