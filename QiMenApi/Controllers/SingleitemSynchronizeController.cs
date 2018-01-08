@@ -15,6 +15,7 @@ namespace QiMenApi.Controllers
 {
     public class SingleitemSynchronizeController : ApiController
     {
+
         // GET: api/SingleitemSynchronize
         public IEnumerable<string> Get()
         {
@@ -30,6 +31,12 @@ namespace QiMenApi.Controllers
         // POST: api/SingleitemSynchronize
         public SingleitemSynchronizeResponseModel Post([FromBody]SingleitemSynchronizeRequestModel model, string customerId)
         {
+            //测试相关
+            //if (customerId == "c1515046170643")
+            //{
+            //    customerId = "HPH";
+            //}
+            //---------------------------------
             if (customerId == "CH1")
             {
                 customerId = "CH";

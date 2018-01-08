@@ -25,7 +25,8 @@ namespace QiMenApi.Models.ItemsSynchronizeModel
         public List<Item> Items { get; set; }
     }
 
-    public class Item {
+    public class Item
+    {
         [XmlElement(ElementName = "itemCode")]
         public string ItemCode { get; set; }
         [XmlElement(ElementName = "itemName")]
@@ -34,6 +35,23 @@ namespace QiMenApi.Models.ItemsSynchronizeModel
         public string BarCode { get; set; }
         [XmlElement(ElementName = "itemType")]
         public string ItemType { get; set; }
+
+        [XmlElement(ElementName = "length")]
+        public decimal Length { get; set; }
+        [XmlElement(ElementName = "width")]
+        public decimal Width { get; set; }
+        [XmlElement(ElementName = "height")]
+        public decimal Height { get; set; }
+        [XmlElement(ElementName = "grossWeight")]
+        public decimal GrossWeight { get; set; }
+        [XmlElement(ElementName = "goodsCode")]
+        public string GoodsCode { get; set; }
+        [XmlElement(ElementName = "color")]
+        public string Color { get; set; }
+        //skuProperty商品属性
+        [XmlElement(ElementName = "skuProperty")]
+        public string SkuProperty { get; set; }
+
     }
     [XmlRoot("response", IsNullable = false)]
     public class ItemsSynchronizeResponseModel {

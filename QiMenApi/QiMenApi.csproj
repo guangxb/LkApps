@@ -168,6 +168,7 @@
     <Compile Include="Controllers\DeliveryorderCreateController.cs" />
     <Compile Include="Controllers\EntryorderCreateController.cs" />
     <Compile Include="Controllers\InventoryQueryController.cs" />
+    <Compile Include="Controllers\ItemsSynchronizeController.cs" />
     <Compile Include="Controllers\OrderCancelController.cs" />
     <Compile Include="Controllers\QiMenApiController.cs" />
     <Compile Include="Controllers\ReturnorderCreateController.cs" />

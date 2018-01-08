@@ -136,23 +136,25 @@ namespace QiMenPush.Jobs
                                 package.Items = itemList;
                                 packageList.Add(package);
                             }
+                            //---------------package add test data
+                            //if (!packageList.Any())
+                            //{
 
-                            //if (!packageList.Any()) {
-
-                            //    for (int i = 0; i < 5; i++) {
+                            //    for (int i = 0; i < 1; i++)
+                            //    {
                             //        List<DeliveryorderConfirmRequest.ItemDomain> itemList = new List<DeliveryorderConfirmRequest.ItemDomain>();
                             //        DeliveryorderConfirmRequest.PackageDomain package = new DeliveryorderConfirmRequest.PackageDomain();
                             //        DeliveryorderConfirmRequest.ItemDomain itemDomain = new DeliveryorderConfirmRequest.ItemDomain();
-                            //        itemDomain.ItemCode = "love100c2001";
-                            //        itemDomain.Quantity = 2;
+                            //        itemDomain.ItemCode = "1000000000203";
+                            //        itemDomain.Quantity = 30;
                             //        itemList.Add(itemDomain);
-                            //        package.ExpressCode = "Test123456789" + i;
-                            //        package.LogisticsCode = "ZTO";
+                            //        package.ExpressCode = "000123456780" + i;
+                            //        package.LogisticsCode = "FAST";
                             //        package.Items = itemList;
                             //        packageList.Add(package);
                             //    }
                             //}
-
+                            //---------------package add test data
 
                             foreach (var itemDetail in itemHeader.SHIPMENT_DETAIL)
                             {

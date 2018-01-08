@@ -181,6 +181,7 @@ namespace QiMenPush.Jobs
                             deliveryOrder.DeliveryOrderId = itemHeader.INTERNAL_SHIPMENT_NUM.ToString();
                             deliveryOrder.OutBizCode = itemHeader.INTERNAL_SHIPMENT_NUM.ToString();
                             deliveryOrder.TotalOrderLines = (long)itemHeader.TOTAL_LINES;
+                            deliveryOrder.Status = "DELIVERED";
 
                             req.DeliveryOrder = deliveryOrder;
 
@@ -212,25 +213,26 @@ namespace QiMenPush.Jobs
                                 packageList.Add(package);
                             }
 
+                            //---------------package add test data
+
                             //if (!packageList.Any())
                             //{
-                            //    deliveryOrder.ExpressCode = "Test123456";
-                            //    deliveryOrder.LogisticsCode = itemHeader.CARRIER;
 
-                            //    for (int i = 0; i < 5; i++)
+                            //    for (int i = 0; i < 1; i++)
                             //    {
                             //        List<StockoutConfirmRequest.ItemDomain> itemList = new List<StockoutConfirmRequest.ItemDomain>();
                             //        StockoutConfirmRequest.PackageDomain package = new StockoutConfirmRequest.PackageDomain();
                             //        StockoutConfirmRequest.ItemDomain itemDomain = new StockoutConfirmRequest.ItemDomain();
-                            //        itemDomain.ItemCode = "love100c2001";
-                            //        itemDomain.Quantity = 2;
+                            //        itemDomain.ItemCode = "1000000000203";
+                            //        itemDomain.Quantity = 30;
                             //        itemList.Add(itemDomain);
-                            //        package.ExpressCode = "Test123456789" + i;
-                            //        package.LogisticsCode = "ZTO";
+                            //        package.ExpressCode = "012345678905" + i;
+                            //        package.LogisticsCode = "SF";
                             //        package.Items = itemList;
                             //        packageList.Add(package);
                             //    }
                             //}
+                            //---------------package add test data
 
 
                             foreach (var itemDetail in itemHeader.SHIPMENT_DETAIL)
@@ -241,6 +243,7 @@ namespace QiMenPush.Jobs
                                 orderLine.ItemCode = itemDetail.ITEM;
                                 orderLine.ActualQty = (int)itemDetail.REQUEST_QTY;
                                 orderLine.OutBizCode = itemDetail.INTERNAL_SHIPMENT_LINE_NUM.ToString();
+                                orderLine.InventoryType = itemDetail.INVENTORY_STS == "合格" ? "ZP" : "CC";
                                 orderLineList.Add(orderLine);
                             }
 
